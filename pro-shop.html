@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" id="root-html">
 <head>
 <meta charset="UTF-8">
@@ -9,16 +9,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero { position:relative; padding:calc(var(--nav-h) + 4rem) 0 4rem; background:var(--secondary); overflow:hidden; }
-.page-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.2; }
-.page-hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 100%,rgba(255,95,31,.18) 0%,transparent 65%); }
-.page-hero-content { position:relative; z-index:1; text-align:center; }
-.page-hero-title { font-family:var(--font-heading); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; color:#fff; margin-bottom:1rem; text-transform:uppercase; }
-.page-hero-sub { font-size:1.0625rem; color:rgba(255,255,255,.6); max-width:550px; margin-inline:auto; font-weight:400; }
 .cart-badge { position:relative; }
 .cart-count { position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%; background:var(--primary); color:#fff; font-size:.625rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
 .shop-sidebar { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; }
-.sidebar-title { font-family:var(--font-heading); font-size:1rem; font-weight:700; margin-bottom:1rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-heading); }
+.sidebar-title { font-family:var(--font-heading); font-size:1rem; font-weight:600; margin-bottom:1rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-heading); }
 .sidebar-links { display:flex; flex-direction:column; gap:.375rem; }
 .sidebar-link { display:flex; align-items:center; justify-content:space-between; padding:.5rem .75rem; border-radius:var(--radius-sm); font-size:.9rem; color:var(--text-body); transition:all 150ms; cursor:pointer; }
 .sidebar-link:hover, .sidebar-link.active { background:var(--primary-light); color:var(--primary); }
@@ -37,7 +31,7 @@ input[type=range] { width:100%; accent-color:var(--primary); }
 <div id="main-nav"></div>
 
 <section class="page-hero">
-  <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80" alt="Pro Shop" class="page-hero-img">
+  <img src="assets/images/banner-pro-shop.jpg" alt="Apex Raceway Pro Shop & Tuning Lab" class="page-hero-img">
   <div class="page-hero-overlay"></div>
   <div class="container">
     <div class="page-hero-content animate-on-scroll">
@@ -55,19 +49,19 @@ input[type=range] { width:100%; accent-color:var(--primary); }
       <div style="background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
         <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.1;"><i class="fas fa-car-side"></i></div>
         <span class="tag tag-primary" style="margin-bottom:.75rem;display:inline-flex;">New Arrivals</span>
-        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Latest RC Models</h3>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;color:#fff;margin-bottom:.5rem;">Latest RC Models</h3>
         <p style="font-size:.875rem;color:rgba(255,255,255,.6);font-weight:400;">2026 season cars just landed</p>
       </div>
       <div style="background:linear-gradient(135deg,rgba(255,95,31,.9) 0%,rgba(224,72,0,.9) 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
         <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.15;"><i class="fas fa-percent"></i></div>
         <span class="tag" style="background:rgba(255,255,255,.2);color:#fff;margin-bottom:.75rem;display:inline-flex;">Sale</span>
-        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Up to 40% Off</h3>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;color:#fff;margin-bottom:.5rem;">Up to 40% Off</h3>
         <p style="font-size:.875rem;color:rgba(255,255,255,.8);font-weight:400;">Selected parts and accessories</p>
       </div>
       <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
         <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.1;"><i class="fas fa-wrench"></i></div>
         <span class="tag tag-success" style="margin-bottom:.75rem;display:inline-flex;">Workshop</span>
-        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Expert Tuning</h3>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;color:#fff;margin-bottom:.5rem;">Expert Tuning</h3>
         <p style="font-size:.875rem;color:rgba(255,255,255,.6);font-weight:400;">Professional setup service available</p>
       </div>
     </div>

@@ -1,59 +1,91 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" id="root-html">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="404 — Page not found. The page you are looking for doesn't exist or has been moved.">
-<title>404 — Page Not Found | Apex Raceway</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<style>
-body { margin: 0; }
-.error-wrap { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem; background:var(--bg-body); position:relative; overflow:hidden; }
-.error-wrap::before { content:'404'; font-family:var(--font-heading); font-size:clamp(8rem,25vw,20rem); font-weight:900; line-height:1; color:var(--primary); opacity:.07; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); white-space:nowrap; pointer-events:none; user-select:none; }
-.error-inner { position:relative; z-index:1; }
-.error-controls { position:absolute; top:1.5rem; right:1.5rem; display:flex; gap:.5rem; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="404 — Page not found. The page you're looking for doesn't exist or has taken a detour off the track.">
+    <title>404 — Page Not Found | Apex Raceway — Slot Car & RC Racing</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wheel-spin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            opacity: 0.14;
+            animation: spin 14s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-<div class="error-wrap">
-  <div class="error-controls">
-    <button onclick="toggleDir()" class="auth-toggle-btn" title="Toggle Direction"><span class="dir-label" style="font-size:.6rem;font-weight:700;">LTR</span></button>
-    <button onclick="toggleTheme()" class="auth-toggle-btn" title="Toggle Theme"><i class="fas fa-moon theme-icon"></i></button>
-  </div>
-  <div class="error-inner">
-    <a href="index.html" style="display:inline-flex;align-items:center;gap:.625rem;text-decoration:none;margin-bottom:3rem;justify-content:center;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
-        <circle cx="32" cy="32" r="32" fill="#FF5F1F" opacity=".12"/>
-        <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity=".6"/>
-        <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
-        <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
-        <circle cx="22" cy="38" r="4" fill="var(--bg-body,#fff)" stroke="#FF5F1F" stroke-width="2"/>
-        <circle cx="42" cy="38" r="4" fill="var(--bg-body,#fff)" stroke="#FF5F1F" stroke-width="2"/>
-      </svg>
-      <div style="text-align:left;">
-        <div style="font-family:var(--font-heading);font-size:1rem;font-weight:800;color:var(--text-heading);text-transform:uppercase;letter-spacing:.05em;">Apex Raceway</div>
-        <div style="font-size:.5625rem;color:var(--text-muted);text-transform:uppercase;">Slot Car & RC Racing</div>
-      </div>
+<body class="fullscreen-page">
+
+<!-- Top Bar -->
+<div style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;max-width:1200px;margin:0 auto;width:100%;">
+    <a href="index.html" class="nav-logo" aria-label="Apex Raceway Home" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="38" height="38" style="flex-shrink:0;">
+            <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
+            <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity="0.6"/>
+            <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
+            <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
+            <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
+            <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
+            <line x1="6" y1="30" x2="14" y2="30" stroke="#FF5F1F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="34" x2="12" y2="34" stroke="#FF5F1F" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+        <div class="nav-logo-text">
+            <span class="brand-name" style="font-family:var(--font-heading);font-weight:600;font-size:1.125rem;color:var(--text-heading);text-transform:uppercase;letter-spacing:0.04em;">Apex Raceway</span>
+            <span class="brand-tagline" style="font-size:0.5625rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Slot Car & RC Racing</span>
+        </div>
     </a>
-    <div style="width:72px;height:72px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;color:var(--primary);font-size:2rem;">
-      <i class="fas fa-flag"></i>
+    <div style="display:flex;gap:0.5rem;">
+        <button onclick="toggleDir()" class="auth-toggle-btn" title="Toggle Direction">
+            <span class="dir-label" style="font-size:0.625rem;font-weight:600;">LTR</span>
+        </button>
+        <button onclick="toggleTheme()" class="auth-toggle-btn" title="Toggle Theme" aria-label="Toggle dark mode">
+            <i class="fas fa-moon theme-icon"></i>
+        </button>
     </div>
-    <h1 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--text-heading);margin-bottom:.75rem;">Off Track!</h1>
-    <p style="font-size:1.0625rem;color:var(--text-muted);max-width:460px;margin:0 auto 2rem;line-height:1.7;font-weight:400;">Looks like this page took a wrong turn and went off the circuit. The page you're looking for doesn't exist or has been moved.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="index.html" class="btn btn-primary"><i class="fas fa-house"></i> Back to Home</a>
-      <a href="book-track.html" class="btn btn-outline"><i class="fas fa-calendar-check"></i> Book Track</a>
-    </div>
-    <div style="margin-top:3rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
-      <a href="leagues.html" style="font-size:.875rem;color:var(--text-muted);text-decoration:none;transition:color 150ms;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fas fa-trophy" style="margin-right:.375rem;color:var(--primary);"></i>Leagues</a>
-      <a href="pro-shop.html" style="font-size:.875rem;color:var(--text-muted);text-decoration:none;transition:color 150ms;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fas fa-store" style="margin-right:.375rem;color:var(--primary);"></i>Pro Shop</a>
-      <a href="contact.html" style="font-size:.875rem;color:var(--text-muted);text-decoration:none;transition:color 150ms;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fas fa-envelope" style="margin-right:.375rem;color:var(--primary);"></i>Contact</a>
-    </div>
-  </div>
 </div>
+
+<!-- Content -->
+<div class="fullscreen-content">
+    <div style="position:relative;max-width:540px;width:100%;margin:0 auto;">
+        <div class="error-illustration">
+            <!-- Spinning gear/wheel background -->
+            <svg class="wheel-spin" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="54" stroke="#FF5F1F" stroke-width="4" stroke-dasharray="12 6"/>
+                <circle cx="60" cy="60" r="36" stroke="#FF5F1F" stroke-width="3"/>
+                <circle cx="60" cy="60" r="14" fill="#FF5F1F"/>
+                <line x1="60" y1="6" x2="60" y2="114" stroke="#FF5F1F" stroke-width="3"/>
+                <line x1="6" y1="60" x2="114" y2="60" stroke="#FF5F1F" stroke-width="3"/>
+                <line x1="22" y1="22" x2="98" y2="98" stroke="#FF5F1F" stroke-width="2.5"/>
+                <line x1="22" y1="98" x2="98" y2="22" stroke="#FF5F1F" stroke-width="2.5"/>
+            </svg>
+            <div class="error-code">404</div>
+        </div>
+        <div class="error-subtitle">Off the Track!</div>
+        <p class="error-desc">Looks like this racer went off circuit! The page you're looking for has taken a pit stop, been moved, or never existed.</p>
+        <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+            <a href="index.html" class="btn btn-primary btn-lg"><i class="fas fa-house"></i> Back to Home</a>
+            <a href="book-track.html" class="btn btn-outline btn-lg"><i class="fas fa-calendar-check"></i> Book Track</a>
+            <a href="contact.html" class="btn btn-outline btn-lg"><i class="fas fa-headset"></i> Contact Support</a>
+        </div>
+    </div>
+</div>
+
 <script src="components.js"></script>
-<script>document.addEventListener('DOMContentLoaded', function() { initAuthPage(); });</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initAuthPage();
+    });
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿/* ===== APEX RACEWAY — SLOT CAR & RC RACING — SHARED COMPONENTS ===== */
+/* ===== APEX RACEWAY — SLOT CAR & RC RACING — SHARED COMPONENTS ===== */
 'use strict';
 
 /* Theme & Direction Init */
@@ -66,17 +66,18 @@ function injectNav() {
 
     const navLinksHTML = links.map(l => {
         const isActive = page === l.href || (page === '' && l.href === 'index.html');
-        return `<a href="${l.href}" class="nav-link${isActive ? ' active' : ''}">${l.label}</a>`;
+        return `<a href="${l.href}" class="nav-link ${isActive ? 'active' : ''}">${l.label}</a>`;
     }).join('');
 
     const mobileLinksHTML = links.map(l => {
         const isActive = page === l.href || (page === '' && l.href === 'index.html');
-        return `<a href="${l.href}" class="mobile-nav-link${isActive ? ' active' : ''}"><i class="fas fa-chevron-right" style="font-size:.625rem;color:var(--text-light);"></i>${l.label}</a>`;
+        return `<a href="${l.href}" class="mob-link ${isActive ? 'active' : ''}">${l.label}</a>`;
     }).join('');
 
     el.innerHTML = `
     <nav class="navbar" id="navbar">
         <div class="nav-inner">
+            <!-- Logo -->
             <a href="index.html" class="nav-logo" aria-label="Apex Raceway Home">
                 ${getLogoSVG(40)}
                 <div class="nav-logo-text">
@@ -84,84 +85,110 @@ function injectNav() {
                     <span class="brand-tagline">Slot Car & RC Racing</span>
                 </div>
             </a>
-            <div class="nav-links">${navLinksHTML}</div>
+
+            <!-- Desktop Nav Links -->
+            <div class="nav-links">
+                ${navLinksHTML}
+            </div>
+
+            <!-- Right Actions -->
             <div class="nav-actions">
+                <!-- RTL Toggle -->
                 <button onclick="toggleDir()" class="nav-icon-btn" title="Toggle Direction" aria-label="Toggle RTL/LTR">
-                    <span class="dir-label" style="font-size:.6rem;font-weight:700;letter-spacing:.04em;">${isRTL ? 'RTL' : 'LTR'}</span>
+                    <span class="dir-label" style="font-size:0.625rem;font-weight:600;">${isRTL ? 'RTL' : 'LTR'}</span>
                 </button>
+                <!-- Theme Toggle -->
                 <button onclick="toggleTheme()" class="nav-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
                     <i class="${isDark ? 'fas fa-sun theme-icon' : 'fas fa-moon theme-icon'}"></i>
                 </button>
-                <a href="login.html" class="btn btn-outline btn-sm" style="display:inline-flex;">Sign In</a>
-                <a href="dashboard.html" class="btn btn-primary btn-sm" style="display:inline-flex;">Dashboard</a>
-                <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileDrawer()">
-                    <span></span><span></span><span></span>
+                <!-- CTAs -->
+                <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+                <a href="dashboard.html" class="btn btn-primary btn-sm">Dashboard</a>
+                <!-- Mobile Hamburger -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)" aria-label="Open menu" aria-expanded="false">
+                    <span class="mobile-menu-icon"><i class="fas fa-bars"></i></span>
                 </button>
             </div>
         </div>
-    </nav>
 
-    <div class="mobile-drawer-overlay" id="mobile-drawer" role="dialog" aria-modal="true" onclick="handleDrawerOverlayClick(event)">
-        <div class="mobile-drawer">
-            <div class="mobile-drawer-header">
-                <a href="index.html" class="nav-logo" onclick="closeMobileDrawer()">
-                    ${getLogoSVG(36)}
-                    <div class="nav-logo-text">
-                        <span class="brand-name" style="color:var(--text-heading);">Apex Raceway</span>
-                        <span class="brand-tagline">Slot Car & RC Racing</span>
-                    </div>
-                </a>
-                <button class="mobile-drawer-close" onclick="closeMobileDrawer()" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+        <!-- Mobile Backdrop -->
+        <div class="mobile-backdrop" id="mobile-backdrop" onclick="toggleMobileMenu(event)"></div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="mobile-menu" id="mobile-menu">
+            ${mobileLinksHTML}
+            <div class="mob-actions">
+                <a href="dashboard.html" class="btn btn-primary w-full"><i class="fas fa-gauge"></i> Dashboard</a>
+                <a href="login.html" class="btn btn-outline w-full"><i class="fas fa-right-to-bracket"></i> Sign In</a>
             </div>
-            <div class="mobile-drawer-body">${mobileLinksHTML}</div>
-            <div class="mobile-drawer-footer">
-                <a href="dashboard.html" class="btn btn-primary btn-full" onclick="closeMobileDrawer()">
-                    <i class="fas fa-gauge"></i> Dashboard
-                </a>
-                <a href="login.html" class="btn btn-outline btn-full" onclick="closeMobileDrawer()">
-                    <i class="fas fa-right-to-bracket"></i> Sign In
-                </a>
-                <div class="mobile-drawer-controls">
-                    <button onclick="toggleDir()" class="nav-icon-btn" title="Toggle Direction">
-                        <span class="dir-label" style="font-size:.6rem;font-weight:700;">${isRTL ? 'RTL' : 'LTR'}</span>
-                    </button>
-                    <button onclick="toggleTheme()" class="nav-icon-btn" title="Toggle Theme">
-                        <i class="${isDark ? 'fas fa-sun theme-icon' : 'fas fa-moon theme-icon'}"></i>
-                    </button>
-                </div>
+            <div class="mob-toggles">
+                <button onclick="toggleDir()" class="nav-icon-btn" title="Toggle Direction">
+                    <span class="dir-label" style="font-size:0.625rem;font-weight:600;">${isRTL ? 'RTL' : 'LTR'}</span>
+                </button>
+                <button onclick="toggleTheme()" class="nav-icon-btn" title="Toggle Theme">
+                    <i class="${isDark ? 'fas fa-sun theme-icon' : 'fas fa-moon theme-icon'}"></i>
+                </button>
             </div>
         </div>
-    </div>`;
+    </nav>`;
 }
 
-function handleDrawerOverlayClick(e) {
-    if (e.target === document.getElementById('mobile-drawer')) closeMobileDrawer();
+function toggleMobileMenu(e) {
+    if (e && e.stopPropagation) {
+        e.stopPropagation();
+    }
+    const menu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-backdrop');
+    const btn = document.querySelector('.mobile-menu-btn');
+    const iconEl = document.querySelector('.mobile-menu-icon');
+    if (!menu) return;
+
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) {
+        menu.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (iconEl) iconEl.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = '';
+    } else {
+        menu.classList.add('open');
+        if (backdrop) backdrop.classList.add('open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (iconEl) iconEl.innerHTML = '<i class="fas fa-xmark"></i>';
+        document.body.style.overflow = 'hidden';
+    }
 }
-function openMobileDrawer() {
-    const drawer = document.getElementById('mobile-drawer');
-    const btn = document.getElementById('hamburger-btn');
-    if (!drawer) return;
-    drawer.classList.add('open');
-    if (btn) { btn.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
-    document.body.style.overflow = 'hidden';
-}
-function closeMobileDrawer() {
-    const drawer = document.getElementById('mobile-drawer');
-    const btn = document.getElementById('hamburger-btn');
-    if (!drawer) return;
-    drawer.classList.remove('open');
-    if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-backdrop');
+    const btn = document.querySelector('.mobile-menu-btn');
+    if (!menu || !menu.classList.contains('open')) return;
+
+    if (btn && (btn === e.target || btn.contains(e.target))) return;
+    if (menu.contains(e.target) && !e.target.classList.contains('mob-link') && !e.target.closest('.mob-actions a')) return;
+
+    menu.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    const iconEl = document.querySelector('.mobile-menu-icon');
+    if (iconEl) iconEl.innerHTML = '<i class="fas fa-bars"></i>';
     document.body.style.overflow = '';
-}
-function toggleMobileDrawer() {
-    const drawer = document.getElementById('mobile-drawer');
-    drawer && drawer.classList.contains('open') ? closeMobileDrawer() : openMobileDrawer();
-}
+});
 
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-        const drawer = document.getElementById('mobile-drawer');
-        if (drawer && drawer.classList.contains('open')) closeMobileDrawer();
+        const menu = document.getElementById('mobile-menu');
+        const backdrop = document.getElementById('mobile-backdrop');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (menu && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('open');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+            const iconEl = document.querySelector('.mobile-menu-icon');
+            if (iconEl) iconEl.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = '';
+        }
     }
 });
 
@@ -179,15 +206,16 @@ function injectFooter() {
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Column 1: Brand & Socials -->
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo-wrap" aria-label="Apex Raceway Home">
+                    <a href="index.html" class="nav-logo footer-logo" aria-label="Apex Raceway Home">
                         ${getLogoSVG(40)}
-                        <div>
-                            <span class="footer-brand-name">Apex Raceway</span>
-                            <span class="footer-brand-sub">Slot Car & RC Racing Track</span>
+                        <div class="nav-logo-text">
+                            <span class="brand-name" style="color:#fff;">Apex Raceway</span>
+                            <span class="brand-tagline" style="color:rgba(255,255,255,0.45);">Slot Car & RC Racing</span>
                         </div>
                     </a>
-                    <p>The premier indoor slot car and RC racing destination. Experience the thrill of precision racing in a state-of-the-art facility built for enthusiasts of all levels.</p>
+                    <p>The premier indoor slot car and RC racing destination. Experience high-speed competition in a world-class facility built for enthusiasts of all ages.</p>
                     <div class="footer-socials">
                         <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -195,8 +223,10 @@ function injectFooter() {
                         <a href="#" class="footer-social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                <div>
-                    <h4 class="footer-col-title">Quick Links</h4>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">QUICK LINKS</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="home2.html">Home 2 — Premium</a></li>
@@ -206,31 +236,37 @@ function injectFooter() {
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="footer-col-title">Resources</h4>
+
+                <!-- Column 3: Resources -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">RESOURCES</h4>
                     <ul class="footer-links">
+                        <li><a href="dashboard.html">Racer Dashboard</a></li>
                         <li><a href="login.html">Sign In</a></li>
                         <li><a href="signup.html">Sign Up</a></li>
-                        <li><a href="dashboard.html">Racer Dashboard</a></li>
                         <li><a href="coming-soon.html">Blog & News</a></li>
-                        <li><a href="coming-soon.html">Track Events</a></li>
-                        <li><a href="404.html">404 Page</a></li>
+                        <li><a href="coming-soon.html">Upcoming Events</a></li>
+                        <li><a href="404.html">404 Error Page</a></li>
                         <li><a href="coming-soon.html">Coming Soon</a></li>
                     </ul>
                 </div>
-                <div>
-                    <div class="footer-newsletter">
-                        <h4>Race Updates</h4>
-                        <p>Subscribe for new race schedules, track events, and exclusive member offers.</p>
-                        <form onsubmit="event.preventDefault(); alert('Subscribed! Start your engines.'); this.reset();" class="footer-newsletter-form">
-                            <input type="email" placeholder="your@email.com" class="footer-newsletter-input" required>
+
+                <!-- Column 4: Newsletter Card -->
+                <div class="footer-col footer-col-newsletter">
+                    <div class="footer-newsletter-card">
+                        <h4 class="footer-newsletter-title">Stay in the Race</h4>
+                        <p class="footer-newsletter-desc">Get race schedules, track updates, tournament invites & exclusive member discounts.</p>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed! Check your inbox for race updates.'); this.reset();" class="footer-newsletter-form">
+                            <input type="email" placeholder="your@email.com" class="footer-newsletter-input" required aria-label="Email address">
                             <button type="submit" class="footer-newsletter-btn">Subscribe</button>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Bottom Bar -->
             <div class="footer-bottom">
-                <p>&copy; ${new Date().getFullYear()} Apex Raceway. All rights reserved.</p>
+                <p class="footer-copyright">&copy; ${new Date().getFullYear()} Apex Raceway. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>

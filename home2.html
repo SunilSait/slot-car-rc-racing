@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" id="root-html">
 <head>
 <meta charset="UTF-8">
@@ -15,12 +15,12 @@
 .hero2-img-split::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D1B2A 0%,rgba(13,27,42,.4) 100%); z-index:1; }
 .hero2-content { position:relative; z-index:2; padding:calc(var(--nav-h) + 4rem) 1.5rem 5rem; max-width:var(--container); margin-inline:auto; width:100%; }
 .hero2-label { display:inline-flex; align-items:center; gap:.5rem; background:rgba(255,95,31,.15); color:var(--primary); border:1px solid rgba(255,95,31,.35); padding:.375rem 1rem; border-radius:var(--radius-full); font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:2rem; }
-.hero2-title { font-family:var(--font-heading); font-size:clamp(2.5rem,6.5vw,5.5rem); font-weight:900; color:#fff; line-height:.95; text-transform:uppercase; letter-spacing:-.01em; margin-bottom:2rem; }
+.hero2-title { font-family:var(--font-heading); font-size:clamp(2.5rem,6.5vw,5.5rem); font-weight:600; color:#fff; line-height:.95; text-transform:uppercase; letter-spacing:-.01em; margin-bottom:2rem; }
 .hero2-title .accent { color:var(--primary); -webkit-text-stroke:0; }
 .hero2-title .outlined { -webkit-text-stroke:2px #fff; color:transparent; }
 .hero2-cards { display:flex; gap:1rem; margin-top:3rem; flex-wrap:wrap; }
 .hero2-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius-md); padding:1.25rem 1.5rem; backdrop-filter:blur(12px); min-width:160px; }
-.hero2-card-num { font-family:var(--font-heading); font-size:1.75rem; font-weight:800; color:var(--primary); }
+.hero2-card-num { font-family:var(--font-heading); font-size:1.75rem; font-weight:600; color:var(--primary); }
 .hero2-card-label { font-size:.75rem; color:rgba(255,255,255,.55); margin-top:.25rem; }
 .tab-panel { display:none; } .tab-panel.active { display:block; }
 .tab-btn { padding:.625rem 1.5rem; border-radius:var(--radius-full); background:var(--bg-muted); border:1.5px solid var(--border); font-size:.875rem; font-weight:600; color:var(--text-body); cursor:pointer; transition:all 150ms; }
@@ -30,18 +30,20 @@
 .experience-card:hover img { transform:scale(1.04); }
 .experience-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,15,26,.95) 0%,rgba(8,15,26,.1) 60%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:2rem; }
 .experience-overlay-tag { display:inline-flex; background:var(--primary); color:#fff; padding:.25rem .75rem; border-radius:var(--radius-sm); font-size:.6875rem; font-weight:700; text-transform:uppercase; margin-bottom:.75rem; align-self:flex-start; }
-.experience-overlay-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:.5rem; }
+.experience-overlay-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.5rem; }
 .experience-overlay-desc { font-size:.875rem; color:rgba(255,255,255,.65); line-height:1.6; }
 .membership-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.5rem; text-align:center; transition:all 250ms; }
 .membership-card:hover { box-shadow:var(--shadow-xl); transform:translateY(-4px); }
 .membership-card.featured { border-color:var(--primary); background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%); }
 .membership-card.featured .membership-title, .membership-card.featured .membership-price, .membership-card.featured .pricing-feature { color:#fff; }
 .membership-card.featured .pricing-feature { color:rgba(255,255,255,.8); }
-.membership-title { font-family:var(--font-heading); font-size:1.25rem; font-weight:700; margin-bottom:.5rem; }
-.membership-price { font-family:var(--font-heading); font-size:3rem; font-weight:800; color:var(--primary); line-height:1; margin:1rem 0; }
+.membership-title { font-family:var(--font-heading); font-size:1.25rem; font-weight:600; margin-bottom:.5rem; }
+.membership-price { font-family:var(--font-heading); font-size:3rem; font-weight:600; color:var(--primary); line-height:1; margin:1rem 0; }
 .membership-price small { font-size:.875rem; font-weight:400; color:var(--text-muted); }
 .membership-card.featured .membership-price small { color:rgba(255,255,255,.6); }
-@media(max-width:768px) { .hero2-img-split { width:100%; opacity:.2; } .hero2-cards { gap:.75rem; } .hero2-card { min-width:120px; } }
+@media(max-width:768px) { .hero2-img-split { width:100%; opacity:.2; } .hero2-cards { gap:.75rem; } .hero2-card { min-width:120px; } .hero2-content { padding-inline:1.25rem; } }
+@media(max-width:480px) { .hero2-content { padding-inline:1rem; } }
+@media(max-width:360px) { .hero2-content { padding-inline:0.875rem; } }
 </style>
 </head>
 <body>

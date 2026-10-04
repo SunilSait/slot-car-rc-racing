@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" id="root-html">
 <head>
 <meta charset="UTF-8">
@@ -9,22 +9,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero { position:relative; padding:calc(var(--nav-h) + 4rem) 0 4rem; background:var(--secondary); overflow:hidden; }
-.page-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.2; }
-.page-hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 100%,rgba(255,95,31,.18) 0%,transparent 65%); }
-.page-hero-content { position:relative; z-index:1; text-align:center; }
-.page-hero-title { font-family:var(--font-heading); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; color:#fff; margin-bottom:1rem; text-transform:uppercase; }
-.page-hero-sub { font-size:1.0625rem; color:rgba(255,255,255,.6); max-width:550px; margin-inline:auto; font-weight:400; }
 .league-card { background:var(--bg-card); border:2px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; transition:all 250ms; }
 .league-card:hover { border-color:var(--primary); box-shadow:var(--shadow-lg); transform:translateY(-4px); }
 .league-card-header { padding:1.75rem 2rem; border-bottom:1px solid var(--border); }
-.league-badge { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .75rem; border-radius:var(--radius-full); font-size:.6875rem; font-weight:700; text-transform:uppercase; margin-bottom:.875rem; }
-.league-name { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; margin-bottom:.5rem; }
+.league-badge { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .75rem; border-radius:var(--radius-full); font-size:.6875rem; font-weight:600; text-transform:uppercase; margin-bottom:.875rem; }
+.league-name { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; margin-bottom:.5rem; }
 .league-desc { font-size:.9375rem; color:var(--text-muted); font-weight:400; line-height:1.6; }
 .league-card-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-bottom:1px solid var(--border); }
 .league-stat { text-align:center; padding:1.25rem .75rem; border-right:1px solid var(--border); }
 .league-stat:last-child { border-right:none; }
-.league-stat-num { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; color:var(--primary); }
+.league-stat-num { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; color:var(--primary); }
 .league-stat-label { font-size:.75rem; color:var(--text-muted); margin-top:.25rem; }
 .league-card-footer { padding:1.5rem 2rem; display:flex; gap:1rem; align-items:center; }
 .standings-wrap { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
@@ -42,7 +36,7 @@
 <div id="main-nav"></div>
 
 <section class="page-hero">
-  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80" alt="Race Night" class="page-hero-img">
+  <img src="assets/images/banner-leagues.jpg" alt="Apex Raceway Championship Night Race Arena" class="page-hero-img">
   <div class="page-hero-overlay"></div>
   <div class="container">
     <div class="page-hero-content animate-on-scroll">
@@ -216,7 +210,7 @@
       <div>
         <!-- Quick Registration -->
         <div class="booking-form-card" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:2rem;">
-          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;">Quick Event Registration</h3>
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:1.5rem;">Quick Event Registration</h3>
           <div class="form-group" style="margin-bottom:1.25rem;">
             <label class="form-label">Select Event</label>
             <select class="form-input">
