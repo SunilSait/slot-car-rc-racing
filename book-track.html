@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Book your slot car or RC racing track time at Apex Raceway. Choose your session, lane, and car class. Easy online booking with instant confirmation.">
+<title>Book Track Time | Apex Raceway</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { position:relative; padding:calc(var(--nav-h) + 4rem) 0 4rem; background:var(--secondary); overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 100%,rgba(255,95,31,.18) 0%,transparent 65%); }
+.page-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.2; }
+.page-hero-content { position:relative; z-index:1; text-align:center; }
+.page-hero-title { font-family:var(--font-heading); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; color:#fff; margin-bottom:1rem; text-transform:uppercase; }
+.page-hero-sub { font-size:1.0625rem; color:rgba(255,255,255,.6); max-width:550px; margin-inline:auto; font-weight:400; }
+.booking-form-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.5rem; box-shadow:var(--shadow-lg); }
+.session-type-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem; }
+.session-type-btn { border:2px solid var(--border); border-radius:var(--radius-md); padding:1.25rem; text-align:center; cursor:pointer; transition:all 150ms; background:var(--bg-surface); }
+.session-type-btn.active,.session-type-btn:hover { border-color:var(--primary); background:var(--primary-light); }
+.session-type-btn i { font-size:1.5rem; color:var(--primary); margin-bottom:.5rem; display:block; }
+.session-type-btn span { font-size:.875rem; font-weight:600; color:var(--text-heading); display:block; }
+.session-type-btn small { font-size:.75rem; color:var(--text-muted); }
+.time-slots { display:grid; grid-template-columns:repeat(4,1fr); gap:.625rem; }
+.time-slot { padding:.625rem; border-radius:var(--radius-sm); border:1.5px solid var(--border); text-align:center; font-size:.8125rem; font-weight:600; cursor:pointer; transition:all 150ms; background:var(--bg-surface); }
+.time-slot:hover,.time-slot.selected { border-color:var(--primary); background:var(--primary-light); color:var(--primary); }
+.time-slot.unavailable { background:var(--bg-muted); color:var(--text-light); cursor:not-allowed; border-color:transparent; }
+.time-slot.unavailable:hover { border-color:transparent; background:var(--bg-muted); color:var(--text-light); }
+.booking-summary { background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.75rem; }
+.summary-row { display:flex; justify-content:space-between; align-items:center; padding:.625rem 0; border-bottom:1px solid var(--border); font-size:.9375rem; }
+.summary-row:last-child { border-bottom:none; font-weight:700; font-size:1.0625rem; }
+.summary-label { color:var(--text-muted); font-weight:400; }
+.summary-val { font-weight:600; color:var(--text-heading); }
+@media(max-width:768px) { .session-type-grid { grid-template-columns:repeat(2,1fr); } .time-slots { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:480px) { .session-type-grid { grid-template-columns:1fr 1fr; } .time-slots { grid-template-columns:repeat(2,1fr); } .booking-form-card { padding:1.5rem; } }
+</style>
+</head>
+<body>
+<div id="main-nav"></div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Racing Track" class="page-hero-img">
+  <div class="container">
+    <div class="page-hero-content animate-on-scroll">
+      <div class="section-badge" style="display:inline-flex;margin-bottom:1rem;background:rgba(255,95,31,.2);color:var(--primary);border-color:rgba(255,95,31,.35);"><i class="fas fa-calendar-check"></i> Online Booking</div>
+      <h1 class="page-hero-title">Book Your Track Time</h1>
+      <p class="page-hero-sub">Reserve your lane, pick your session, and start racing. Instant confirmation guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Section -->
+<section class="section" style="background:var(--bg-surface);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:start;" id="booking-layout">
+
+      <!-- Booking Form -->
+      <div class="booking-form-card animate-on-scroll">
+        <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;margin-bottom:.375rem;">Session Details</h2>
+        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:2rem;font-weight:400;">Fill in the details below to reserve your track time.</p>
+
+        <!-- Track Type -->
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label class="form-label">Select Track Type</label>
+          <div class="session-type-grid" id="session-types">
+            <div class="session-type-btn active" onclick="selectSession(this)">
+              <i class="fas fa-route"></i>
+              <span>Slot Car Circuit</span>
+              <small>6 lanes</small>
+            </div>
+            <div class="session-type-btn" onclick="selectSession(this)">
+              <i class="fas fa-car-side"></i>
+              <span>RC On-Road</span>
+              <small>Touring cars</small>
+            </div>
+            <div class="session-type-btn" onclick="selectSession(this)">
+              <i class="fas fa-mountain-sun"></i>
+              <span>RC Off-Road</span>
+              <small>Buggy arena</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date -->
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label class="form-label" for="book-date">Select Date</label>
+          <input type="date" id="book-date" class="form-input" min="" onchange="updateSummary()">
+        </div>
+
+        <!-- Duration -->
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label class="form-label" for="book-duration">Session Duration</label>
+          <select id="book-duration" class="form-input" onchange="updateSummary()">
+            <option value="30">30 minutes — $15</option>
+            <option value="60" selected>60 minutes — $25</option>
+            <option value="120">2 hours — $45</option>
+            <option value="180">3 hours (Half Day) — $60</option>
+          </select>
+        </div>
+
+        <!-- Time Slots -->
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label class="form-label">Select Time Slot</label>
+          <div class="time-slots">
+            <div class="time-slot unavailable">9:00 AM</div>
+            <div class="time-slot unavailable">10:00 AM</div>
+            <div class="time-slot" onclick="selectTime(this)">11:00 AM</div>
+            <div class="time-slot selected" onclick="selectTime(this)">12:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">1:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">2:00 PM</div>
+            <div class="time-slot unavailable">3:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">4:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">5:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">6:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this)">7:00 PM</div>
+            <div class="time-slot unavailable">8:00 PM</div>
+          </div>
+          <div style="display:flex;gap:1rem;margin-top:.75rem;flex-wrap:wrap;">
+            <span style="display:flex;align-items:center;gap:.375rem;font-size:.75rem;color:var(--text-muted);"><span style="width:10px;height:10px;background:var(--primary-light);border:1.5px solid var(--primary);border-radius:2px;display:inline-block;"></span> Available</span>
+            <span style="display:flex;align-items:center;gap:.375rem;font-size:.75rem;color:var(--text-muted);"><span style="width:10px;height:10px;background:var(--bg-muted);border-radius:2px;display:inline-block;"></span> Unavailable</span>
+          </div>
+        </div>
+
+        <!-- Number of Racers -->
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label class="form-label" for="book-racers">Number of Racers</label>
+          <select id="book-racers" class="form-input" onchange="updateSummary()">
+            <option value="1">1 Racer</option>
+            <option value="2">2 Racers</option>
+            <option value="3">3 Racers</option>
+            <option value="4">4 Racers</option>
+            <option value="5">5 Racers</option>
+            <option value="6">6 Racers (Full Lane)</option>
+          </select>
+        </div>
+
+        <!-- Special Requests -->
+        <div class="form-group" style="margin-bottom:1.75rem;">
+          <label class="form-label" for="book-notes">Special Requests (Optional)</label>
+          <textarea id="book-notes" class="form-input form-textarea" placeholder="e.g. I need a rental car, I'm a beginner, birthday party setup..." style="min-height:90px;"></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" onclick="handleBooking()"><i class="fas fa-flag-checkered"></i> Confirm Booking</button>
+        <p style="font-size:.8125rem;color:var(--text-muted);text-align:center;margin-top:.875rem;">Free cancellation up to 24 hours before your session.</p>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <!-- Summary -->
+        <div class="booking-summary animate-on-scroll" style="margin-bottom:1.5rem;">
+          <h3 style="font-family:var(--font-heading);font-size:1.125rem;font-weight:700;margin-bottom:1.25rem;">Booking Summary</h3>
+          <div class="summary-row"><span class="summary-label">Track Type</span><span class="summary-val" id="sum-track">Slot Car Circuit</span></div>
+          <div class="summary-row"><span class="summary-label">Date</span><span class="summary-val" id="sum-date">—</span></div>
+          <div class="summary-row"><span class="summary-label">Time</span><span class="summary-val" id="sum-time">12:00 PM</span></div>
+          <div class="summary-row"><span class="summary-label">Duration</span><span class="summary-val" id="sum-dur">60 min</span></div>
+          <div class="summary-row"><span class="summary-label">Racers</span><span class="summary-val" id="sum-racers">1</span></div>
+          <div class="summary-row"><span class="summary-label">Total</span><span style="color:var(--primary);font-size:1.25rem;" id="sum-total">$25</span></div>
+        </div>
+
+        <!-- Track Info -->
+        <div class="feature-card animate-on-scroll delay-1" style="margin-bottom:1rem;">
+          <div class="feature-icon"><i class="fas fa-clock"></i></div>
+          <h4 class="feature-title">Opening Hours</h4>
+          <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.875rem;color:var(--text-muted);">
+            <div style="display:flex;justify-content:space-between;"><span>Mon–Fri</span><span style="font-weight:600;color:var(--text-heading);">10 AM – 9 PM</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>Sat–Sun</span><span style="font-weight:600;color:var(--text-heading);">9 AM – 10 PM</span></div>
+          </div>
+        </div>
+
+        <div class="feature-card animate-on-scroll delay-2">
+          <div class="feature-icon"><i class="fas fa-circle-info"></i></div>
+          <h4 class="feature-title">Need Help?</h4>
+          <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;font-weight:400;">Our team is here to help you pick the perfect session and equipment.</p>
+          <a href="contact.html" class="btn btn-ghost btn-sm btn-full"><i class="fas fa-phone"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-circle-question"></i> FAQ</div>
+      <h2 class="section-title">Booking Questions Answered</h2>
+    </div>
+    <div style="max-width:720px;margin-inline:auto;" class="animate-on-scroll">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Do I need to bring my own car?<i class="fas fa-chevron-down"></i></div><div class="faq-a">No! We have a full fleet of rental cars available for all track types. You can also bring your own if it meets our class specifications.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Can I cancel or reschedule my booking?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. Free cancellation is available up to 24 hours before your session. Reschedule anytime through your dashboard.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is there a minimum age to race?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Slot car racing: minimum age 6. RC on-road and off-road: minimum age 8. Under 14s must be accompanied by an adult.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">What is included in a rental session?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Your session includes track time, a rental car if needed, controller, safety briefing, and real-time lap timing access.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Can I book for a group or private event?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Absolutely! We cater for birthdays, corporate events, and club sessions. Contact us directly for group pricing and private hire options.</div></div>
+    </div>
+  </div>
+</section>
+
+<div id="main-footer"></div>
+<script src="components.js"></script>
+<script>
+// Set min date to today
+document.getElementById('book-date').min = new Date().toISOString().split('T')[0];
+
+function selectSession(btn) {
+    document.querySelectorAll('.session-type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('sum-track').textContent = btn.querySelector('span').textContent;
+}
+
+function selectTime(el) {
+    if (el.classList.contains('unavailable')) return;
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('sum-time').textContent = el.textContent;
+}
+
+const prices = { '30': 15, '60': 25, '120': 45, '180': 60 };
+function updateSummary() {
+    const date = document.getElementById('book-date').value;
+    const dur = document.getElementById('book-duration').value;
+    const racers = parseInt(document.getElementById('book-racers').value);
+    if (date) {
+        const d = new Date(date);
+        document.getElementById('sum-date').textContent = d.toLocaleDateString('en-US', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+    }
+    const labels = { '30':'30 min', '60':'60 min', '120':'2 hours', '180':'3 hours' };
+    document.getElementById('sum-dur').textContent = labels[dur] || dur + ' min';
+    document.getElementById('sum-racers').textContent = racers;
+    const price = (prices[dur] || 25) * racers;
+    document.getElementById('sum-total').textContent = '$' + price;
+}
+
+function handleBooking() {
+    const date = document.getElementById('book-date').value;
+    if (!date) { alert('Please select a date for your session.'); return; }
+    alert('Booking confirmed! You will receive a confirmation email shortly. See you on the track!');
+}
+
+// Responsive layout
+const layout = document.getElementById('booking-layout');
+if (layout) {
+    const checkResize = () => {
+        layout.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : '1.4fr 1fr';
+    };
+    checkResize();
+    window.addEventListener('resize', checkResize);
+}
+</script>
+</body>
+</html>

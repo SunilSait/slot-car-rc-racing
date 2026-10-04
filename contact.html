@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Apex Raceway — Get in touch for bookings, events, corporate hire, or any questions about our slot car and RC racing facilities.">
+<title>Contact Us | Apex Raceway</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { position:relative; padding:calc(var(--nav-h) + 4rem) 0 4rem; background:var(--secondary); overflow:hidden; }
+.page-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.2; }
+.page-hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 100%,rgba(255,95,31,.18) 0%,transparent 65%); }
+.page-hero-content { position:relative; z-index:1; text-align:center; }
+.page-hero-title { font-family:var(--font-heading); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; color:#fff; margin-bottom:1rem; text-transform:uppercase; }
+.map-placeholder { width:100%; height:380px; background:var(--bg-muted); border-radius:var(--radius-lg); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--text-muted); border:1px solid var(--border); gap:.75rem; }
+</style>
+</head>
+<body>
+<div id="main-nav"></div>
+
+<section class="page-hero">
+  <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=1600&q=80" alt="Racing Track" class="page-hero-img">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content animate-on-scroll">
+      <div class="section-badge" style="display:inline-flex;margin-bottom:1rem;background:rgba(255,95,31,.2);color:var(--primary);border-color:rgba(255,95,31,.35);"><i class="fas fa-envelope"></i> Get in Touch</div>
+      <h1 class="page-hero-title">Contact Apex Raceway</h1>
+      <p class="page-hero-sub" style="color:rgba(255,255,255,.6);max-width:520px;margin-inline:auto;">Questions, bookings, corporate events, or just want to say hello — we'd love to hear from you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;" id="contact-layout">
+      <!-- Info -->
+      <div class="animate-on-scroll">
+        <div class="section-badge"><i class="fas fa-location-dot"></i> Find Us</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">We'd Love to<span class="text-primary"> Hear From You</span></h2>
+        <p style="font-size:.9375rem;color:var(--text-muted);line-height:1.75;margin-bottom:2rem;font-weight:400;">Whether you're a first-timer looking for info, a seasoned racer with a technical query, or a business wanting to book a private event — our team is always ready to help.</p>
+
+        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem;">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <div class="contact-info-label">Track Location</div>
+              <div class="contact-info-val">42 Circuit Drive, Industrial Quarter<br>Raceton, RC 4200</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-val">+1 (555) RACE-NOW</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-val">hello@apexraceway.com</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="contact-info-label">Opening Hours</div>
+              <div class="contact-info-val">Mon–Fri: 10AM–9PM<br>Sat–Sun: 9AM–10PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="map-placeholder">
+          <i class="fas fa-map" style="font-size:3rem;opacity:.3;"></i>
+          <span>Map — 42 Circuit Drive, Raceton</span>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fas fa-external-link-alt"></i> Open in Maps</a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="animate-on-scroll delay-2">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:2.5rem;">
+          <h3 style="font-family:var(--font-heading);font-size:1.375rem;font-weight:700;margin-bottom:.5rem;">Send Us a Message</h3>
+          <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:2rem;font-weight:400;">We typically respond within a few hours during opening hours.</p>
+
+          <form onsubmit="event.preventDefault();alert('Message sent! We\'ll get back to you shortly.');this.reset();">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;" id="name-grid">
+              <div class="form-group">
+                <label class="form-label" for="c-first">First Name</label>
+                <input type="text" id="c-first" class="form-input" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-last">Last Name</label>
+                <input type="text" id="c-last" class="form-input" placeholder="Doe" required>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label class="form-label" for="c-email">Email Address</label>
+              <input type="email" id="c-email" class="form-input" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label class="form-label" for="c-phone">Phone (Optional)</label>
+              <input type="tel" id="c-phone" class="form-input" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label class="form-label" for="c-subject">Subject</label>
+              <select id="c-subject" class="form-input">
+                <option value="">Select a topic...</option>
+                <option>General Enquiry</option>
+                <option>Track Booking</option>
+                <option>League & Events</option>
+                <option>Corporate / Private Hire</option>
+                <option>Pro Shop</option>
+                <option>Membership</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:1.75rem;">
+              <label class="form-label" for="c-msg">Message</label>
+              <textarea id="c-msg" class="form-input form-textarea" placeholder="Tell us how we can help you..." required style="min-height:140px;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full btn-lg"><i class="fas fa-paper-plane"></i> Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social & Community -->
+<section class="section" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-share-nodes"></i> Follow Us</div>
+      <h2 class="section-title">Join Our Racing Community</h2>
+      <p class="section-sub">Follow our social channels for race updates, behind-the-scenes content, and exclusive member offers.</p>
+    </div>
+    <div class="grid-4 animate-on-scroll">
+      <div class="feature-card" style="text-align:center;">
+        <div class="feature-icon" style="margin-inline:auto;background:rgba(24,119,242,.12);color:#1877F2;"><i class="fab fa-facebook-f"></i></div>
+        <h4 class="feature-title">Facebook</h4>
+        <p class="feature-desc">Race updates, event photos, and community discussions.</p>
+        <a href="#" class="btn btn-ghost btn-sm btn-full" style="margin-top:1rem;">Follow</a>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div class="feature-icon" style="margin-inline:auto;background:rgba(225,48,108,.12);color:#e1306c;"><i class="fab fa-instagram"></i></div>
+        <h4 class="feature-title">Instagram</h4>
+        <p class="feature-desc">Track photography, car builds, and race highlights.</p>
+        <a href="#" class="btn btn-ghost btn-sm btn-full" style="margin-top:1rem;">Follow</a>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div class="feature-icon" style="margin-inline:auto;background:rgba(255,0,0,.1);color:#FF0000;"><i class="fab fa-youtube"></i></div>
+        <h4 class="feature-title">YouTube</h4>
+        <p class="feature-desc">Race footage, tutorials, car setup guides, and reviews.</p>
+        <a href="#" class="btn btn-ghost btn-sm btn-full" style="margin-top:1rem;">Subscribe</a>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div class="feature-icon" style="margin-inline:auto;background:rgba(0,0,0,.08);color:var(--text-heading);"><i class="fab fa-tiktok"></i></div>
+        <h4 class="feature-title">TikTok</h4>
+        <p class="feature-desc">Viral race moments, crash compilations, and quick tips.</p>
+        <a href="#" class="btn btn-ghost btn-sm btn-full" style="margin-top:1rem;">Follow</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="main-footer"></div>
+<script src="components.js"></script>
+<script>
+const contactLayout = document.getElementById('contact-layout');
+const nameGrid = document.getElementById('name-grid');
+if (contactLayout) {
+    const checkResize = () => {
+        contactLayout.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : '1fr 1.4fr';
+        if (nameGrid) nameGrid.style.gridTemplateColumns = window.innerWidth < 480 ? '1fr' : '1fr 1fr';
+    };
+    checkResize();
+    window.addEventListener('resize', checkResize);
+}
+</script>
+</body>
+</html>

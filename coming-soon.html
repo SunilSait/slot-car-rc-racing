@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Something exciting is coming to Apex Raceway. Stay tuned for our latest track, event, or feature launch.">
+<title>Coming Soon | Apex Raceway</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+body { margin:0; }
+.cs-controls { position:fixed; top:1.5rem; right:1.5rem; display:flex; gap:.5rem; z-index:10; }
+</style>
+</head>
+<body>
+<div class="cs-controls">
+  <button onclick="toggleDir()" class="auth-toggle-btn" title="Toggle Direction" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff;"><span class="dir-label" style="font-size:.6rem;font-weight:700;">LTR</span></button>
+  <button onclick="toggleTheme()" class="auth-toggle-btn" title="Toggle Theme" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff;"><i class="fas fa-moon theme-icon"></i></button>
+</div>
+
+<div class="coming-soon-page">
+  <div class="coming-soon-content">
+    <a href="index.html" class="coming-soon-logo" aria-label="Apex Raceway Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+        <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
+        <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity=".6"/>
+        <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
+        <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
+        <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
+        <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
+      </svg>
+      <div style="text-align:left;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.05em;">Apex Raceway</div>
+        <div style="font-size:.5625rem;color:rgba(255,255,255,.5);text-transform:uppercase;">Slot Car & RC Racing</div>
+      </div>
+    </a>
+
+    <div class="section-badge" style="display:inline-flex;margin-bottom:1.5rem;background:rgba(255,95,31,.2);color:var(--primary);border-color:rgba(255,95,31,.35);"><i class="fas fa-wrench"></i> Under Construction</div>
+    <h1 class="coming-soon-title">Something <span>Epic</span><br>is Coming</h1>
+    <p class="coming-soon-desc">We're building something thrilling for the racing community. A new track feature, championship series, or Pro Shop expansion — the wait will be worth it.</p>
+
+    <div class="countdown">
+      <div class="countdown-item"><span class="countdown-num" id="cd-days">00</span><div class="countdown-label">Days</div></div>
+      <div class="countdown-item"><span class="countdown-num" id="cd-hours">00</span><div class="countdown-label">Hours</div></div>
+      <div class="countdown-item"><span class="countdown-num" id="cd-mins">00</span><div class="countdown-label">Minutes</div></div>
+      <div class="countdown-item"><span class="countdown-num" id="cd-secs">00</span><div class="countdown-label">Seconds</div></div>
+    </div>
+
+    <p style="color:rgba(255,255,255,.5);font-size:.875rem;margin-bottom:1.5rem;font-weight:400;">Be the first to know. Drop your email and we'll notify you on launch day.</p>
+    <form onsubmit="event.preventDefault();alert('You\'re on the list! We\'ll notify you at launch.');this.reset();" style="display:flex;gap:.75rem;max-width:420px;margin:0 auto 2.5rem;flex-wrap:wrap;">
+      <input type="email" placeholder="your@email.com" required style="flex:1;min-width:200px;padding:.75rem 1rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);color:#fff;font-size:.9375rem;outline:none;">
+      <button type="submit" class="btn btn-primary" style="white-space:nowrap;"><i class="fas fa-bell"></i> Notify Me</button>
+    </form>
+
+    <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:2.5rem;">
+      <a href="#" style="width:36px;height:36px;border-radius:var(--radius-sm);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:.875rem;transition:all 150ms;" onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" style="width:36px;height:36px;border-radius:var(--radius-sm);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:.875rem;transition:all 150ms;" onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="width:36px;height:36px;border-radius:var(--radius-sm);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:.875rem;transition:all 150ms;" onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <a href="index.html" class="btn btn-ghost" style="border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7);"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+</div>
+
+<script src="components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    initAuthPage();
+    const target = new Date();
+    target.setDate(target.getDate() + 30);
+    initCountdown(target.toISOString());
+    // Override toggle button styles for dark theme
+    document.querySelectorAll('.auth-toggle-btn').forEach(btn => {
+        if (!document.documentElement.classList.contains('dark')) {
+            btn.style.background = 'rgba(255,255,255,.1)';
+            btn.style.borderColor = 'rgba(255,255,255,.2)';
+            btn.style.color = '#fff';
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Apex Raceway Pro Shop — Shop the best slot cars, RC vehicles, controllers, spare parts, and accessories from top brands. Expert advice included.">
+<title>Pro Shop | Apex Raceway</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { position:relative; padding:calc(var(--nav-h) + 4rem) 0 4rem; background:var(--secondary); overflow:hidden; }
+.page-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.2; }
+.page-hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 100%,rgba(255,95,31,.18) 0%,transparent 65%); }
+.page-hero-content { position:relative; z-index:1; text-align:center; }
+.page-hero-title { font-family:var(--font-heading); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; color:#fff; margin-bottom:1rem; text-transform:uppercase; }
+.page-hero-sub { font-size:1.0625rem; color:rgba(255,255,255,.6); max-width:550px; margin-inline:auto; font-weight:400; }
+.cart-badge { position:relative; }
+.cart-count { position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%; background:var(--primary); color:#fff; font-size:.625rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.shop-sidebar { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; }
+.sidebar-title { font-family:var(--font-heading); font-size:1rem; font-weight:700; margin-bottom:1rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-heading); }
+.sidebar-links { display:flex; flex-direction:column; gap:.375rem; }
+.sidebar-link { display:flex; align-items:center; justify-content:space-between; padding:.5rem .75rem; border-radius:var(--radius-sm); font-size:.9rem; color:var(--text-body); transition:all 150ms; cursor:pointer; }
+.sidebar-link:hover, .sidebar-link.active { background:var(--primary-light); color:var(--primary); }
+.sidebar-link span { font-size:.75rem; color:var(--text-muted); }
+.price-range { display:flex; flex-direction:column; gap:.75rem; margin-top:.5rem; }
+.range-labels { display:flex; justify-content:space-between; font-size:.8125rem; color:var(--text-muted); }
+input[type=range] { width:100%; accent-color:var(--primary); }
+.shop-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.75rem; flex-wrap:wrap; gap:1rem; }
+.sort-select { padding:.5rem .75rem; border-radius:var(--radius-md); border:1.5px solid var(--border); background:var(--bg-surface); color:var(--text-body); font-size:.875rem; }
+.add-cart-btn { background:var(--primary); color:#fff; border:none; border-radius:var(--radius-sm); padding:.5rem .875rem; font-size:.8125rem; font-weight:600; cursor:pointer; transition:all 150ms; display:flex; align-items:center; gap:.375rem; }
+.add-cart-btn:hover { background:var(--primary-dark); }
+@media(max-width:1024px) { #shop-layout { grid-template-columns:1fr; } .shop-sidebar { display:none; } }
+</style>
+</head>
+<body>
+<div id="main-nav"></div>
+
+<section class="page-hero">
+  <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80" alt="Pro Shop" class="page-hero-img">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content animate-on-scroll">
+      <div class="section-badge" style="display:inline-flex;margin-bottom:1rem;background:rgba(255,95,31,.2);color:var(--primary);border-color:rgba(255,95,31,.35);"><i class="fas fa-store"></i> Pro Shop</div>
+      <h1 class="page-hero-title">Gear Up to Win</h1>
+      <p class="page-hero-sub">The finest selection of slot cars, RC vehicles, parts, and accessories. Quality gear for every level.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Shop Banners -->
+<section class="section-sm" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="grid-3 animate-on-scroll">
+      <div style="background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.1;"><i class="fas fa-car-side"></i></div>
+        <span class="tag tag-primary" style="margin-bottom:.75rem;display:inline-flex;">New Arrivals</span>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Latest RC Models</h3>
+        <p style="font-size:.875rem;color:rgba(255,255,255,.6);font-weight:400;">2026 season cars just landed</p>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(255,95,31,.9) 0%,rgba(224,72,0,.9) 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.15;"><i class="fas fa-percent"></i></div>
+        <span class="tag" style="background:rgba(255,255,255,.2);color:#fff;margin-bottom:.75rem;display:inline-flex;">Sale</span>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Up to 40% Off</h3>
+        <p style="font-size:.875rem;color:rgba(255,255,255,.8);font-weight:400;">Selected parts and accessories</p>
+      </div>
+      <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-1rem;bottom:-1rem;font-size:5rem;opacity:.1;"><i class="fas fa-wrench"></i></div>
+        <span class="tag tag-success" style="margin-bottom:.75rem;display:inline-flex;">Workshop</span>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Expert Tuning</h3>
+        <p style="font-size:.875rem;color:rgba(255,255,255,.6);font-weight:400;">Professional setup service available</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:2rem;" id="shop-layout">
+      <!-- Sidebar -->
+      <div>
+        <div class="shop-sidebar animate-on-scroll" style="position:sticky;top:calc(var(--nav-h) + 1rem);">
+          <div class="sidebar-title">Categories</div>
+          <div class="sidebar-links" style="margin-bottom:1.75rem;">
+            <div class="sidebar-link active" onclick="switchFilter('all','.filterable-card')">All Products <span>48</span></div>
+            <div class="sidebar-link" onclick="switchFilter('slot-car','.filterable-card')">Slot Cars <span>14</span></div>
+            <div class="sidebar-link" onclick="switchFilter('rc-car','.filterable-card')">RC Vehicles <span>12</span></div>
+            <div class="sidebar-link" onclick="switchFilter('controller','.filterable-card')">Controllers <span>8</span></div>
+            <div class="sidebar-link" onclick="switchFilter('parts','.filterable-card')">Spare Parts <span>10</span></div>
+            <div class="sidebar-link" onclick="switchFilter('accessories','.filterable-card')">Accessories <span>4</span></div>
+          </div>
+          <div class="sidebar-title">Price Range</div>
+          <div class="price-range">
+            <input type="range" min="0" max="500" value="500" id="price-range">
+            <div class="range-labels"><span>$0</span><span id="price-val">$500</span></div>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <div class="sidebar-title">Brand</div>
+            <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem;">
+              <label class="checkbox-wrapper"><input type="checkbox" checked> Scalextric</label>
+              <label class="checkbox-wrapper"><input type="checkbox" checked> Carrera</label>
+              <label class="checkbox-wrapper"><input type="checkbox"> Team Associated</label>
+              <label class="checkbox-wrapper"><input type="checkbox"> Traxxas</label>
+              <label class="checkbox-wrapper"><input type="checkbox"> Tamiya</label>
+              <label class="checkbox-wrapper"><input type="checkbox"> Arrma</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="animate-on-scroll">
+        <!-- Filter tabs for mobile -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all" onclick="switchFilter('all','.filterable-card');this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));this.classList.add('active')">All</button>
+            <button class="filter-tab" data-filter="slot-car" onclick="switchFilter('slot-car','.filterable-card');this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Slot Cars</button>
+            <button class="filter-tab" data-filter="rc-car" onclick="switchFilter('rc-car','.filterable-card');this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));this.classList.add('active')">RC Vehicles</button>
+            <button class="filter-tab" data-filter="controller" onclick="switchFilter('controller','.filterable-card');this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Controllers</button>
+            <button class="filter-tab" data-filter="parts" onclick="switchFilter('parts','.filterable-card');this.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Parts</button>
+          </div>
+        </div>
+        <div class="shop-toolbar">
+          <p style="font-size:.9rem;color:var(--text-muted);">Showing <strong style="color:var(--text-heading);">8</strong> products</p>
+          <select class="sort-select"><option>Sort: Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>New Arrivals</option></select>
+        </div>
+        <div class="grid-3" style="gap:1.25rem;" id="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card filterable-card" data-category="slot-car">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=500&q=80" alt="Scalextric Pro">
+              <span class="product-tag">New</span>
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Scalextric</div>
+              <h3 class="product-name">Pro GT Slot Car</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.5)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$89</span><span class="product-old-price">$110</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="product-card filterable-card" data-category="rc-car">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563798100740-53da5e1b2af2?w=500&q=80" alt="RC Touring Car">
+              <span class="product-tag">Best Seller</span>
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Team Associated</div>
+              <h3 class="product-name">TC7.2 Factory Team</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$349</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="product-card filterable-card" data-category="controller">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&q=80" alt="RC Controller">
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Sanwa</div>
+              <h3 class="product-name">MT-44 Radio System</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$279</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 4 -->
+          <div class="product-card filterable-card" data-category="slot-car">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Carrera Slot Car">
+              <span class="product-tag" style="background:var(--success);">Sale</span>
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Carrera</div>
+              <h3 class="product-name">Digital 132 Race Set</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.7)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$199</span><span class="product-old-price">$280</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 5 -->
+          <div class="product-card filterable-card" data-category="rc-car">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=500&q=80" alt="RC Buggy">
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Arrma</div>
+              <h3 class="product-name">Typhon 4X4 3S BLX Buggy</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$249</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 6 -->
+          <div class="product-card filterable-card" data-category="parts">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&q=80" alt="Motor Parts">
+              <span class="product-tag">Popular</span>
+            </div>
+            <div class="product-body">
+              <div class="product-brand">Tamiya</div>
+              <h3 class="product-name">Ball Differential Set</h3>
+              <div class="product-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> (4.3)</div>
+              <div class="product-price-row">
+                <div><span class="product-price">$45</span></div>
+                <button class="add-cart-btn" onclick="alert('Added to cart!')"><i class="fas fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+          <button class="btn btn-ghost" onclick="alert('Loading more products...')"><i class="fas fa-plus"></i> Load More Products</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Banner -->
+<section class="section" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="grid-4 animate-on-scroll">
+      <div class="feature-card" style="text-align:center;padding:1.5rem;">
+        <div class="feature-icon" style="margin-inline:auto;"><i class="fas fa-truck-fast"></i></div>
+        <h4 class="feature-title" style="font-size:1rem;">Free Local Pickup</h4>
+        <p class="feature-desc" style="font-size:.875rem;">Collect orders from the track. Same-day usually available.</p>
+      </div>
+      <div class="feature-card" style="text-align:center;padding:1.5rem;">
+        <div class="feature-icon" style="margin-inline:auto;"><i class="fas fa-wrench"></i></div>
+        <h4 class="feature-title" style="font-size:1rem;">Expert Setup</h4>
+        <p class="feature-desc" style="font-size:.875rem;">Our technicians tune your car to championship spec.</p>
+      </div>
+      <div class="feature-card" style="text-align:center;padding:1.5rem;">
+        <div class="feature-icon" style="margin-inline:auto;"><i class="fas fa-rotate-left"></i></div>
+        <h4 class="feature-title" style="font-size:1rem;">Easy Returns</h4>
+        <p class="feature-desc" style="font-size:.875rem;">30-day hassle-free returns on all unused items.</p>
+      </div>
+      <div class="feature-card" style="text-align:center;padding:1.5rem;">
+        <div class="feature-icon" style="margin-inline:auto;"><i class="fas fa-headset"></i></div>
+        <h4 class="feature-title" style="font-size:1rem;">Expert Advice</h4>
+        <p class="feature-desc" style="font-size:.875rem;">Our staff are passionate racers who know their gear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="main-footer"></div>
+<script src="components.js"></script>
+<script>
+// Price range slider
+const rangeInput = document.getElementById('price-range');
+const priceVal = document.getElementById('price-val');
+if (rangeInput) {
+    rangeInput.addEventListener('input', function() {
+        priceVal.textContent = '$' + this.value;
+    });
+}
+// Responsive shop layout
+const shopLayout = document.getElementById('shop-layout');
+if (shopLayout) {
+    const checkResize = () => {
+        shopLayout.style.gridTemplateColumns = window.innerWidth < 1024 ? '1fr' : '220px 1fr';
+    };
+    checkResize();
+    window.addEventListener('resize', checkResize);
+}
+// Products grid responsive
+const prodGrid = document.getElementById('products-grid');
+if (prodGrid) {
+    const checkProd = () => {
+        if (window.innerWidth < 600) prodGrid.style.gridTemplateColumns = '1fr';
+        else if (window.innerWidth < 900) prodGrid.style.gridTemplateColumns = 'repeat(2,1fr)';
+        else prodGrid.style.gridTemplateColumns = 'repeat(3,1fr)';
+    };
+    checkProd();
+    window.addEventListener('resize', checkProd);
+}
+</script>
+</body>
+</html>
