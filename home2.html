@@ -14,18 +14,27 @@
     min-height: calc(100vh - var(--nav-h));
     display: flex;
     align-items: center;
-    background: #080F1A;
+    background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.1) 0%, transparent 60%), linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #EEF4F9 100%);
     overflow: hidden;
     padding-top: calc(var(--nav-h) + 1.25rem);
     padding-bottom: 4.5rem;
+    transition: background 250ms ease;
+}
+html.dark .hero2 {
+    background: #080F1A;
 }
 .hero2::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0, 180, 216, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.08) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
+    opacity: 0.6;
+}
+html.dark .hero2::before {
+    background-image: linear-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.05) 1px, transparent 1px);
+    opacity: 1;
 }
 .hero2-slider {
     position: relative;
@@ -70,8 +79,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(0, 180, 216, 0.15);
-    color: var(--primary);
+    background: rgba(0, 180, 216, 0.12);
+    color: var(--primary-dark);
     border: 1px solid rgba(0, 180, 216, 0.35);
     padding: 0.375rem 1rem;
     border-radius: var(--radius-full);
@@ -82,36 +91,70 @@
     margin-bottom: 1.5rem;
     align-self: flex-start;
 }
+html.dark .hero2-label {
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--primary);
+}
 .hero2-title {
     font-family: var(--font-heading);
     font-size: clamp(2.4rem, 5vw, 4.25rem);
     font-weight: 600;
-    color: #fff;
+    color: var(--text-heading);
     line-height: 1.02;
     text-transform: uppercase;
     letter-spacing: -0.01em;
     margin-bottom: 1.5rem;
+}
+html.dark .hero2-title {
+    color: #fff;
 }
 .hero2-title .accent {
     color: var(--primary);
     -webkit-text-stroke: 0;
 }
 .hero2-title .outlined {
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+    -webkit-text-stroke: 2px var(--text-heading);
     color: transparent;
 }
+html.dark .hero2-title .outlined {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+}
 .hero2-desc {
-    color: rgba(255, 255, 255, 0.68);
+    color: var(--text-body);
     font-size: 1.0625rem;
     max-width: 520px;
     line-height: 1.8;
     margin-bottom: 2rem;
     font-weight: 400;
 }
+html.dark .hero2-desc {
+    color: rgba(255, 255, 255, 0.68);
+}
 .hero2-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+}
+.hero2-actions .btn-ghost {
+    color: var(--text-heading);
+    border: 2px solid var(--border-strong);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+}
+.hero2-actions .btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--bg-surface);
+}
+html.dark .hero2-actions .btn-ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.35);
+    background: transparent;
+}
+html.dark .hero2-actions .btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(0, 180, 216, 0.1);
 }
 
 /* 3-Image Bento Gallery */
@@ -134,10 +177,15 @@
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 32px rgba(13, 27, 42, 0.12);
+    background: #fff;
+    transition: all 300ms ease;
+}
+html.dark .hero2-gallery-item {
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
     background: #111B29;
-    transition: all 300ms ease;
 }
 .hero2-gallery-item:hover {
     transform: translateY(-4px);
@@ -163,8 +211,11 @@
 .hero2-img-glow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(8, 15, 26, 0.65) 100%);
+    background: linear-gradient(180deg, transparent 50%, rgba(13, 27, 42, 0.35) 100%);
     pointer-events: none;
+}
+html.dark .hero2-img-glow {
+    background: linear-gradient(180deg, transparent 40%, rgba(8, 15, 26, 0.65) 100%);
 }
 
 /* Unified Bottom Controls (Prev Arrow, Indicators, Next Arrow) */
@@ -181,9 +232,10 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(13, 27, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    color: var(--text-heading);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,9 +245,16 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+html.dark .hero2-control-btn {
+    background: rgba(13, 27, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: none;
+}
 .hero2-control-btn:hover {
     background: var(--primary);
     border-color: var(--primary);
+    color: #fff;
     transform: scale(1.1);
     box-shadow: 0 0 16px rgba(0, 180, 216, 0.5);
 }
@@ -208,7 +267,7 @@
     width: 32px;
     height: 6px;
     border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.15);
     border: none;
     cursor: pointer;
     padding: 0;
@@ -216,8 +275,14 @@
     position: relative;
     transition: all 300ms ease;
 }
+html.dark .hero2-dot {
+    background: rgba(255, 255, 255, 0.25);
+}
 .hero2-dot.active {
     width: 48px;
+    background: rgba(0, 0, 0, 0.25);
+}
+html.dark .hero2-dot.active {
     background: rgba(255, 255, 255, 0.35);
 }
 .hero2-dot-fill {
@@ -232,7 +297,6 @@
     transition: width 5000ms linear;
 }
 
-
 .tab-panel { display:none; } .tab-panel.active { display:block; }
 .tab-btn { padding:.625rem 1.5rem; border-radius:var(--radius-full); background:var(--bg-muted); border:1.5px solid var(--border); font-size:.875rem; font-weight:600; color:var(--text-body); cursor:pointer; transition:all 150ms; }
 .tab-btn.active { background:var(--primary); border-color:var(--primary); color:#fff; }
@@ -243,15 +307,105 @@
 .experience-overlay-tag { display:inline-flex; background:var(--primary); color:#fff; padding:.25rem .75rem; border-radius:var(--radius-sm); font-size:.6875rem; font-weight:700; text-transform:uppercase; margin-bottom:.75rem; align-self:flex-start; }
 .experience-overlay-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.5rem; }
 .experience-overlay-desc { font-size:.875rem; color:rgba(255,255,255,.65); line-height:1.6; }
-.membership-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.5rem; text-align:center; transition:all 250ms; }
-.membership-card:hover { box-shadow:var(--shadow-xl); transform:translateY(-4px); }
-.membership-card.featured { border-color:var(--primary); background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%); }
-.membership-card.featured .membership-title, .membership-card.featured .membership-price, .membership-card.featured .pricing-feature { color:#fff; }
-.membership-card.featured .pricing-feature { color:rgba(255,255,255,.8); }
-.membership-title { font-family:var(--font-heading); font-size:1.25rem; font-weight:600; margin-bottom:.5rem; }
-.membership-price { font-family:var(--font-heading); font-size:3rem; font-weight:600; color:var(--primary); line-height:1; margin:1rem 0; }
-.membership-price small { font-size:.875rem; font-weight:400; color:var(--text-muted); }
-.membership-card.featured .membership-price small { color:rgba(255,255,255,.6); }
+.membership-card { 
+    background: var(--bg-card); 
+    border: 1.5px solid var(--border); 
+    border-radius: var(--radius-xl); 
+    padding: 2.5rem 2rem; 
+    text-align: center; 
+    transition: all 250ms ease; 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; 
+    position: relative; 
+    box-shadow: var(--shadow-sm);
+}
+.membership-card:hover { 
+    box-shadow: var(--shadow-xl); 
+    transform: translateY(-4px); 
+    border-color: var(--primary);
+}
+.membership-card.featured { 
+    border: 2px solid var(--primary); 
+    background: var(--bg-card);
+    box-shadow: 0 12px 36px rgba(0, 180, 216, 0.18), var(--shadow-md); 
+}
+.membership-title { 
+    font-family: var(--font-heading); 
+    font-size: 1.375rem; 
+    font-weight: 600; 
+    color: var(--text-heading);
+    margin-bottom: .5rem; 
+    min-height: 2rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.membership-price { 
+    font-family: var(--font-heading); 
+    font-size: 3rem; 
+    font-weight: 600; 
+    color: var(--primary); 
+    line-height: 1; 
+    margin: .75rem 0; 
+    min-height: 3.5rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.membership-price small { 
+    font-size: .875rem; 
+    font-weight: 400; 
+    color: var(--text-muted); 
+}
+.membership-card .pricing-desc { 
+    font-size: .9rem; 
+    color: var(--text-muted); 
+    margin-bottom: 1.5rem; 
+    font-weight: 400; 
+    min-height: 48px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.membership-card .pricing-features { 
+    flex: 1 1 auto; 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    gap: .875rem; 
+    margin-bottom: 2rem; 
+    justify-content: flex-start; 
+}
+.membership-card .pricing-feature { 
+    height: 28px; 
+    display: flex; 
+    align-items: center; 
+    gap: .625rem; 
+    font-size: .9375rem; 
+    color: var(--text-body);
+}
+.membership-card .pricing-feature i {
+    color: var(--success);
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+.membership-card .pricing-feature.no i {
+    color: var(--text-light);
+}
+.membership-card .pricing-feature.no span {
+    color: var(--text-light);
+    text-decoration: line-through;
+}
+.membership-card .btn { 
+    margin-top: auto; 
+    width: 100%; 
+    height: 48px; 
+    min-height: 48px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+}
 
 @media(max-width:1024px) {
     .hero2-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -259,13 +413,14 @@
     .hero2-gallery-bottom .hero2-gallery-item { height: 210px; }
     .hero2-slider-arrow { display: none; }
 }
-@media(max-width:768px) {
-    .hero2 { padding-top: calc(var(--nav-h) + 1.5rem); }
-}
 @media(max-width:575px) {
-    .hero2-gallery-top { grid-template-columns: 1fr; }
-    .hero2-gallery-top .hero2-gallery-item { height: 180px; }
-    .hero2-gallery-bottom .hero2-gallery-item { height: 180px; }
+    .hero2-gallery-top .hero2-gallery-item { height: 130px; }
+    .hero2-gallery-bottom .hero2-gallery-item { height: 170px; }
+    .hero2-actions { flex-direction: column; }
+    .hero2-actions .btn { width: 100%; justify-content: center; }
+    .hero2-controls { gap: 0.75rem; }
+    .hero2-dot { width: 24px; }
+    .hero2-dot.active { width: 36px; }
 }
 </style>
 </head>
@@ -294,7 +449,7 @@
               </p>
               <div class="hero2-actions">
                 <a href="leagues.html" class="btn btn-primary btn-lg"><i class="fas fa-trophy"></i> Join League</a>
-                <a href="book-track.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4);"><i class="fas fa-calendar-check"></i> Book Track</a>
+                <a href="book-track.html" class="btn btn-ghost btn-lg"><i class="fas fa-calendar-check"></i> Book Track</a>
               </div>
             </div>
 
@@ -334,7 +489,7 @@
               </p>
               <div class="hero2-actions">
                 <a href="leagues.html" class="btn btn-primary btn-lg"><i class="fas fa-flag-checkered"></i> View Leagues</a>
-                <a href="dashboard.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4);"><i class="fas fa-gauge-high"></i> Leaderboards</a>
+                <a href="dashboard.html" class="btn btn-ghost btn-lg"><i class="fas fa-gauge-high"></i> Leaderboards</a>
               </div>
             </div>
 
@@ -374,7 +529,7 @@
               </p>
               <div class="hero2-actions">
                 <a href="pro-shop.html" class="btn btn-primary btn-lg"><i class="fas fa-store"></i> Shop Upgrades</a>
-                <a href="book-track.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4);"><i class="fas fa-clock"></i> Book Tuning Bay</a>
+                <a href="book-track.html" class="btn btn-ghost btn-lg"><i class="fas fa-clock"></i> Book Tuning Bay</a>
               </div>
             </div>
 
@@ -469,7 +624,7 @@
     </div>
     <div class="grid-3 animate-on-scroll">
       <div class="race-night-card">
-        <div class="race-night-img"><img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80" alt="Friday Night Race"></div>
+        <div class="race-night-img"><img src="assets/events/event_slot_open.jpg" alt="Friday Night Slot Car Open" loading="lazy"></div>
         <div class="race-night-body">
           <div class="race-night-meta"><i class="fas fa-calendar-alt"></i> Oct 4, 2026 &nbsp;|&nbsp; <i class="fas fa-clock"></i> 7:00 PM</div>
           <h3 class="race-night-title">Friday Night Slot Car Open</h3>
@@ -482,7 +637,7 @@
         </div>
       </div>
       <div class="race-night-card">
-        <div class="race-night-img"><img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80" alt="RC Championship"></div>
+        <div class="race-night-img"><img src="assets/events/event_rc_qualifier.jpg" alt="Q4 RC Championship Qualifier" loading="lazy"></div>
         <div class="race-night-body">
           <div class="race-night-meta"><i class="fas fa-calendar-alt"></i> Oct 11, 2026 &nbsp;|&nbsp; <i class="fas fa-clock"></i> 10:00 AM</div>
           <h3 class="race-night-title">Q4 RC Championship Qualifier</h3>
@@ -495,7 +650,7 @@
         </div>
       </div>
       <div class="race-night-card">
-        <div class="race-night-img"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" alt="Junior Race"></div>
+        <div class="race-night-img"><img src="assets/events/event_junior_day.jpg" alt="Junior Academy Race Day" loading="lazy"></div>
         <div class="race-night-body">
           <div class="race-night-meta"><i class="fas fa-calendar-alt"></i> Oct 18, 2026 &nbsp;|&nbsp; <i class="fas fa-clock"></i> 2:00 PM</div>
           <h3 class="race-night-title">Junior Academy Race Day</h3>
@@ -512,19 +667,18 @@
 </section>
 
 <!-- Membership -->
-<section class="section" style="background:var(--secondary);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(0,180,216,.12) 0%,transparent 70%);"></div>
+<section class="section" style="background:var(--bg-surface);position:relative;overflow:hidden;">
   <div class="container" style="position:relative;z-index:1;">
     <div class="section-header animate-on-scroll">
-      <div class="section-badge" style="background:rgba(0,180,216,.2);color:var(--primary);border-color:rgba(0,180,216,.3);"><i class="fas fa-star"></i> Memberships</div>
-      <h2 class="section-title" style="color:#fff;">Unlock the Full <span class="text-primary">Experience</span></h2>
-      <p class="section-sub" style="color:rgba(255,255,255,.55);">Monthly memberships give you priority booking, discounts, and exclusive access to member-only events.</p>
+      <div class="section-badge"><i class="fas fa-star"></i> Memberships</div>
+      <h2 class="section-title">Unlock the Full <span class="text-primary">Experience</span></h2>
+      <p class="section-sub">Monthly memberships give you priority booking, discounts, and exclusive access to member-only events.</p>
     </div>
     <div class="grid-3 animate-on-scroll">
       <div class="membership-card">
         <h3 class="membership-title">Rookie</h3>
         <div class="membership-price"><sup>$</sup>29<small>/mo</small></div>
-        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:400;">Perfect for new racers exploring the hobby.</p>
+        <p class="pricing-desc">Perfect for new racers exploring the hobby.</p>
         <ul class="pricing-features">
           <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>2 Open Sessions/Month</span></li>
           <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>10% Pro Shop Discount</span></li>
@@ -538,20 +692,20 @@
         <div class="pricing-badge">Most Popular</div>
         <h3 class="membership-title">Pro Racer</h3>
         <div class="membership-price"><sup>$</sup>59<small>/mo</small></div>
-        <p style="font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem;font-weight:400;">For the serious hobbyist who races regularly.</p>
+        <p class="pricing-desc">For the serious hobbyist who races regularly.</p>
         <ul class="pricing-features">
-          <li class="pricing-feature" style="color:rgba(255,255,255,.8);"><i class="fas fa-check-circle" style="color:var(--success);"></i><span>6 Open Sessions/Month</span></li>
-          <li class="pricing-feature" style="color:rgba(255,255,255,.8);"><i class="fas fa-check-circle" style="color:var(--success);"></i><span>20% Pro Shop Discount</span></li>
-          <li class="pricing-feature" style="color:rgba(255,255,255,.8);"><i class="fas fa-check-circle" style="color:var(--success);"></i><span>Priority Lane Booking</span></li>
-          <li class="pricing-feature" style="color:rgba(255,255,255,.8);"><i class="fas fa-check-circle" style="color:var(--success);"></i><span>Exclusive Member Nights</span></li>
-          <li class="pricing-feature no" style="color:rgba(255,255,255,.4);"><i class="fas fa-times-circle" style="color:rgba(255,255,255,.2);"></i><span>Private Track Hire</span></li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>6 Open Sessions/Month</span></li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>20% Pro Shop Discount</span></li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>Priority Lane Booking</span></li>
+          <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>Exclusive Member Nights</span></li>
+          <li class="pricing-feature no"><i class="fas fa-times-circle"></i><span>Private Track Hire</span></li>
         </ul>
         <a href="signup.html" class="btn btn-primary btn-full">Join Pro</a>
       </div>
       <div class="membership-card">
         <h3 class="membership-title">Champion</h3>
         <div class="membership-price"><sup>$</sup>99<small>/mo</small></div>
-        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:400;">Ultimate access for the dedicated racer.</p>
+        <p class="pricing-desc">Ultimate access for the dedicated racer.</p>
         <ul class="pricing-features">
           <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>Unlimited Sessions</span></li>
           <li class="pricing-feature"><i class="fas fa-check-circle"></i><span>30% Pro Shop Discount</span></li>
@@ -565,7 +719,7 @@
   </div>
 </section>
 
-<!-- Gallery Highlight -->
+<!-- Gallery Highlight: 3 + 2 Layout -->
 <section class="section">
   <div class="container">
     <div class="section-header animate-on-scroll">
@@ -573,33 +727,78 @@
       <h2 class="section-title">Life at the Track</h2>
       <p class="section-sub">A glimpse inside Apex Raceway — where champions are made and memories last forever.</p>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:1rem;" class="animate-on-scroll">
-      <div style="grid-row:1/3;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:3/4;">
-        <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=700&q=80" alt="Track Night" style="width:100%;height:100%;object-fit:cover;">
+    <div class="gallery-3-2 animate-on-scroll">
+      <!-- Top Row: 3 Images -->
+      <div class="gallery-row-3">
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_1.jpg" alt="Championship Raceway Stadium Arena" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Championship Arena</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_2.jpg" alt="Pro Slot Car Racing Battle" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Slot Car Battle</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_3.jpg" alt="RC Drift Night Competition" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">RC Drift Arena</span>
+          </div>
+        </div>
       </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;">
-        <img src="https://images.unsplash.com/photo-1511405889574-b21ad3c40f62?w=500&q=80" alt="RC Cars" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;">
-        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500&q=80" alt="Pit Lane" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;">
-        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&q=80" alt="Championship Trophy" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;">
-        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&q=80" alt="Race Action" style="width:100%;height:100%;object-fit:cover;">
+      <!-- Bottom Row: 2 Images -->
+      <div class="gallery-row-2">
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_4.jpg" alt="Elite RC Pro Pit Bay Arena" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Pro Pit Bays & Tuning</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_5.jpg" alt="Apex Raceway Motorsport Venue" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Night Circuit Facility</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="ribbon-banner animate-on-scroll">
-  <h2 class="ribbon-banner-title">Your Next Race Awaits</h2>
-  <p class="ribbon-banner-sub">Premium membership gives you unlimited track time, priority booking, and exclusive race nights.</p>
-  <div class="btn-actions">
-    <a href="signup.html" class="btn-white btn"><i class="fas fa-gem"></i> Get Premium</a>
-    <a href="contact.html" class="btn" style="border:2px solid rgba(255,255,255,.5);color:#fff;background:transparent;"><i class="fas fa-phone"></i> Contact Us</a>
+<!-- CTA: Elite VIP Diamond Showcase -->
+<section class="cta-vip-section">
+  <div class="container">
+    <div class="cta-vip-card animate-on-scroll">
+      <div class="cta-vip-bg"></div>
+      <div style="position:relative;z-index:2;">
+        <div class="cta-vip-badge"><i class="fas fa-gem"></i> VIP Racing Privileges</div>
+        <h2 class="cta-vip-title">Your Next Race <span class="accent">Awaits.</span></h2>
+        <p class="cta-vip-sub">
+          Apex Raceway Premium unlocks 24/7 priority track reservations, dedicated private garage bays, custom telemetry coaching, and VIP championship invitationals.
+        </p>
+        <div class="cta-vip-features">
+          <div class="cta-vip-feat">
+            <i class="fas fa-infinity" style="color:var(--primary);"></i>
+            <span>Unlimited Track Sessions</span>
+          </div>
+          <div class="cta-vip-feat">
+            <i class="fas fa-wrench" style="color:var(--primary);"></i>
+            <span>Private Dyno Tuning Bays</span>
+          </div>
+          <div class="cta-vip-feat">
+            <i class="fas fa-trophy" style="color:var(--primary);"></i>
+            <span>VIP Championship Access</span>
+          </div>
+        </div>
+        <div class="cta-vip-actions">
+          <a href="signup.html" class="btn btn-primary btn-lg"><i class="fas fa-gem"></i> Get VIP Pass</a>
+          <a href="contact.html" class="btn btn-ghost btn-ghost-light btn-lg"><i class="fas fa-phone"></i> Schedule Private Tour</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

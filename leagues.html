@@ -9,27 +9,163 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 <style>
-.league-card { background:var(--bg-card); border:2px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; transition:all 250ms; }
-.league-card:hover { border-color:var(--primary); box-shadow:var(--shadow-lg); transform:translateY(-4px); }
-.league-card-header { padding:1.75rem 2rem; border-bottom:1px solid var(--border); }
-.league-badge { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .75rem; border-radius:var(--radius-full); font-size:.6875rem; font-weight:600; text-transform:uppercase; margin-bottom:.875rem; }
-.league-name { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; margin-bottom:.5rem; }
-.league-desc { font-size:.9375rem; color:var(--text-muted); font-weight:400; line-height:1.6; }
-.league-card-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-bottom:1px solid var(--border); }
-.league-stat { text-align:center; padding:1.25rem .75rem; border-right:1px solid var(--border); }
-.league-stat:last-child { border-right:none; }
-.league-stat-num { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; color:var(--primary); }
-.league-stat-label { font-size:.75rem; color:var(--text-muted); margin-top:.25rem; }
-.league-card-footer { padding:1.5rem 2rem; display:flex; gap:1rem; align-items:center; }
-.standings-wrap { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
-.race-timeline { position:relative; padding-left:2rem; }
-.race-timeline::before { content:''; position:absolute; left:.625rem; top:0; bottom:0; width:2px; background:var(--border); }
-.timeline-item { position:relative; margin-bottom:2rem; }
-.timeline-dot { position:absolute; left:-1.9rem; width:14px; height:14px; border-radius:50%; background:var(--primary); border:3px solid var(--bg-body); top:.3rem; }
-.timeline-date { font-size:.75rem; color:var(--primary); font-weight:600; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.25rem; }
-.timeline-title { font-family:var(--font-heading); font-size:1.125rem; font-weight:600; margin-bottom:.25rem; }
-.timeline-meta { font-size:.875rem; color:var(--text-muted); }
-@media(max-width:768px) { .league-card-stats { grid-template-columns:1fr 1fr; } .league-stat:nth-child(2) { border-right:none; } }
+.league-card { 
+  background: var(--bg-card); 
+  border: 2px solid var(--border); 
+  border-radius: var(--radius-xl); 
+  overflow: hidden; 
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+  display: flex; 
+  flex-direction: column; 
+}
+.league-card:hover { 
+  border-color: var(--primary); 
+  box-shadow: var(--shadow-lg); 
+  transform: translateY(-5px); 
+}
+.league-card-img-wrap { 
+  position: relative; 
+  aspect-ratio: 16 / 9; 
+  overflow: hidden; 
+  background: var(--bg-surface); 
+}
+.league-card-img-wrap img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+  transition: transform 500ms ease; 
+}
+.league-card:hover .league-card-img-wrap img { 
+  transform: scale(1.08); 
+}
+.league-card-img-wrap .league-badge { 
+  position: absolute; 
+  top: 1rem; 
+  left: 1rem; 
+  z-index: 2; 
+  margin-bottom: 0; 
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); 
+  backdrop-filter: blur(6px); 
+  -webkit-backdrop-filter: blur(6px); 
+}
+.league-card-header { 
+  padding: 1.5rem 1.75rem; 
+  border-bottom: 1px solid var(--border); 
+  flex: 1; 
+}
+.league-badge { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: .375rem; 
+  padding: .3rem .8rem; 
+  border-radius: var(--radius-full); 
+  font-size: .6875rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  letter-spacing: .04em; 
+}
+.league-name { 
+  font-family: var(--font-heading); 
+  font-size: 1.375rem; 
+  font-weight: 700; 
+  margin-bottom: .5rem; 
+  color: var(--text-heading); 
+}
+.league-desc { 
+  font-size: .9rem; 
+  color: var(--text-muted); 
+  font-weight: 400; 
+  line-height: 1.6; 
+}
+.league-card-stats { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 0; 
+  border-bottom: 1px solid var(--border); 
+  background: var(--bg-surface); 
+}
+.league-stat { 
+  text-align: center; 
+  padding: 1.125rem .75rem; 
+  border-right: 1px solid var(--border); 
+}
+.league-stat:last-child { 
+  border-right: none; 
+}
+.league-stat-num { 
+  font-family: var(--font-heading); 
+  font-size: 1.375rem; 
+  font-weight: 700; 
+  color: var(--primary); 
+}
+.league-stat-label { 
+  font-size: .75rem; 
+  color: var(--text-muted); 
+  margin-top: .25rem; 
+}
+.league-card-footer { 
+  padding: 1.25rem 1.75rem; 
+  display: flex; 
+  gap: 1rem; 
+  align-items: center; 
+  margin-top: auto; 
+}
+.standings-wrap { 
+  background: var(--bg-card); 
+  border: 1px solid var(--border); 
+  border-radius: var(--radius-lg); 
+  overflow: hidden; 
+}
+.race-timeline { 
+  position: relative; 
+  padding-left: 2rem; 
+}
+.race-timeline::before { 
+  content: ''; 
+  position: absolute; 
+  left: .625rem; 
+  top: 0; 
+  bottom: 0; 
+  width: 2px; 
+  background: var(--border); 
+}
+.timeline-item { 
+  position: relative; 
+  margin-bottom: 2rem; 
+}
+.timeline-dot { 
+  position: absolute; 
+  left: -1.9rem; 
+  width: 14px; 
+  height: 14px; 
+  border-radius: 50%; 
+  background: var(--primary); 
+  border: 3px solid var(--bg-body); 
+  top: .3rem; 
+}
+.timeline-date { 
+  font-size: .75rem; 
+  color: var(--primary); 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: .06em; 
+  margin-bottom: .25rem; 
+}
+.timeline-title { 
+  font-family: var(--font-heading); 
+  font-size: 1.125rem; 
+  font-weight: 600; 
+  margin-bottom: .25rem; 
+}
+.timeline-meta { 
+  font-size: .875rem; 
+  color: var(--text-muted); 
+}
+@media(max-width:768px) { 
+  .league-card-stats { grid-template-columns: 1fr 1fr; } 
+  .league-stat:nth-child(2) { border-right: none; } 
+}
 </style>
 </head>
 <body>
@@ -56,9 +192,14 @@
       <p class="section-sub">Three competitive leagues to match every skill level and racing discipline.</p>
     </div>
     <div class="grid-3 animate-on-scroll">
+      
+      <!-- League Card 1: Slot Car Championship -->
       <div class="league-card">
-        <div class="league-card-header">
+        <div class="league-card-img-wrap">
+          <img src="assets/leagues/league_slot_championship.jpg" alt="Slot Car Championship" loading="lazy">
           <span class="league-badge tag-success"><i class="fas fa-circle" style="font-size:.5rem;"></i> Active</span>
+        </div>
+        <div class="league-card-header">
           <h3 class="league-name">Slot Car Championship</h3>
           <p class="league-desc">The classic 6-lane circuit league. Compete with 1:32 scale slot cars in weekly qualifying rounds.</p>
         </div>
@@ -72,9 +213,14 @@
           <a href="#standings" class="btn btn-ghost">View Standings</a>
         </div>
       </div>
+
+      <!-- League Card 2: RC Touring Car League -->
       <div class="league-card" style="border-color:var(--primary);">
-        <div class="league-card-header">
+        <div class="league-card-img-wrap">
+          <img src="assets/leagues/league_rc_touring.jpg" alt="RC Touring Car League" loading="lazy">
           <span class="league-badge tag-primary"><i class="fas fa-fire" style="font-size:.6rem;"></i> Featured</span>
+        </div>
+        <div class="league-card-header">
           <h3 class="league-name">RC Touring Car League</h3>
           <p class="league-desc">High-speed 1:10 electric touring cars on our on-road circuit. Expert-level competition with full transponder timing.</p>
         </div>
@@ -88,9 +234,14 @@
           <a href="#standings" class="btn btn-ghost">View Standings</a>
         </div>
       </div>
+
+      <!-- League Card 3: Junior Academy League -->
       <div class="league-card">
-        <div class="league-card-header">
+        <div class="league-card-img-wrap">
+          <img src="assets/leagues/league_junior_academy.jpg" alt="Junior Academy League" loading="lazy">
           <span class="league-badge tag-warning"><i class="fas fa-seedling" style="font-size:.6rem;"></i> Beginner</span>
+        </div>
+        <div class="league-card-header">
           <h3 class="league-name">Junior Academy League</h3>
           <p class="league-desc">Structured competition for under-16 racers. Learn the ropes, earn points, and develop championship skills.</p>
         </div>
@@ -104,6 +255,7 @@
           <a href="#standings" class="btn btn-ghost">View Standings</a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -243,13 +395,33 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA with Right Side Image -->
 <section class="ribbon-banner animate-on-scroll">
-  <h2 class="ribbon-banner-title">Join the Racing Community</h2>
-  <p class="ribbon-banner-sub">Create your free racer profile and start competing in our leagues today.</p>
-  <div class="btn-actions">
-    <a href="signup.html" class="btn-white btn"><i class="fas fa-user-plus"></i> Create Account</a>
-    <a href="book-track.html" class="btn" style="border:2px solid rgba(255,255,255,.5);color:#fff;background:transparent;"><i class="fas fa-calendar-check"></i> Book Practice Session</a>
+  <div class="ribbon-banner-inner">
+    <div class="ribbon-banner-content">
+      <div class="cta-league-badge"><i class="fas fa-trophy"></i> Official RC & Slot Leagues</div>
+      <h2 class="ribbon-banner-title">Join the Racing Community</h2>
+      <p class="ribbon-banner-sub">Create your free racer profile, earn championship season points, and compete in weekly heats on championship-grade tracks.</p>
+      <div class="cta-league-perks">
+        <div class="cta-league-perk"><i class="fas fa-id-card"></i> Free Racer ID & Profile</div>
+        <div class="cta-league-perk"><i class="fas fa-medal"></i> Season Points & Trophies</div>
+        <div class="cta-league-perk"><i class="fas fa-stopwatch"></i> Live Telemetry & Timing</div>
+      </div>
+      <div class="btn-actions">
+        <a href="signup.html" class="btn-white btn"><i class="fas fa-user-plus"></i> Create Account</a>
+        <a href="book-track.html" class="btn btn-ghost-light"><i class="fas fa-calendar-check"></i> Book Practice Session</a>
+      </div>
+    </div>
+    <div class="cta-league-image-wrap">
+      <img src="assets/leagues/league_community_cta.jpg" alt="Championship Racing Community at Apex Raceway" loading="lazy">
+      <div class="cta-league-badge-float">
+        <i class="fas fa-flag-checkered"></i>
+        <div class="cta-league-badge-float-text">
+          <h4>2026 Season Entry</h4>
+          <p>Registration Open</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
