@@ -37,13 +37,13 @@ function toggleDir() {
 function getLogoSVG(size = 40) {
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="${size}" height="${size}" style="width:${size}px;height:${size}px;display:block;flex-shrink:0;">
       <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
-      <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity="0.6"/>
-      <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
+      <circle cx="32" cy="32" r="26" stroke="#00B4D8" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity="0.6"/>
+      <rect x="18" y="28" width="28" height="10" rx="3" fill="#00B4D8"/>
       <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
-      <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
-      <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
-      <line x1="6" y1="30" x2="14" y2="30" stroke="#FF5F1F" stroke-width="2" stroke-linecap="round"/>
-      <line x1="6" y1="34" x2="12" y2="34" stroke="#FF5F1F" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
+      <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
+      <line x1="6" y1="30" x2="14" y2="30" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"/>
+      <line x1="6" y1="34" x2="12" y2="34" stroke="#00B4D8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
     </svg>`;
 }
 
@@ -396,11 +396,65 @@ function initCountdown(targetDate) {
     setInterval(update, 1000);
 }
 
+
+/* ─── HERO SLIDER CONTROLLER (5s Interval) ─── */
+let currentHeroSlide = 0;
+const totalHeroSlides = 3;
+let heroSlideTimer = null;
+const SLIDE_DURATION = 5000;
+
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (!slides.length) return;
+    heroGoToSlide(0);
+}
+
+function heroGoToSlide(idx) {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => {
+        d.classList.remove('active');
+        const fill = d.querySelector('.hero-dot-fill');
+        if (fill) fill.style.transition = 'none';
+    });
+
+    currentHeroSlide = (idx + totalHeroSlides) % totalHeroSlides;
+    slides[currentHeroSlide].classList.add('active');
+
+    if (dots[currentHeroSlide]) {
+        dots[currentHeroSlide].classList.add('active');
+        const activeFill = dots[currentHeroSlide].querySelector('.hero-dot-fill');
+        if (activeFill) {
+            void activeFill.offsetWidth;
+            activeFill.style.transition = 'width 5000ms linear';
+        }
+    }
+
+    startHeroTimer();
+}
+
+function heroNextSlide() {
+    heroGoToSlide(currentHeroSlide + 1);
+}
+
+function heroPrevSlide() {
+    heroGoToSlide(currentHeroSlide - 1);
+}
+
+function startHeroTimer() {
+    if (heroSlideTimer) clearInterval(heroSlideTimer);
+    heroSlideTimer = setInterval(heroNextSlide, SLIDE_DURATION);
+}
+
 /* Main Init */
 document.addEventListener('DOMContentLoaded', function () {
     injectNav();
     injectFooter();
     injectScrollToTop();
+    initHeroSlider();
     initScrollAnimations();
     animateCounters();
     const isRTL = document.documentElement.getAttribute('dir') === 'rtl';

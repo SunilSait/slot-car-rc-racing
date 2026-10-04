@@ -12,21 +12,79 @@
 <body>
 <div id="main-nav"></div>
 
-<!-- Hero Section -->
-<section class="hero" id="hero">
-  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="RC Racing Track" class="hero-bg">
-  <div class="hero-overlay"></div>
-  <div class="hero-grid-pattern"></div>
-  <div class="hero-content" style="padding-top:calc(var(--nav-h) + 3rem);padding-bottom:5rem;">
-    <div style="max-width:820px;margin-inline:auto;text-align:center;display:flex;flex-direction:column;align-items:center;">
-      <div class="hero-eyebrow"><i class="fas fa-flag-checkered"></i> Premier RC Racing Venue</div>
-      <h1 class="hero-title">Race. Dominate.<span>Champion.</span></h1>
-      <p class="hero-desc">The ultimate indoor slot car and RC racing experience. Professional-grade tracks, real-time lap timing, weekly race nights, and a thriving community of passionate racers.</p>
-      <div class="hero-actions">
-        <a href="book-track.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Track Time</a>
-        <a href="leagues.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);"><i class="fas fa-trophy"></i> View Leagues</a>
+<!-- Hero Slider Section -->
+<section class="hero-slider" id="hero-slider" aria-label="Hero Carousel">
+  <div class="hero-slides-wrapper">
+    
+    <!-- Slide 1 -->
+    <div class="hero-slide active" data-slide="0">
+      <img src="assets/hero_slide_1.jpg" alt="Indoor Slot Car & RC Racing" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-inner">
+          <div class="hero-eyebrow"><i class="fas fa-flag-checkered"></i> Premier RC Racing Venue</div>
+          <h1 class="hero-title">Race. Dominate.<span>Champion.</span></h1>
+          <p class="hero-desc">The ultimate indoor slot car and RC racing experience. Professional-grade tracks, real-time lap timing, weekly race nights, and a thriving community of passionate racers.</p>
+          <div class="hero-actions">
+            <a href="book-track.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Track Time</a>
+            <a href="leagues.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);"><i class="fas fa-trophy"></i> View Leagues</a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide" data-slide="1">
+      <img src="assets/hero_slide_2.jpg" alt="Precision RC Touring & Drift Racing" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-inner">
+          <div class="hero-eyebrow"><i class="fas fa-bolt"></i> High-Octane Competition</div>
+          <h1 class="hero-title">Precision Speed.<span>Pure Adrenaline.</span></h1>
+          <p class="hero-desc">Push 1:10 scale electric touring cars and drift machines to their absolute limits on technical apex-hugging circuits with computerized millisecond transponder timing.</p>
+          <div class="hero-actions">
+            <a href="leagues.html" class="btn btn-primary btn-lg"><i class="fas fa-trophy"></i> Join Racing League</a>
+            <a href="pro-shop.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);"><i class="fas fa-store"></i> Explore Pro Shop</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide" data-slide="2">
+      <img src="assets/hero_slide_3.jpg" alt="Championship Podium & Track Masters" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-inner">
+          <div class="hero-eyebrow"><i class="fas fa-medal"></i> Master The Circuit</div>
+          <h1 class="hero-title">Master The Apex.<span>Claim The Podium.</span></h1>
+          <p class="hero-desc">From custom chassis tuning to competitive multi-lane endurance battles, gear up with championship-winning parts and master every hairpin turn.</p>
+          <div class="hero-actions">
+            <a href="book-track.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Reserve Track Time</a>
+            <a href="dashboard.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);"><i class="fas fa-gauge"></i> Racer Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="hero-slider-arrow prev" onclick="heroPrevSlide()" aria-label="Previous slide">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button class="hero-slider-arrow next" onclick="heroNextSlide()" aria-label="Next slide">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+  <!-- Slider Indicators -->
+  <div class="hero-slider-dots">
+    <button class="hero-dot active" onclick="heroGoToSlide(0)" aria-label="Slide 1"><span class="hero-dot-fill"></span></button>
+    <button class="hero-dot" onclick="heroGoToSlide(1)" aria-label="Slide 2"><span class="hero-dot-fill"></span></button>
+    <button class="hero-dot" onclick="heroGoToSlide(2)" aria-label="Slide 3"><span class="hero-dot-fill"></span></button>
   </div>
 </section>
 
@@ -117,7 +175,7 @@
 
 <!-- Track Layout Visual -->
 <section class="section" style="background:var(--secondary);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,95,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,95,31,.05) 1px,transparent 1px);background-size:40px 40px;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,216,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.05) 1px,transparent 1px);background-size:40px 40px;"></div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="split-section">
       <div class="animate-on-scroll">
@@ -147,7 +205,7 @@
         <a href="book-track.html" class="btn btn-primary"><i class="fas fa-flag-checkered"></i> Book a Session</a>
       </div>
       <div class="split-img animate-on-scroll delay-2">
-        <img src="https://images.unsplash.com/photo-1611329695518-1763fc1e8e59?w=800&q=80" alt="Slot Car Track Layout" style="width:100%;height:100%;object-fit:cover;">
+        <img src="assets/track_layout_preview.jpg" alt="Slot Car Track Layout" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
   </div>
@@ -163,27 +221,48 @@
     </div>
     <div class="grid-3 animate-on-scroll">
       <div class="race-highlight-card">
-        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80" alt="Championship Race Night">
-        <div class="race-highlight-overlay">
-          <span class="race-highlight-tag">Race Night</span>
-          <div class="race-highlight-title">Summer Championship Final</div>
-          <div class="race-highlight-meta"><i class="fas fa-calendar-alt" style="color:var(--primary);"></i> August 15, 2026</div>
+        <div class="race-highlight-img-wrap">
+          <img src="assets/highlight_championship.jpg" alt="Summer Championship Final" class="race-highlight-img">
+          <span class="race-highlight-tag"><i class="fas fa-trophy"></i> Race Night</span>
+          <div class="race-highlight-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="race-highlight-body">
+          <h3 class="race-highlight-title">Summer Championship Final</h3>
+          <p class="race-highlight-desc">High-octane slot car championship showdown with photo-finish results in the 1:24 pro modified division.</p>
+          <div class="race-highlight-meta">
+            <span><i class="fas fa-calendar-alt text-primary"></i> August 15, 2026</span>
+            <span><i class="fas fa-clock text-primary"></i> 48 Laps</span>
+          </div>
         </div>
       </div>
       <div class="race-highlight-card">
-        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Club Night Session">
-        <div class="race-highlight-overlay">
-          <span class="race-highlight-tag">Club Night</span>
-          <div class="race-highlight-title">Friday Night Racers Open</div>
-          <div class="race-highlight-meta"><i class="fas fa-calendar-alt" style="color:var(--primary);"></i> September 5, 2026</div>
+        <div class="race-highlight-img-wrap">
+          <img src="assets/highlight_club_night.jpg" alt="Friday Night Racers Open" class="race-highlight-img">
+          <span class="race-highlight-tag"><i class="fas fa-flag-checkered"></i> Club Night</span>
+          <div class="race-highlight-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="race-highlight-body">
+          <h3 class="race-highlight-title">Friday Night Racers Open</h3>
+          <p class="race-highlight-desc">Electric 1:10 RC touring cars carving the apex on our technical circuit under ambient night raceway lighting.</p>
+          <div class="race-highlight-meta">
+            <span><i class="fas fa-calendar-alt text-primary"></i> September 5, 2026</span>
+            <span><i class="fas fa-users text-primary"></i> 32 Entries</span>
+          </div>
         </div>
       </div>
       <div class="race-highlight-card">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" alt="Junior League Race">
-        <div class="race-highlight-overlay">
-          <span class="race-highlight-tag">Junior League</span>
-          <div class="race-highlight-title">Under-16 Grand Prix</div>
-          <div class="race-highlight-meta"><i class="fas fa-calendar-alt" style="color:var(--primary);"></i> September 12, 2026</div>
+        <div class="race-highlight-img-wrap">
+          <img src="assets/highlight_junior_league.jpg" alt="Under-16 Grand Prix" class="race-highlight-img">
+          <span class="race-highlight-tag"><i class="fas fa-medal"></i> Junior League</span>
+          <div class="race-highlight-play"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="race-highlight-body">
+          <h3 class="race-highlight-title">Under-16 Grand Prix</h3>
+          <p class="race-highlight-desc">Exciting jumps and high-speed off-road buggy battles as the next generation of racers fight for the podium.</p>
+          <div class="race-highlight-meta">
+            <span><i class="fas fa-calendar-alt text-primary"></i> September 12, 2026</span>
+            <span><i class="fas fa-award text-primary"></i> 16 Finalists</span>
+          </div>
         </div>
       </div>
     </div>
@@ -198,26 +277,30 @@
       <h2 class="section-title">Get on Track in 4 Steps</h2>
       <p class="section-sub">Booking your racing session is fast and easy. Be on the grid in minutes.</p>
     </div>
-    <div class="booking-steps animate-on-scroll" style="max-width:900px;margin-inline:auto;">
-      <div class="booking-step active">
-        <div class="step-num">1</div>
-        <div class="step-label">Create Account</div>
-        <div class="step-desc">Sign up free and set up your racer profile and preferences.</div>
+    <div class="booking-steps animate-on-scroll">
+      <div class="booking-step">
+        <span class="step-num-badge">01</span>
+        <div class="step-icon-wrap"><i class="fas fa-user-plus"></i></div>
+        <h3 class="step-label">Create Account</h3>
+        <p class="step-desc">Sign up free and set up your racer profile and preferences.</p>
       </div>
-      <div class="booking-step active">
-        <div class="step-num">2</div>
-        <div class="step-label">Choose Session</div>
-        <div class="step-desc">Select track type, date, time slot, and car class.</div>
+      <div class="booking-step">
+        <span class="step-num-badge">02</span>
+        <div class="step-icon-wrap"><i class="fas fa-flag-checkered"></i></div>
+        <h3 class="step-label">Choose Session</h3>
+        <p class="step-desc">Select track type, date, time slot, and car class.</p>
       </div>
-      <div class="booking-step active">
-        <div class="step-num">3</div>
-        <div class="step-label">Pay Online</div>
-        <div class="step-desc">Secure payment via card, wallet, or membership credits.</div>
+      <div class="booking-step">
+        <span class="step-num-badge">03</span>
+        <div class="step-icon-wrap"><i class="fas fa-credit-card"></i></div>
+        <h3 class="step-label">Pay Online</h3>
+        <p class="step-desc">Secure payment via card, wallet, or membership credits.</p>
       </div>
-      <div class="booking-step active">
-        <div class="step-num">4</div>
-        <div class="step-label">Race!</div>
-        <div class="step-desc">Show up, grab your controller, and start your engines.</div>
+      <div class="booking-step">
+        <span class="step-num-badge">04</span>
+        <div class="step-icon-wrap"><i class="fas fa-trophy"></i></div>
+        <h3 class="step-label">Race!</h3>
+        <p class="step-desc">Show up, grab your controller, and start your engines.</p>
       </div>
     </div>
     <div class="text-center" style="margin-top:3rem;">
@@ -289,7 +372,7 @@
     <div class="grid-3">
       <div class="testimonial-card animate-on-scroll delay-1">
         <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text">"Apex Raceway is in a league of its own. The track quality is exceptional, timing system is spot-on, and the Friday night races have become my weekly highlight."</p>
+        <p class="testimonial-text">"Apex Raceway is truly in a league of its own. The track layout is top notch, the lap timing is spot-on, and Friday night races are the highlight of my week."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary);font-weight:700;font-size:.875rem;">MV</div>
           <div><div class="testimonial-name">Marcus V.</div><div class="testimonial-role">League Champion 2025</div></div>
@@ -297,15 +380,15 @@
       </div>
       <div class="testimonial-card animate-on-scroll delay-2">
         <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="testimonial-text">"As a beginner, I was worried it would be too intimidating. But the staff were incredibly helpful, the community is amazing, and I've improved massively in just a few months."</p>
+        <p class="testimonial-text">"As a beginner, I was worried about fitting in. But the staff were helpful, the community was welcoming, and my racing skills improved within just a few weeks."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary);font-weight:700;font-size:.875rem;">SK</div>
           <div><div class="testimonial-name">Sarah K.</div><div class="testimonial-role">Club Member</div></div>
         </div>
       </div>
       <div class="testimonial-card animate-on-scroll delay-3">
-        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-        <p class="testimonial-text">"Used the facility for a corporate team-building event. Absolutely incredible experience — everyone had the best time and was asking when we could come back!"</p>
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"We booked the venue for an annual company event. The entire crew had an absolute blast, the staff managed everything smoothly, and everyone is excited to return."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary);font-weight:700;font-size:.875rem;">DP</div>
           <div><div class="testimonial-name">David P.</div><div class="testimonial-role">Corporate Client</div></div>

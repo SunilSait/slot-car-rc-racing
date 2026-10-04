@@ -2,15 +2,15 @@
   <!-- Dark background circle -->
   <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
   <!-- Track ring -->
-  <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="3" fill="none" stroke-dasharray="8 4"/>
+  <circle cx="32" cy="32" r="26" stroke="#00B4D8" stroke-width="3" fill="none" stroke-dasharray="8 4"/>
   <!-- RC Car body -->
-  <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
+  <rect x="18" y="28" width="28" height="10" rx="3" fill="#00B4D8"/>
   <!-- Cockpit -->
   <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
   <!-- Wheels -->
-  <circle cx="22" cy="38" r="4" fill="#0D1B2A" stroke="#FF5F1F" stroke-width="2"/>
-  <circle cx="42" cy="38" r="4" fill="#0D1B2A" stroke="#FF5F1F" stroke-width="2"/>
+  <circle cx="22" cy="38" r="4" fill="#0D1B2A" stroke="#00B4D8" stroke-width="2"/>
+  <circle cx="42" cy="38" r="4" fill="#0D1B2A" stroke="#00B4D8" stroke-width="2"/>
   <!-- Speed lines -->
-  <line x1="6" y1="30" x2="14" y2="30" stroke="#FF5F1F" stroke-width="2" stroke-linecap="round"/>
-  <line x1="6" y1="34" x2="12" y2="34" stroke="#FF5F1F" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="6" y1="30" x2="14" y2="30" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="6" y1="34" x2="12" y2="34" stroke="#00B4D8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
 </svg>

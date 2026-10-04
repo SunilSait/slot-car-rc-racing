@@ -43,8 +43,8 @@ html.dark .db-sidebar { background:#040a14; }
 /* Welcome */
 .db-welcome { background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%); border-radius:16px; padding:2rem; margin-bottom:2rem; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
 html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%); }
-.db-welcome::before { content:''; position:absolute; right:-2rem; top:-2rem; width:200px; height:200px; border-radius:50%; background:rgba(255,95,31,.12); }
-.db-welcome::after { content:''; position:absolute; right:3rem; bottom:-3rem; width:140px; height:140px; border-radius:50%; background:rgba(255,95,31,.08); }
+.db-welcome::before { content:''; position:absolute; right:-2rem; top:-2rem; width:200px; height:200px; border-radius:50%; background:rgba(0,180,216,.12); }
+.db-welcome::after { content:''; position:absolute; right:3rem; bottom:-3rem; width:140px; height:140px; border-radius:50%; background:rgba(0,180,216,.08); }
 .db-welcome-text h2 { font-family:var(--font-heading); font-size:1.625rem; font-weight:600; color:#fff; margin-bottom:.25rem; }
 .db-welcome-text p { font-size:.9375rem; color:rgba(255,255,255,.6); font-weight:400; }
 .db-welcome-action { position:relative; z-index:1; }
@@ -121,11 +121,11 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
   <a href="index.html" class="db-sidebar-logo">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="34" height="34" style="flex-shrink:0;">
       <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
-      <circle cx="32" cy="32" r="26" stroke="#FF5F1F" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity=".6"/>
-      <rect x="18" y="28" width="28" height="10" rx="3" fill="#FF5F1F"/>
+      <circle cx="32" cy="32" r="26" stroke="#00B4D8" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity=".6"/>
+      <rect x="18" y="28" width="28" height="10" rx="3" fill="#00B4D8"/>
       <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
-      <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
-      <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#FF5F1F" stroke-width="2"/>
+      <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
+      <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
     </svg>
     <div>
       <span class="db-sidebar-brand">Apex Raceway</span>
@@ -266,7 +266,7 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
         <table style="width:100%;border-collapse:collapse;font-size:.875rem;">
           <thead><tr style="color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;"><th style="text-align:left;padding:.5rem .25rem;">Rank</th><th style="text-align:left;padding:.5rem .25rem;">Racer</th><th style="text-align:right;padding:.5rem .25rem;">Pts</th></tr></thead>
           <tbody>
-            <tr style="background:rgba(255,95,31,.06);"><td style="padding:.625rem .25rem;"><span class="rank-badge rank-1">1</span></td><td style="padding:.625rem .25rem;font-weight:600;color:var(--primary);">Marcus V. (You)</td><td style="padding:.625rem .25rem;text-align:right;font-weight:600;">248</td></tr>
+            <tr style="background:rgba(0,180,216,.06);"><td style="padding:.625rem .25rem;"><span class="rank-badge rank-1">1</span></td><td style="padding:.625rem .25rem;font-weight:600;color:var(--primary);">Marcus V. (You)</td><td style="padding:.625rem .25rem;text-align:right;font-weight:600;">248</td></tr>
             <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-2">2</span></td><td style="padding:.625rem .25rem;">Priya S.</td><td style="padding:.625rem .25rem;text-align:right;">231</td></tr>
             <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-3">3</span></td><td style="padding:.625rem .25rem;">Jake R.</td><td style="padding:.625rem .25rem;text-align:right;">218</td></tr>
             <tr><td style="padding:.625rem .25rem;font-size:.8125rem;color:var(--text-muted);">4</td><td style="padding:.625rem .25rem;">Chen L.</td><td style="padding:.625rem .25rem;text-align:right;">204</td></tr>
