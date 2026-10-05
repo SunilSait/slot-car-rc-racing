@@ -14,7 +14,7 @@
     min-height: calc(100vh - var(--nav-h));
     display: flex;
     align-items: center;
-    background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.1) 0%, transparent 60%), linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #EEF4F9 100%);
+    background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 60%), linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #EEF4F9 100%);
     overflow: hidden;
     padding-top: calc(var(--nav-h) + 1.25rem);
     padding-bottom: 4.5rem;
@@ -27,15 +27,135 @@ html.dark .hero2 {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(0, 180, 216, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.08) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.1) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.75;
+    z-index: 1;
 }
 html.dark .hero2::before {
-    background-image: linear-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0, 180, 216, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 180, 216, 0.07) 1px, transparent 1px);
     opacity: 1;
 }
+
+/* Background Canvas & Particle Layer */
+.hero-bg-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Atmospheric Glowing Orbs */
+.hero-glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(95px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.25;
+}
+html.dark .hero-glow-orb {
+    opacity: 0.45;
+    mix-blend-mode: screen;
+}
+.hero-glow-orb-1 {
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.35) 0%, transparent 70%);
+    top: -120px;
+    right: 12%;
+    animation: orbFloat1 12s ease-in-out infinite alternate;
+}
+.hero-glow-orb-2 {
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.28) 0%, transparent 70%);
+    bottom: -160px;
+    left: 2%;
+    animation: orbFloat2 15s ease-in-out infinite alternate;
+}
+.hero-glow-orb-3 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(255, 183, 3, 0.2) 0%, transparent 70%);
+    top: 32%;
+    right: -60px;
+    animation: orbFloat3 18s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-45px, 55px) scale(1.18); }
+}
+@keyframes orbFloat2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(55px, -45px) scale(1.12); }
+}
+@keyframes orbFloat3 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-35px, -55px) scale(0.92); }
+}
+
+/* High-Velocity Speed Beams (Slot Car & Telemetry Current Lines) */
+.hero-speed-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.85), #fff, transparent);
+    box-shadow: 0 0 14px rgba(0, 180, 216, 0.9);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 2px;
+    opacity: 0;
+}
+.hero-speed-line-1 {
+    top: 22%;
+    width: 320px;
+    animation: speedBeam1 5.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+.hero-speed-line-2 {
+    top: 64%;
+    width: 420px;
+    background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.85), #fff, transparent);
+    box-shadow: 0 0 14px rgba(230, 57, 70, 0.9);
+    animation: speedBeam2 7.2s cubic-bezier(0.25, 1, 0.5, 1) infinite 2.5s;
+}
+.hero-speed-line-3 {
+    top: 44%;
+    width: 260px;
+    animation: speedBeam1 6.8s cubic-bezier(0.25, 1, 0.5, 1) infinite 4.2s;
+}
+
+@keyframes speedBeam1 {
+    0% { left: -450px; opacity: 0; }
+    15% { opacity: 0.9; }
+    60% { opacity: 0.95; }
+    100% { left: 105%; opacity: 0; }
+}
+@keyframes speedBeam2 {
+    0% { left: -500px; opacity: 0; }
+    15% { opacity: 0.9; }
+    60% { opacity: 0.95; }
+    100% { left: 105%; opacity: 0; }
+}
+
+/* Telemetry Grid Radar Sweep */
+.hero-radar-sweep {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 0%, rgba(0, 180, 216, 0.03) 48%, rgba(0, 180, 216, 0.15) 50%, transparent 53%);
+    pointer-events: none;
+    z-index: 1;
+    animation: radarSweep 9s linear infinite;
+    opacity: 0.8;
+}
+@keyframes radarSweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
 .hero2-slider {
     position: relative;
     width: 100%;
@@ -428,8 +548,18 @@ html.dark .hero2-dot.active {
 <div id="main-nav"></div>
 
 <!-- Hero 2 — 3-Slide Interactive Carousel (5s Auto-Rotation) -->
-<section class="hero2">
-  <div class="container" style="width:100%;">
+<section class="hero2" id="heroRacewaySection">
+  <!-- Theme Animated Background Elements -->
+  <canvas id="racewayBgCanvas" class="hero-bg-canvas"></canvas>
+  <div class="hero-glow-orb hero-glow-orb-1"></div>
+  <div class="hero-glow-orb hero-glow-orb-2"></div>
+  <div class="hero-glow-orb hero-glow-orb-3"></div>
+  <div class="hero-speed-line hero-speed-line-1"></div>
+  <div class="hero-speed-line hero-speed-line-2"></div>
+  <div class="hero-speed-line hero-speed-line-3"></div>
+  <div class="hero-radar-sweep"></div>
+
+  <div class="container" style="width:100%;position:relative;z-index:2;">
     <div class="hero2-slider">
 
       <div class="hero2-slides">
@@ -749,8 +879,8 @@ html.dark .hero2-dot.active {
           </div>
         </div>
       </div>
-      <!-- Bottom Row: 2 Images -->
-      <div class="gallery-row-2">
+      <!-- Bottom Row: 3 Images -->
+      <div class="gallery-row-3">
         <div class="gallery-item">
           <img src="assets/gallery/gallery_4.jpg" alt="Elite RC Pro Pit Bay Arena" loading="lazy">
           <div class="gallery-overlay">
@@ -763,6 +893,196 @@ html.dark .hero2-dot.active {
             <span class="gallery-tag">Night Circuit Facility</span>
           </div>
         </div>
+        <div class="gallery-item">
+          <img src="assets/gallery/gallery_6.jpg" alt="Grand Final Champions Podium Ceremony" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Podium & Awards Ceremony</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Testimonials 3-Slide Carousel (5-second auto-switch) -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-quote-left"></i> Racer Voices</div>
+      <h2 class="section-title">What Our Champions & Members Say</h2>
+      <p class="section-sub">Hear directly from the racers, parents, and corporate drivers who make Apex Raceway their home track.</p>
+    </div>
+
+    <div class="testimonial-carousel-wrap animate-on-scroll" id="testimonialCarousel">
+      <!-- Slides Track -->
+      <div class="t-slides-track">
+        <!-- Slide 1 -->
+        <div class="t-slide active" data-slide="0">
+          <div class="t-slide-header">
+            <div class="t-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="t-badge"><i class="fas fa-check-circle"></i> Verified Club Racer</span>
+          </div>
+          <p class="t-quote">
+            "The track traction, laser timing precision, and ambient pit layout at Apex Raceway are superior to any indoor arena in the state. Switching between the high-banked road course and technical chicanes has shaved tenths off my qualifying lap times!"
+          </p>
+          <div class="t-profile-row">
+            <div class="t-author-box">
+              <img src="assets/testimonials/avatar_elena.jpg" alt="Elena Rostova - Pro RC Touring Racer" class="t-avatar" loading="lazy">
+              <div>
+                <div class="t-name">Elena Rostova</div>
+                <div class="t-role">RC Touring Pro Competitor &bull; National Qualifier</div>
+              </div>
+            </div>
+            <div class="t-stat-pill">
+              <i class="fas fa-trophy" style="color:var(--accent);"></i>
+              <span><strong>9.742s</strong> Personal Best &bull; 14 Race Wins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="t-slide" data-slide="1">
+          <div class="t-slide-header">
+            <div class="t-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="t-badge" style="color:#ffb703;border-color:rgba(255,183,3,0.3);background:rgba(255,183,3,0.1);"><i class="fas fa-shield-alt"></i> Family Pass Member &bull; 3 Yrs</span>
+          </div>
+          <p class="t-quote">
+            "Apex Raceway has created something truly special for families and seasoned racers alike. The digital powerbase voltage limiters allow my 9-year-old daughter to race wheel-to-wheel with me without crashing, while Friday night leagues are pure, competitive thrill!"
+          </p>
+          <div class="t-profile-row">
+            <div class="t-author-box">
+              <img src="assets/testimonials/avatar_jason.jpg" alt="Jason Miller - West Coast Slot Car Club Captain" class="t-avatar" loading="lazy">
+              <div>
+                <div class="t-name">Jason Miller</div>
+                <div class="t-role">West Coast Slot Car Club Captain &bull; Family Member</div>
+              </div>
+            </div>
+            <div class="t-stat-pill">
+              <i class="fas fa-heart" style="color:var(--primary);"></i>
+              <span>Weekly League Top 3 &bull; 120+ Track Sessions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="t-slide" data-slide="2">
+          <div class="t-slide-header">
+            <div class="t-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="t-badge" style="color:#10b981;border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.1);"><i class="fas fa-building"></i> Corporate GP Client</span>
+          </div>
+          <p class="t-quote">
+            "We booked the full venue for our company's end-of-quarter celebration with 45 engineers. The race marshals ran an electric bracket tournament with real-time big screen telemetry. Our entire team is still talking about the photo-finish podium!"
+          </p>
+          <div class="t-profile-row">
+            <div class="t-author-box">
+              <img src="assets/testimonials/avatar_david.jpg" alt="David Powell - Corporate Grand Prix Host" class="t-avatar" loading="lazy">
+              <div>
+                <div class="t-name">David Powell</div>
+                <div class="t-role">VP of Engineering &bull; Corporate Grand Prix Host</div>
+              </div>
+            </div>
+            <div class="t-stat-pill">
+              <i class="fas fa-users" style="color:#10b981;"></i>
+              <span>45-Racer Bracket GP &bull; Private Arena Lockout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls: Dots + Arrow Navigation -->
+      <div class="t-controls">
+        <div class="t-dots" id="testimonialDots">
+          <div class="t-dot active" data-index="0" title="Elena Rostova"></div>
+          <div class="t-dot" data-index="1" title="Jason Miller"></div>
+          <div class="t-dot" data-index="2" title="David Powell"></div>
+        </div>
+        <div class="t-nav-btns">
+          <button class="t-btn" id="prevTestimonial" aria-label="Previous Testimonial"><i class="fas fa-chevron-left"></i></button>
+          <button class="t-btn" id="nextTestimonial" aria-label="Next Testimonial"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section (2-Column Split Layout) -->
+<section class="section" id="faq" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="faq-split-layout animate-on-scroll">
+      <!-- Left Column: Header & Support Card -->
+      <div class="faq-left-sticky">
+        <div class="section-header" style="text-align:left;margin-bottom:1.5rem;">
+          <div class="section-badge"><i class="fas fa-question-circle"></i> Racers FAQ</div>
+          <h2 class="section-title" style="font-size:2.2rem;line-height:1.2;">Frequently Asked Questions</h2>
+          <p class="section-sub" style="margin-left:0;max-width:100%;">
+            Quick answers about racing sessions, championship leagues, memberships, and facility guidelines.
+          </p>
+        </div>
+
+        <div class="faq-support-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="display:inline-block;width:10px;height:10px;background:#10b981;border-radius:50%;box-shadow:0 0 8px #10b981;"></span>
+            <strong class="faq-support-title">Track Specialists Available</strong>
+          </div>
+          <p style="font-size:.875rem;color:var(--text-muted);margin:0 0 16px 0;line-height:1.6;">
+            Have a custom championship inquiry or need help choosing the right membership tier?
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="contact.html" class="btn btn-primary btn-sm btn-full"><i class="fas fa-envelope"></i> Contact Support</a>
+            <a href="book-track.html" class="btn btn-outline btn-sm btn-full"><i class="fas fa-flag-checkered"></i> Book Session</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Accordion Stack -->
+      <div class="faq-accordion-list">
+        <!-- FAQ 1 -->
+        <details class="faq-item" open>
+          <summary class="faq-summary">
+            <div class="faq-title-wrap">
+              <span class="faq-num">01</span>
+              <span>Do I need to bring my own slot car or RC car?</span>
+            </div>
+            <div class="faq-icon-box"><i class="fas fa-chevron-down"></i></div>
+          </summary>
+          <div class="faq-content">
+            No equipment is required! We maintain a complete fleet of championship-spec slot cars and brushless 1:10 & 1:14 RC buggies for rent with any session. You are also welcome to bring and tune your personal race cars.
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div class="faq-title-wrap">
+              <span class="faq-num">02</span>
+              <span>Can children and beginners race without crashing?</span>
+            </div>
+            <div class="faq-icon-box"><i class="fas fa-chevron-down"></i></div>
+          </summary>
+          <div class="faq-content">
+            Yes! Our digital slot track powerbases feature adjustable voltage limiters (50%, 75%, 100%), allowing junior racers and beginners to race side-by-side at safe, controllable speeds without de-slotting.
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div class="faq-title-wrap">
+              <span class="faq-num">03</span>
+              <span>How do the real-time lap times & leaderboards work?</span>
+            </div>
+            <div class="faq-icon-box"><i class="fas fa-chevron-down"></i></div>
+          </summary>
+          <div class="faq-content">
+            Every slot car and RC transponder is tracked by our overhead laser gate array down to 0.001 seconds. Results instantly stream to stadium arena displays and sync live with your personal racer profile dashboard.
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -856,9 +1176,224 @@ function hero2ResetTimer() {
     hero2SlideInterval = setInterval(hero2NextSlide, hero2SlideDuration);
 }
 
+// ============================================================
+// Customer Testimonial Slider (5-second auto-switch)
+// ============================================================
+let currentTestimonial = 0;
+const testimonialDuration = 5000; // 5 seconds
+let testimonialInterval = null;
+
+function showTestimonialSlide(index) {
+    const slides = document.querySelectorAll('.t-slide');
+    const dots = document.querySelectorAll('.t-dot');
+    if (!slides.length) return;
+    
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+    
+    currentTestimonial = index;
+    
+    slides.forEach((slide, idx) => {
+        if (idx === index) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+    
+    dots.forEach((dot, idx) => {
+        if (idx === index) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function nextTestimonialSlide() {
+    showTestimonialSlide(currentTestimonial + 1);
+}
+
+function prevTestimonialSlide() {
+    showTestimonialSlide(currentTestimonial - 1);
+}
+
+function resetTestimonialTimer() {
+    if (testimonialInterval) clearInterval(testimonialInterval);
+    testimonialInterval = setInterval(nextTestimonialSlide, testimonialDuration);
+}
+
+function initTestimonialSlider() {
+    showTestimonialSlide(0);
+    resetTestimonialTimer();
+    
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
+    const dots = document.querySelectorAll('.t-dot');
+    const wrap = document.getElementById('testimonialCarousel');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevTestimonialSlide();
+            resetTestimonialTimer();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextTestimonialSlide();
+            resetTestimonialTimer();
+        });
+    }
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const idx = parseInt(this.getAttribute('data-index'));
+            showTestimonialSlide(idx);
+            resetTestimonialTimer();
+        });
+    });
+    
+    if (wrap) {
+        wrap.addEventListener('mouseenter', () => {
+            if (testimonialInterval) clearInterval(testimonialInterval);
+        });
+        wrap.addEventListener('mouseleave', () => {
+            resetTestimonialTimer();
+        });
+    }
+}
+
+// ============================================================
+// High-Octane Raceway Particle & Speed Track Background Engine
+// ============================================================
+function initRacewayBackgroundEffect() {
+    const canvas = document.getElementById('racewayBgCanvas');
+    const heroSection = document.getElementById('heroRacewaySection');
+    if (!canvas || !heroSection) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = heroSection.offsetWidth);
+    let height = (canvas.height = heroSection.offsetHeight);
+
+    window.addEventListener('resize', () => {
+        if (!heroSection) return;
+        width = canvas.width = heroSection.offsetWidth;
+        height = canvas.height = heroSection.offsetHeight;
+    });
+
+    let mouse = { x: width * 0.5, y: height * 0.5, targetX: width * 0.5, targetY: height * 0.5, active: false };
+    heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        mouse.targetX = e.clientX - rect.left;
+        mouse.targetY = e.clientY - rect.top;
+        mouse.active = true;
+    });
+    heroSection.addEventListener('mouseleave', () => {
+        mouse.active = false;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(window.innerWidth > 768 ? 45 : 20, 55);
+
+    const colors = [
+        { r: 0, g: 180, b: 216 },   // Cyan
+        { r: 230, g: 57, b: 70 },   // Crimson Red
+        { r: 255, g: 183, b: 3 },   // Golden Amber
+        { r: 255, g: 255, b: 255 }  // Spark White
+    ];
+
+    class TelemetryParticle {
+        constructor() {
+            this.reset(true);
+        }
+        reset(initial = false) {
+            this.x = Math.random() * width;
+            this.y = initial ? Math.random() * height : height + 10;
+            this.size = Math.random() * 2.2 + 0.8;
+            this.speedY = -(Math.random() * 0.85 + 0.25);
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.length = Math.random() * 22 + 8;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.alpha = Math.random() * 0.5 + 0.25;
+            this.pulseSpeed = Math.random() * 0.03 + 0.01;
+            this.pulse = Math.random() * Math.PI;
+        }
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.pulse += this.pulseSpeed;
+
+            if (mouse.active) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 180) {
+                    this.x += (dx / dist) * 0.5;
+                    this.y += (dy / dist) * 0.5;
+                }
+            }
+
+            if (this.y < -30 || this.x < -20 || this.x > width + 20) {
+                this.reset(false);
+            }
+        }
+        draw() {
+            const currentAlpha = this.alpha * (0.6 + 0.4 * Math.sin(this.pulse));
+            
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - this.speedX * 6, this.y - this.speedY * this.length);
+            ctx.strokeStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${currentAlpha * 0.45})`;
+            ctx.lineWidth = this.size * 0.8;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${currentAlpha})`;
+            ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.8)`;
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new TelemetryParticle());
+    }
+
+    function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        mouse.x += (mouse.targetX - mouse.x) * 0.08;
+        mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+        if (mouse.active) {
+            const radialGrad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 220);
+            radialGrad.addColorStop(0, 'rgba(0, 180, 216, 0.12)');
+            radialGrad.addColorStop(0.5, 'rgba(0, 180, 216, 0.03)');
+            radialGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = radialGrad;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        particles.forEach((p) => {
+            p.update();
+            p.draw();
+        });
+
+        requestAnimationFrame(render);
+    }
+
+    render();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     hero2ShowSlide(0);
     hero2ResetTimer();
+    initTestimonialSlider();
+    initRacewayBackgroundEffect();
 
     const slider = document.querySelector('.hero2-slider');
     if (slider) {

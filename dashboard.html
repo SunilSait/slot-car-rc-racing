@@ -10,35 +10,35 @@
 <link rel="stylesheet" href="style.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
+html { scroll-behavior:smooth; font-size:16px; min-height:100%; }
 html.dark { --bg-body:#080f1a; --bg-surface:#0d1a2e; --bg-card:#101f35; --bg-muted:#152540; --border:#1e3050; --text-heading:#f0f4ff; --text-body:#b0bdd4; --text-muted:#6e83a0; }
-body { display:flex; min-height:100vh; background:var(--bg-surface); font-family:var(--font-body); color:var(--text-body); }
+body { min-height:100vh; background:var(--bg-surface); font-family:var(--font-body); color:var(--text-body); overflow-x:hidden; overflow-y:auto; }
 
 /* Sidebar */
-.db-sidebar { width:240px; background:var(--secondary); display:flex; flex-direction:column; height:100vh; position:fixed; left:0; top:0; z-index:100; transition:transform 300ms; }
+.db-sidebar { width:240px; background:var(--secondary); display:flex; flex-direction:column; height:100vh; position:fixed; left:0; top:0; z-index:100; transition:transform 300ms; overflow:hidden; }
 html.dark .db-sidebar { background:#040a14; }
-.db-sidebar-logo { padding:1.5rem 1.25rem; border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; gap:.625rem; flex-shrink:0; text-decoration:none; }
-.db-sidebar-brand { font-family:var(--font-heading); font-size:1rem; font-weight:600; color:#fff; text-transform:uppercase; letter-spacing:.05em; display:block; }
-.db-sidebar-sub { font-size:.5rem; color:rgba(255,255,255,.4); letter-spacing:.06em; display:block; }
-.db-nav { flex:1; overflow-y:auto; padding:1rem .75rem; display:flex; flex-direction:column; gap:.25rem; }
-.db-nav-item { display:flex; align-items:center; gap:.75rem; padding:.6875rem .875rem; border-radius:8px; color:rgba(255,255,255,.55); font-size:.875rem; font-weight:500; cursor:pointer; transition:all 150ms; text-decoration:none; }
+.db-sidebar-logo { padding:1.25rem 1.25rem; border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; gap:.625rem; flex-shrink:0; text-decoration:none; }
+.db-nav { flex:1; overflow-y:auto; padding:.75rem .75rem; display:flex; flex-direction:column; gap:.2rem; }
+.db-nav-item { display:flex; align-items:center; gap:.75rem; padding:.5625rem .875rem; border-radius:8px; color:rgba(255,255,255,.55); font-size:.875rem; font-weight:500; cursor:pointer; transition:all 150ms; text-decoration:none; }
 .db-nav-item:hover { background:rgba(255,255,255,.07); color:rgba(255,255,255,.85); }
 .db-nav-item.active { background:var(--primary); color:#fff; }
 .db-nav-item i { width:16px; text-align:center; font-size:.875rem; flex-shrink:0; }
-.db-nav-section { font-size:.625rem; font-weight:700; color:rgba(255,255,255,.25); text-transform:uppercase; letter-spacing:.1em; padding:.75rem .875rem .375rem; }
-.db-sidebar-footer { padding:1rem .75rem; border-top:1px solid rgba(255,255,255,.08); }
-.db-logout-btn { display:flex; align-items:center; gap:.75rem; padding:.6875rem .875rem; border-radius:8px; color:rgba(255,255,255,.45); font-size:.875rem; font-weight:500; cursor:pointer; transition:all 150ms; width:100%; background:none; border:none; }
-.db-logout-btn:hover { background:rgba(239,68,68,.1); color:#ef4444; }
+.db-nav-section { font-size:.625rem; font-weight:700; color:rgba(255,255,255,.25); text-transform:uppercase; letter-spacing:.1em; padding:.625rem .875rem .25rem; }
+.db-sidebar-footer { padding:.875rem .75rem; border-top:1px solid rgba(255,255,255,.08); margin-top:auto; flex-shrink:0; }
+.db-logout-btn { display:flex; align-items:center; gap:.75rem; padding:.5625rem .875rem; border-radius:8px; color:#ef4444; font-size:.875rem; font-weight:600; cursor:pointer; transition:all 150ms; width:100%; background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.2); }
+.db-logout-btn:hover { background:rgba(239,68,68,.18); color:#ff5c5c; border-color:rgba(239,68,68,.4); }
 
 /* Main content */
 .db-main { margin-left:240px; flex:1; display:flex; flex-direction:column; min-height:100vh; }
-.db-topbar { background:var(--bg-card); border-bottom:1px solid var(--border); padding:.875rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; position:sticky; top:0; z-index:50; }
-.db-topbar-title { font-family:var(--font-heading); font-size:1.25rem; font-weight:600; color:var(--text-heading); }
-.db-topbar-right { display:flex; align-items:center; gap:.75rem; }
+.db-topbar { background:var(--bg-card); border-bottom:1px solid var(--border); padding:.875rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; position:sticky; top:0; z-index:50; }
+.db-topbar-left { display:flex; align-items:center; gap:.75rem; min-width:0; flex-shrink:1; }
+.db-topbar-title { font-family:var(--font-heading); font-size:1.25rem; font-weight:600; color:var(--text-heading); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.db-topbar-right { display:flex; align-items:center; gap:.75rem; flex-shrink:0; }
 .db-topbar-btn { width:36px; height:36px; border-radius:8px; background:var(--bg-muted); border:1px solid var(--border); color:var(--text-body); display:flex; align-items:center; justify-content:center; font-size:.875rem; cursor:pointer; position:relative; transition:all 150ms; }
 .db-topbar-btn:hover { background:var(--primary-light); color:var(--primary); }
 .db-notif-dot { position:absolute; top:5px; right:5px; width:8px; height:8px; border-radius:50%; background:var(--primary); border:2px solid var(--bg-card); }
 .db-avatar { width:36px; height:36px; border-radius:8px; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:.9375rem; cursor:pointer; flex-shrink:0; }
-.db-content { padding:2rem; flex:1; }
+.db-content { padding:2rem 2rem 4rem 2rem; flex:1; }
 
 /* Welcome */
 .db-welcome { background:linear-gradient(135deg,var(--secondary) 0%,#1a3a5c 100%); border-radius:16px; padding:2rem; margin-bottom:2rem; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
@@ -61,18 +61,21 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
 .change-down { color:var(--error); }
 
 /* Content sections */
-.db-section-title { font-family:var(--font-heading); font-size:1.125rem; font-weight:600; color:var(--text-heading); margin-bottom:1.25rem; display:flex; align-items:center; justify-content:space-between; }
+.db-section-title { font-family:var(--font-heading); font-size:1.125rem; font-weight:600; color:var(--text-heading); margin-bottom:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; }
+.db-section-title > span:first-child { white-space:nowrap; }
+.db-section-actions { display:flex; align-items:center; gap:.5rem; flex-shrink:0; }
 .db-grid-2 { display:grid; grid-template-columns:1.4fr 1fr; gap:1.5rem; margin-bottom:2rem; }
+.db-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-bottom:2rem; }
 .db-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
 
 /* Booking list */
 .booking-item { display:flex; align-items:center; gap:1rem; padding:.875rem 0; border-bottom:1px solid var(--border); }
 .booking-item:last-child { border-bottom:none; }
 .booking-icon { width:36px; height:36px; border-radius:8px; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:.875rem; flex-shrink:0; }
-.booking-info { flex:1; }
+.booking-info { flex:1; min-width:0; }
 .booking-name { font-size:.9375rem; font-weight:600; color:var(--text-heading); }
 .booking-meta { font-size:.8125rem; color:var(--text-muted); margin-top:.125rem; }
-.booking-badge { padding:.25rem .625rem; border-radius:var(--radius-full); font-size:.6875rem; font-weight:700; text-transform:uppercase; }
+.booking-badge { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; padding:.25rem .625rem; border-radius:var(--radius-full); font-size:.6875rem; font-weight:700; text-transform:uppercase; line-height:1.2; flex-shrink:0; }
 .badge-upcoming { background:rgba(59,130,246,.1); color:var(--info); }
 .badge-completed { background:rgba(34,197,94,.1); color:var(--success); }
 .badge-cancelled { background:rgba(239,68,68,.1); color:var(--error); }
@@ -85,7 +88,12 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
 .lap-val { font-size:.8125rem; font-weight:600; color:var(--text-heading); width:55px; }
 
 /* Sidebar toggle mobile */
-.db-sidebar-toggle { display:none; position:fixed; top:1rem; left:1rem; z-index:200; width:36px; height:36px; border-radius:8px; background:var(--primary); color:#fff; border:none; cursor:pointer; align-items:center; justify-content:center; font-size:.875rem; }
+.db-sidebar-toggle { display:none; width:36px; height:36px; border-radius:8px; background:var(--primary); color:#fff; border:none; cursor:pointer; align-items:center; justify-content:center; font-size:.875rem; flex-shrink:0; transition:all 150ms; }
+.db-sidebar-toggle:hover { opacity:0.9; }
+
+/* Sidebar Overlay */
+.db-sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(2px); z-index:90; }
+.db-sidebar-overlay.active { display:block; }
 
 /* Payment history */
 .payment-row { display:flex; align-items:center; justify-content:space-between; padding:.75rem 0; border-bottom:1px solid var(--border); }
@@ -96,60 +104,230 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
 
 @media(max-width:1024px) { .db-metrics { grid-template-columns:repeat(2,1fr); } .db-grid-2 { grid-template-columns:1fr; } }
 @media(max-width:768px) {
+    body { display:block; }
     .db-sidebar { transform:translateX(-100%); }
     .db-sidebar.open { transform:translateX(0); }
-    .db-main { margin-left:0; }
-    .db-sidebar-toggle { display:flex; }
-    .db-content { padding:1.25rem; }
-    .db-metrics { grid-template-columns:1fr 1fr; }
-    .db-topbar { padding:.875rem 1.25rem; }
-    .db-welcome { flex-direction:column; align-items:flex-start; }
+    .db-main { margin-left:0; width:100%; min-height:100vh; }
+    .db-sidebar-toggle { display:inline-flex; }
+    .db-content { padding:1.25rem 1.25rem 4rem 1.25rem; }
+    .db-card { padding:1.25rem; margin-bottom:1rem; }
+    .btn-sm { height:32px; padding:0 .75rem; font-size:.8125rem; }
+    .db-metrics { grid-template-columns:1fr 1fr; margin-bottom:1.25rem; }
+    .db-topbar { padding:.75rem 1rem; gap:.75rem; }
+    .db-topbar-title { font-size:1.0625rem; }
+    .db-topbar-right { gap:.5rem; }
+    .db-topbar-btn { width:32px; height:32px; font-size:.8125rem; }
+    .db-avatar { width:32px; height:32px; font-size:.8125rem; }
+    .db-welcome { flex-direction:column; align-items:flex-start; margin-bottom:1.25rem; }
 }
-@media(max-width:480px) { .db-metrics { grid-template-columns:1fr; } }
-@media(max-width:360px) { .db-content { padding:1rem; } }
+@media(max-width:680px) {
+    .db-grid-3 { grid-template-columns:1fr; }
+}
+@media(max-width:480px) {
+    .db-metrics { grid-template-columns:1fr; }
+    .db-card { padding:1rem; margin-bottom:1rem; }
+    .db-content { padding:1rem 1rem 5rem 1rem; }
+    .db-section-title { font-size:1rem; margin-bottom:1rem; gap:.5rem; }
+    .btn-sm { height:28px; padding:0 .5rem; font-size:.75rem; }
+    .db-topbar { padding:.625rem .75rem; gap:.5rem; }
+    .db-topbar-left { gap:.5rem; }
+    .db-topbar-title { font-size:1rem; }
+    .db-topbar-right { gap:.375rem; }
+    .db-topbar-btn { width:30px; height:30px; font-size:.75rem; }
+    .db-avatar { width:30px; height:30px; font-size:.75rem; }
+    .db-sidebar-toggle { width:32px; height:32px; }
+}
+@media(max-width:360px) {
+    .db-content { padding:.875rem .875rem 5.5rem .875rem; }
+    .db-card { padding:.875rem; }
+    .db-topbar { padding:.5rem .625rem; gap:.375rem; }
+    .db-topbar-title { font-size:.9375rem; }
+}
+
+/* RTL Support */
+[dir="rtl"] .db-sidebar { left:auto; right:0; }
+[dir="rtl"] .db-main { margin-left:0; margin-right:240px; }
+[dir="rtl"] .db-notif-dot { right:auto; left:5px; }
+[dir="rtl"] .lap-label { text-align:left; }
+@media(max-width:768px) {
+    [dir="rtl"] .db-sidebar { transform:translateX(100%); }
+    [dir="rtl"] .db-sidebar.open { transform:translateX(0); }
+    [dir="rtl"] .db-main { margin-right:0; }
+}
+
+/* Logout Modal */
+.logout-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:1.25rem; }
+.logout-modal-backdrop.open { display:flex !important; }
+@keyframes modalPop {
+  from { opacity:0; transform:scale(0.92) translateY(8px); }
+  to { opacity:1; transform:scale(1) translateY(0); }
+}
+.logout-modal-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; width:100%; max-width:400px; padding:2rem 1.75rem; text-align:center; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); animation:modalPop .25s cubic-bezier(0.16,1,0.3,1); }
+
+/* Tab System & Views */
+.db-tab-content { display: none; }
+.db-tab-content.active { display: block; animation: tabFadeIn .25s cubic-bezier(0.16,1,0.3,1); }
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-filter-btn { padding: .5rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: .8125rem; font-weight: 600; cursor: pointer; transition: all 150ms; }
+.tab-filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+.tab-filter-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.track-pick-card { display: flex; flex-direction: column; justify-content: space-between; border: 2px solid var(--border); border-radius: 12px; padding: 1.25rem; background: var(--bg-card); cursor: pointer; transition: all 200ms; min-height: 100%; }
+.track-pick-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.track-pick-card.selected { border-color: var(--primary); background: rgba(0, 180, 216, 0.06); box-shadow: 0 0 0 1px var(--primary); }
+
+.slot-pill { display: inline-flex; align-items: center; justify-content: center; height: 44px; min-height: 44px; padding: 0 .625rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); color: var(--text-body); font-size: .8125rem; font-weight: 600; cursor: pointer; transition: all 150ms; text-align: center; white-space: nowrap; line-height: 1; box-sizing: border-box; width: 100%; }
+.slot-pill:hover { border-color: var(--primary); color: var(--primary); }
+.slot-pill.selected { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* Book track responsive layout */
+.db-book-grid { display: grid; grid-template-columns: 1.6fr 1.1fr; gap: 1.5rem; align-items: start; }
+.db-book-left { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+.db-track-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.db-slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.db-opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.db-summary-card { position: sticky; top: 5rem; }
+
+/* My Bookings Card */
+.db-booking-card { display: flex; align-items: center; gap: 1.25rem; }
+.db-booking-card-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+.db-booking-card-info { flex: 1; min-width: 0; }
+.db-booking-card-actions { display: flex; gap: .5rem; flex-wrap: wrap; flex-shrink: 0; }
+
+@media(max-width: 1024px) {
+    .db-book-grid { grid-template-columns: 1fr; }
+    .db-summary-card { position: static; }
+}
+@media(max-width: 768px) {
+    .db-booking-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .db-booking-card-actions { width: 100%; }
+}
+@media(max-width: 640px) {
+    .db-track-grid { grid-template-columns: 1fr; }
+    .db-slot-grid { grid-template-columns: repeat(2, 1fr); }
+    .db-opt-grid { grid-template-columns: 1fr; }
+}
+
+.db-table { width: 100%; border-collapse: collapse; font-size: .8125rem; }
+.db-table th { text-align: left; padding: .625rem .5rem; color: var(--text-muted); font-size: .6875rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.db-table td { padding: .6875rem .5rem; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: middle; }
+.db-table tr:last-child td { border-bottom: none; }
+.db-table tr:hover td { background: rgba(0, 180, 216, 0.03); }
+[dir="rtl"] .db-table th { text-align: right; }
+
+.td-content { display: flex; flex-direction: column; gap: 1px; }
+.td-sub { display: block; font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; }
+.td-content strong { white-space: nowrap; }
+
+@media(max-width: 768px) {
+  .db-table-cards { display: block; width: 100%; }
+  .db-table-cards thead { display: none; }
+  .db-table-cards tbody { display: flex; flex-direction: column; gap: .75rem; width: 100%; }
+  .db-table-cards tr { 
+    display: flex; 
+    flex-direction: column; 
+    gap: .45rem; 
+    background: var(--bg-card); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    padding: .875rem 1rem; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .db-table-cards td { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: .35rem 0; 
+    border-bottom: 1px dashed var(--border); 
+    font-size: .8125rem;
+    gap: .75rem;
+  }
+  .db-table-cards td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .db-table-cards td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: .6875rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  .db-table-cards .td-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    min-width: 0;
+    word-break: break-word;
+  }
+  .db-table-cards .td-content.inline-row {
+    flex-direction: row;
+    align-items: center;
+    gap: .25rem;
+  }
+  [dir="rtl"] .db-table-cards td::before {
+    text-align: right;
+  }
+  [dir="rtl"] .db-table-cards .td-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.form-group-label { font-size: .8125rem; font-weight: 600; color: var(--text-heading); margin-bottom: .5rem; display: block; }
+.db-input { width: 100%; padding: .6875rem .875rem; background: var(--bg-muted); border: 1px solid var(--border); border-radius: 8px; color: var(--text-heading); font-size: .875rem; outline: none; transition: border-color 150ms; }
+.db-input:focus { border-color: var(--primary); }
 </style>
 </head>
 <body>
 
-<!-- Mobile sidebar toggle -->
-<button class="db-sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
-  <i class="fas fa-bars" id="toggle-icon"></i>
-</button>
+<!-- Sidebar Overlay (Mobile) -->
+<div class="db-sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
 <!-- Sidebar -->
 <aside class="db-sidebar" id="db-sidebar">
-  <a href="index.html" class="db-sidebar-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="34" height="34" style="flex-shrink:0;">
+  <a href="index.html" class="nav-logo db-sidebar-logo" aria-label="Apex Raceway Home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" style="width:40px;height:40px;display:block;flex-shrink:0;">
       <circle cx="32" cy="32" r="32" fill="#0D1B2A"/>
-      <circle cx="32" cy="32" r="26" stroke="#00B4D8" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity=".6"/>
+      <circle cx="32" cy="32" r="26" stroke="#00B4D8" stroke-width="2.5" fill="none" stroke-dasharray="6 3" opacity="0.6"/>
       <rect x="18" y="28" width="28" height="10" rx="3" fill="#00B4D8"/>
       <rect x="24" y="24" width="12" height="8" rx="2" fill="#1a3a5c"/>
       <circle cx="22" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
       <circle cx="42" cy="38" r="4" fill="#080f1a" stroke="#00B4D8" stroke-width="2"/>
+      <line x1="6" y1="30" x2="14" y2="30" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"/>
+      <line x1="6" y1="34" x2="12" y2="34" stroke="#00B4D8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
     </svg>
-    <div>
-      <span class="db-sidebar-brand">Apex Raceway</span>
-      <span class="db-sidebar-sub">Slot Car & RC Racing</span>
+    <div class="nav-logo-text">
+      <span class="brand-name" style="color:#fff;font-size:1.125rem;">Apex Raceway</span>
+      <span class="brand-tagline" style="color:rgba(255,255,255,.55);">Slot Car & RC Racing</span>
     </div>
   </a>
 
   <nav class="db-nav">
     <div class="db-nav-section">Overview</div>
-    <a class="db-nav-item active" href="#" onclick="setActive(this)"><i class="fas fa-gauge"></i> Dashboard</a>
+    <a class="db-nav-item active" data-tab="dashboard" href="javascript:void(0)" onclick="switchTab('dashboard', this)"><i class="fas fa-gauge"></i> Dashboard</a>
 
     <div class="db-nav-section">Racing</div>
-    <a class="db-nav-item" href="book-track.html" onclick="setActive(this)"><i class="fas fa-calendar-check"></i> Book Track Time</a>
-    <a class="db-nav-item" href="#" onclick="setActive(this)"><i class="fas fa-stopwatch"></i> Lap Times</a>
-    <a class="db-nav-item" href="leagues.html" onclick="setActive(this)"><i class="fas fa-trophy"></i> Leagues & Races</a>
-    <a class="db-nav-item" href="#" onclick="setActive(this)"><i class="fas fa-ranking-star"></i> Leaderboard</a>
+    <a class="db-nav-item" data-tab="book-track" href="javascript:void(0)" onclick="switchTab('book-track', this)"><i class="fas fa-calendar-check"></i> Book Track Time</a>
+    <a class="db-nav-item" data-tab="lap-times" href="javascript:void(0)" onclick="switchTab('lap-times', this)"><i class="fas fa-stopwatch"></i> Lap Times</a>
+    <a class="db-nav-item" data-tab="leagues" href="javascript:void(0)" onclick="switchTab('leagues', this)"><i class="fas fa-trophy"></i> Leagues & Races</a>
+    <a class="db-nav-item" data-tab="leaderboard" href="javascript:void(0)" onclick="switchTab('leaderboard', this)"><i class="fas fa-ranking-star"></i> Leaderboard</a>
 
     <div class="db-nav-section">Account</div>
-    <a class="db-nav-item" href="#" onclick="setActive(this)"><i class="fas fa-calendar-alt"></i> My Bookings</a>
-    <a class="db-nav-item" href="#" onclick="setActive(this)"><i class="fas fa-credit-card"></i> Payments</a>
+    <a class="db-nav-item" data-tab="bookings" href="javascript:void(0)" onclick="switchTab('bookings', this)"><i class="fas fa-calendar-alt"></i> My Bookings</a>
+    <a class="db-nav-item" data-tab="payments" href="javascript:void(0)" onclick="switchTab('payments', this)"><i class="fas fa-credit-card"></i> Payments</a>
   </nav>
 
   <div class="db-sidebar-footer">
-    <button class="db-logout-btn" onclick="if(confirm('Logout?'))window.location.href='login.html'">
+    <button class="db-logout-btn" onclick="openLogoutModal()">
       <i class="fas fa-right-from-bracket"></i> Logout
     </button>
   </div>
@@ -159,8 +337,14 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
 <main class="db-main">
   <!-- Topbar -->
   <div class="db-topbar">
-    <div class="db-topbar-title">Racer Dashboard</div>
+    <div class="db-topbar-left">
+      <button class="db-sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+        <i class="fas fa-bars" id="toggle-icon"></i>
+      </button>
+      <div class="db-topbar-title" id="db-topbar-title">Racer Dashboard</div>
+    </div>
     <div class="db-topbar-right">
+      <button onclick="toggleDir()" class="db-topbar-btn" title="Toggle Direction" aria-label="Toggle RTL/LTR"><span class="dir-label" style="font-size:0.6875rem;font-weight:700;">LTR</span></button>
       <button onclick="toggleTheme()" class="db-topbar-btn" title="Toggle Theme"><i class="fas fa-moon theme-icon"></i></button>
       <button class="db-topbar-btn" title="Notifications" style="position:relative;">
         <i class="fas fa-bell"></i>
@@ -173,146 +357,739 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
   <!-- Content -->
   <div class="db-content">
 
-    <!-- Welcome Banner -->
-    <div class="db-welcome">
-      <div class="db-welcome-text">
-        <h2>Welcome back, Marcus! <i class="fas fa-flag-checkered" style="color:var(--primary);margin-left:.25rem;font-size:1.25rem;"></i></h2>
-        <p>Your next session is tomorrow at 12:00 PM — Slot Car Circuit. Ready to defend your #1 spot?</p>
+    <!-- TAB 1: DASHBOARD OVERVIEW -->
+    <div id="tab-dashboard" class="db-tab-content active">
+      <!-- Welcome Banner -->
+      <div class="db-welcome">
+        <div class="db-welcome-text">
+          <h2>Welcome back, Marcus! <i class="fas fa-flag-checkered" style="color:var(--primary);margin-left:.25rem;font-size:1.25rem;"></i></h2>
+          <p>Your next session is tomorrow at 12:00 PM — Slot Car Circuit. Ready to defend your #1 spot?</p>
+        </div>
+        <div class="db-welcome-action">
+          <button onclick="switchTab('book-track')" class="btn btn-primary"><i class="fas fa-plus"></i> Book Session</button>
+        </div>
       </div>
-      <div class="db-welcome-action">
-        <a href="book-track.html" class="btn btn-primary"><i class="fas fa-plus"></i> Book Session</a>
+
+      <!-- Metrics -->
+      <div class="db-metrics">
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-stopwatch"></i></div>
+          <div class="db-metric-val">9.872s</div>
+          <div class="db-metric-label">Best Lap Time</div>
+          <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> Personal best!</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-trophy"></i></div>
+          <div class="db-metric-val">#1</div>
+          <div class="db-metric-label">League Ranking</div>
+          <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> Up 1 this week</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-calendar-check"></i></div>
+          <div class="db-metric-val">14</div>
+          <div class="db-metric-label">Sessions This Month</div>
+          <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> +3 vs last month</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-star"></i></div>
+          <div class="db-metric-val">248</div>
+          <div class="db-metric-label">League Points</div>
+          <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> 17 pts this race</div>
+        </div>
+      </div>
+
+      <!-- Two columns -->
+      <div class="db-grid-2">
+        <!-- Upcoming Bookings -->
+        <div class="db-card">
+          <div class="db-section-title">
+            <span>Upcoming Bookings</span>
+            <div class="db-section-actions">
+              <button onclick="switchTab('book-track')" class="btn btn-outline btn-sm">+ New</button>
+              <button onclick="switchTab('bookings')" class="btn btn-ghost btn-sm">View All</button>
+            </div>
+          </div>
+          <div class="booking-item">
+            <div class="booking-icon"><i class="fas fa-route"></i></div>
+            <div class="booking-info">
+              <div class="booking-name">Slot Car Circuit</div>
+              <div class="booking-meta">Oct 5, 2026 — 12:00 PM &bull; 60 min &bull; Lane 3</div>
+            </div>
+            <span class="booking-badge badge-upcoming">Upcoming</span>
+          </div>
+          <div class="booking-item">
+            <div class="booking-icon"><i class="fas fa-car-side"></i></div>
+            <div class="booking-info">
+              <div class="booking-name">RC On-Road Circuit</div>
+              <div class="booking-meta">Oct 8, 2026 — 7:00 PM &bull; 60 min &bull; Rental Car</div>
+            </div>
+            <span class="booking-badge badge-upcoming">Upcoming</span>
+          </div>
+          <div class="booking-item">
+            <div class="booking-icon"><i class="fas fa-route"></i></div>
+            <div class="booking-info">
+              <div class="booking-name">Slot Car Circuit</div>
+              <div class="booking-meta">Sep 27, 2026 — 2:00 PM &bull; 2 hours</div>
+            </div>
+            <span class="booking-badge badge-completed">Completed</span>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="db-card">
+          <div class="db-section-title">
+            <span>League Standings</span>
+            <div class="db-section-actions">
+              <button onclick="switchTab('leagues')" class="btn btn-ghost btn-sm">View All</button>
+            </div>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:.875rem;">
+            <thead><tr style="color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;"><th style="text-align:left;padding:.5rem .25rem;">Rank</th><th style="text-align:left;padding:.5rem .25rem;">Racer</th><th style="text-align:right;padding:.5rem .25rem;">Pts</th></tr></thead>
+            <tbody>
+              <tr style="background:rgba(0,180,216,.06);"><td style="padding:.625rem .25rem;"><span class="rank-badge rank-1" style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#eab308;color:#000;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">1</span></td><td style="padding:.625rem .25rem;font-weight:600;color:var(--primary);">Marcus V. (You)</td><td style="padding:.625rem .25rem;text-align:right;font-weight:600;">248</td></tr>
+              <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-2" style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#94a3b8;color:#000;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">2</span></td><td style="padding:.625rem .25rem;">Priya S.</td><td style="padding:.625rem .25rem;text-align:right;">231</td></tr>
+              <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-3" style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#b45309;color:#fff;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">3</span></td><td style="padding:.625rem .25rem;">Jake R.</td><td style="padding:.625rem .25rem;text-align:right;">218</td></tr>
+              <tr><td style="padding:.625rem .25rem;font-size:.8125rem;color:var(--text-muted);text-align:center;">4</td><td style="padding:.625rem .25rem;">Chen L.</td><td style="padding:.625rem .25rem;text-align:right;">204</td></tr>
+              <tr><td style="padding:.625rem .25rem;font-size:.8125rem;color:var(--text-muted);text-align:center;">5</td><td style="padding:.625rem .25rem;">Sarah K.</td><td style="padding:.625rem .25rem;text-align:right;">189</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Lap Time Progress & Payments -->
+      <div class="db-grid-2">
+        <!-- Lap Times -->
+        <div class="db-card">
+          <div class="db-section-title">
+            <span>Recent Lap Times</span>
+            <div class="db-section-actions">
+              <button onclick="switchTab('lap-times')" class="btn btn-ghost btn-sm">Telemetry</button>
+            </div>
+          </div>
+          <div class="lap-bar"><div class="lap-label">Sep 27</div><div class="lap-track"><div class="lap-fill" style="width:75%;"></div></div><div class="lap-val">10.142s</div></div>
+          <div class="lap-bar"><div class="lap-label">Sep 24</div><div class="lap-track"><div class="lap-fill" style="width:85%;"></div></div><div class="lap-val">9.980s</div></div>
+          <div class="lap-bar"><div class="lap-label">Sep 20</div><div class="lap-track"><div class="lap-fill" style="width:90%;"></div></div><div class="lap-val">9.872s <span style="color:var(--primary);font-size:.7rem;font-weight:700;">PB</span></div></div>
+          <div class="lap-bar"><div class="lap-label">Sep 15</div><div class="lap-track"><div class="lap-fill" style="width:70%;"></div></div><div class="lap-val">10.389s</div></div>
+          <div class="lap-bar"><div class="lap-label">Sep 10</div><div class="lap-track"><div class="lap-fill" style="width:60%;"></div></div><div class="lap-val">10.621s</div></div>
+          <p style="font-size:.8125rem;color:var(--success);margin-top:1.25rem;"><i class="fas fa-arrow-trend-down"></i> You've improved 0.749s in 3 weeks. Keep it up!</p>
+        </div>
+
+        <!-- Payments -->
+        <div class="db-card">
+          <div class="db-section-title">
+            <span>Payment History</span>
+            <div class="db-section-actions">
+              <button onclick="switchTab('payments')" class="btn btn-ghost btn-sm">View All</button>
+            </div>
+          </div>
+          <div class="payment-row">
+            <div><div class="payment-desc">Slot Car Circuit — 60 min</div><div class="payment-date">Sep 27, 2026</div></div>
+            <div class="payment-amount">-$25</div>
+          </div>
+          <div class="payment-row">
+            <div><div class="payment-desc">Friday Night Race — Entry</div><div class="payment-date">Sep 20, 2026</div></div>
+            <div class="payment-amount">-$25</div>
+          </div>
+          <div class="payment-row">
+            <div><div class="payment-desc">Pro Racer Membership</div><div class="payment-date">Sep 1, 2026</div></div>
+            <div class="payment-amount">-$59</div>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:.875rem;color:var(--text-muted);">This month total</span>
+            <span style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;color:var(--text-heading);">$109</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Metrics -->
-    <div class="db-metrics">
-      <div class="db-metric">
-        <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-stopwatch"></i></div>
-        <div class="db-metric-val">9.872s</div>
-        <div class="db-metric-label">Best Lap Time</div>
-        <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> Personal best!</div>
+    <!-- TAB 2: BOOK TRACK TIME -->
+    <div id="tab-book-track" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">Book Track Session</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Select your track, pick a lane and time slot, and lock in your session.</p>
+        </div>
+        <button onclick="switchTab('bookings')" class="btn btn-outline btn-sm"><i class="fas fa-calendar-alt"></i> My Current Bookings</button>
       </div>
-      <div class="db-metric">
-        <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-trophy"></i></div>
-        <div class="db-metric-val">#1</div>
-        <div class="db-metric-label">League Ranking</div>
-        <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> Up 1 this week</div>
-      </div>
-      <div class="db-metric">
-        <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-calendar-check"></i></div>
-        <div class="db-metric-val">14</div>
-        <div class="db-metric-label">Sessions This Month</div>
-        <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> +3 vs last month</div>
-      </div>
-      <div class="db-metric">
-        <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-star"></i></div>
-        <div class="db-metric-val">248</div>
-        <div class="db-metric-label">League Points</div>
-        <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> 17 pts this race</div>
+
+      <div class="db-book-grid">
+        <div class="db-book-left">
+          <!-- Track Pick -->
+          <div class="db-card">
+            <span class="form-group-label"><i class="fas fa-flag-checkered" style="color:var(--primary);margin-right:.375rem;"></i> 1. Choose Track</span>
+            <div class="db-track-grid">
+              <div class="track-pick-card selected" onclick="selectTrack('Slot Car Circuit', 25, this)">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-weight:700;color:var(--text-heading);font-size:.9375rem;">Slot Car Circuit</span>
+                  <span style="color:var(--primary);font-weight:700;font-size:.875rem;">$25/hr</span>
+                </div>
+                <p style="font-size:.75rem;color:var(--text-muted);margin:0;">8-Lane 1/32 Scale Timber Track with infrared timing system.</p>
+              </div>
+              <div class="track-pick-card" onclick="selectTrack('RC On-Road Circuit', 30, this)">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-weight:700;color:var(--text-heading);font-size:.9375rem;">RC On-Road</span>
+                  <span style="color:var(--primary);font-weight:700;font-size:.875rem;">$30/hr</span>
+                </div>
+                <p style="font-size:.75rem;color:var(--text-muted);margin:0;">Polished indoor asphalt course for 1/10 & 1/12 touring cars.</p>
+              </div>
+              <div class="track-pick-card" onclick="selectTrack('RC Off-Road Arena', 28, this)">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-weight:700;color:var(--text-heading);font-size:.9375rem;">RC Off-Road</span>
+                  <span style="color:var(--primary);font-weight:700;font-size:.875rem;">$28/hr</span>
+                </div>
+                <p style="font-size:.75rem;color:var(--text-muted);margin:0;">High-grip clay dirt arena with jumps, berms, and rhythm sections.</p>
+              </div>
+              <div class="track-pick-card" onclick="selectTrack('RC Drift Arena', 26, this)">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                  <span style="font-weight:700;color:var(--text-heading);font-size:.9375rem;">RC Drift Arena</span>
+                  <span style="color:var(--primary);font-weight:700;font-size:.875rem;">$26/hr</span>
+                </div>
+                <p style="font-size:.75rem;color:var(--text-muted);margin:0;">Polished low-friction track with technical hairpins for RWD drift cars.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Slot -->
+          <div class="db-card">
+            <span class="form-group-label"><i class="fas fa-clock" style="color:var(--primary);margin-right:.375rem;"></i> 2. Available Time Slots</span>
+            <div class="db-slot-grid">
+              <div class="slot-pill" onclick="selectTime('10:00 AM', this)">10:00 AM</div>
+              <div class="slot-pill" onclick="selectTime('11:30 AM', this)">11:30 AM</div>
+              <div class="slot-pill selected" onclick="selectTime('1:00 PM', this)">1:00 PM</div>
+              <div class="slot-pill" onclick="selectTime('2:30 PM', this)">2:30 PM</div>
+              <div class="slot-pill" onclick="selectTime('4:00 PM', this)">4:00 PM</div>
+              <div class="slot-pill" onclick="selectTime('5:30 PM', this)">5:30 PM</div>
+              <div class="slot-pill" onclick="selectTime('7:00 PM', this)">7:00 PM</div>
+              <div class="slot-pill" onclick="selectTime('8:30 PM', this)">8:30 PM</div>
+            </div>
+          </div>
+
+          <!-- Duration & Equipment -->
+          <div class="db-card">
+            <span class="form-group-label"><i class="fas fa-sliders" style="color:var(--primary);margin-right:.375rem;"></i> 3. Duration & Equipment</span>
+            <div class="db-opt-grid">
+              <div>
+                <label class="form-group-label" style="font-size:.75rem;">Session Duration</label>
+                <div style="display:flex;gap:.5rem;">
+                  <button type="button" class="slot-pill" style="flex:1;" onclick="selectDuration(30, this)">30 min</button>
+                  <button type="button" class="slot-pill selected" style="flex:1;" onclick="selectDuration(60, this)">60 min</button>
+                  <button type="button" class="slot-pill" style="flex:1;" onclick="selectDuration(120, this)">120 min</button>
+                </div>
+              </div>
+              <div>
+                <label class="form-group-label" style="font-size:.75rem;">Equipment Option</label>
+                <div style="display:flex;gap:.5rem;">
+                  <button type="button" class="slot-pill selected" style="flex:1;" onclick="selectRental(0, 'Bring Own Car', this)">Own Car</button>
+                  <button type="button" class="slot-pill" style="flex:1;" onclick="selectRental(15, 'Pro Rental Car (+$15)', this)">Pro Rental</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Booking Summary & Checkout -->
+        <div class="db-card db-summary-card">
+          <h3 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:.75rem;">
+            Booking Summary
+          </h3>
+          <div style="display:flex;flex-direction:column;gap:.75rem;font-size:.875rem;margin-bottom:1.25rem;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Track</span><strong id="summary-track" style="color:var(--text-heading);">Slot Car Circuit</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Date</span><strong id="summary-date" style="color:var(--text-heading);">Tomorrow (Oct 5)</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Time</span><strong id="summary-time" style="color:var(--text-heading);">1:00 PM</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Duration</span><strong id="summary-dur" style="color:var(--text-heading);">60 Minutes</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Vehicle</span><strong id="summary-rental" style="color:var(--text-heading);">Bring Own Car</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Assigned Lane</span><span style="color:var(--primary);font-weight:600;">Lane 3 (Digital)</span></div>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:1rem;font-weight:600;color:var(--text-heading);">Total Due</span>
+            <span id="summary-total" style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--primary);">$25.00</span>
+          </div>
+          <button onclick="confirmTrackBooking()" class="btn btn-primary btn-full" style="height:46px;font-size:.9375rem;">
+            <i class="fas fa-check-circle"></i> Confirm Reservation
+          </button>
+          <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:.75rem;">Instant confirmation with QR pass added to your dashboard.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Two columns -->
-    <div class="db-grid-2">
-      <!-- Upcoming Bookings -->
+    <!-- TAB 3: LAP TIMES & TELEMETRY -->
+    <div id="tab-lap-times" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">Lap Times & Telemetry</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Real-time sector splits, personal best records, and lap consistency telemetry.</p>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="tab-filter-btn active" onclick="filterLapTimes('all', this)">All Circuits</button>
+          <button class="tab-filter-btn" onclick="filterLapTimes('slot', this)">Slot Car</button>
+          <button class="tab-filter-btn" onclick="filterLapTimes('onroad', this)">RC On-Road</button>
+        </div>
+      </div>
+
+      <!-- Telemetry Stats -->
+      <div class="db-metrics">
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fas fa-medal"></i></div>
+          <div class="db-metric-val" style="color:var(--primary);">9.872s</div>
+          <div class="db-metric-label">Personal Best (PB)</div>
+          <div class="db-metric-change change-up"><i class="fas fa-trophy"></i> Track Record #1</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:rgba(148,163,184,0.12);color:var(--text-muted);"><i class="fas fa-crosshairs"></i></div>
+          <div class="db-metric-val">9.740s</div>
+          <div class="db-metric-label">Theoretical Optimal</div>
+          <div class="db-metric-change" style="color:var(--text-muted);"><i class="fas fa-calculator"></i> S1+S2 Combined</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:rgba(34,197,94,0.12);color:var(--success);"><i class="fas fa-chart-line"></i></div>
+          <div class="db-metric-val">10.142s</div>
+          <div class="db-metric-label">Average Pace</div>
+          <div class="db-metric-change change-up"><i class="fas fa-arrow-up"></i> +0.32s vs last week</div>
+        </div>
+        <div class="db-metric">
+          <div class="db-metric-icon" style="background:rgba(249,115,22,0.12);color:#f97316;"><i class="fas fa-bolt"></i></div>
+          <div class="db-metric-val">34.2 mph</div>
+          <div class="db-metric-label">Top Speed</div>
+          <div class="db-metric-change" style="color:var(--primary);"><i class="fas fa-gauge-high"></i> Speed Trap</div>
+        </div>
+      </div>
+
+      <!-- Sector Telemetry Table -->
       <div class="db-card">
         <div class="db-section-title">
-          Upcoming Bookings
-          <a href="book-track.html" class="btn btn-outline btn-sm">+ New</a>
+          Session Lap History & Sector Breakdown
+          <span style="font-size:.8125rem;color:var(--text-muted);font-weight:400;">34 Laps Logged This Month</span>
         </div>
-        <div class="booking-item">
-          <div class="booking-icon"><i class="fas fa-route"></i></div>
-          <div class="booking-info">
-            <div class="booking-name">Slot Car Circuit</div>
-            <div class="booking-meta">Oct 1, 2026 — 12:00 PM &bull; 60 min</div>
-          </div>
-          <span class="booking-badge badge-upcoming">Upcoming</span>
-        </div>
-        <div class="booking-item">
-          <div class="booking-icon"><i class="fas fa-car-side"></i></div>
-          <div class="booking-info">
-            <div class="booking-name">RC On-Road Circuit</div>
-            <div class="booking-meta">Oct 4, 2026 — 7:00 PM &bull; 60 min</div>
-          </div>
-          <span class="booking-badge badge-upcoming">Upcoming</span>
-        </div>
-        <div class="booking-item">
-          <div class="booking-icon"><i class="fas fa-route"></i></div>
-          <div class="booking-info">
-            <div class="booking-name">Slot Car Circuit</div>
-            <div class="booking-meta">Sep 27, 2026 — 2:00 PM &bull; 2 hours</div>
-          </div>
-          <span class="booking-badge badge-completed">Completed</span>
-        </div>
-        <div class="booking-item">
-          <div class="booking-icon"><i class="fas fa-mountain-sun"></i></div>
-          <div class="booking-info">
-            <div class="booking-name">RC Off-Road Arena</div>
-            <div class="booking-meta">Sep 20, 2026 — 11:00 AM &bull; 30 min</div>
-          </div>
-          <span class="booking-badge badge-cancelled">Cancelled</span>
-        </div>
-      </div>
-
-      <!-- Leaderboard -->
-      <div class="db-card">
-        <div class="db-section-title">
-          League Standings
-          <a href="leagues.html" class="btn btn-ghost btn-sm">View All</a>
-        </div>
-        <table style="width:100%;border-collapse:collapse;font-size:.875rem;">
-          <thead><tr style="color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;"><th style="text-align:left;padding:.5rem .25rem;">Rank</th><th style="text-align:left;padding:.5rem .25rem;">Racer</th><th style="text-align:right;padding:.5rem .25rem;">Pts</th></tr></thead>
-          <tbody>
-            <tr style="background:rgba(0,180,216,.06);"><td style="padding:.625rem .25rem;"><span class="rank-badge rank-1">1</span></td><td style="padding:.625rem .25rem;font-weight:600;color:var(--primary);">Marcus V. (You)</td><td style="padding:.625rem .25rem;text-align:right;font-weight:600;">248</td></tr>
-            <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-2">2</span></td><td style="padding:.625rem .25rem;">Priya S.</td><td style="padding:.625rem .25rem;text-align:right;">231</td></tr>
-            <tr><td style="padding:.625rem .25rem;"><span class="rank-badge rank-3">3</span></td><td style="padding:.625rem .25rem;">Jake R.</td><td style="padding:.625rem .25rem;text-align:right;">218</td></tr>
-            <tr><td style="padding:.625rem .25rem;font-size:.8125rem;color:var(--text-muted);">4</td><td style="padding:.625rem .25rem;">Chen L.</td><td style="padding:.625rem .25rem;text-align:right;">204</td></tr>
-            <tr><td style="padding:.625rem .25rem;font-size:.8125rem;color:var(--text-muted);">5</td><td style="padding:.625rem .25rem;">Sarah K.</td><td style="padding:.625rem .25rem;text-align:right;">189</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Lap Time Progress & Payments -->
-    <div class="db-grid-2">
-      <!-- Lap Times -->
-      <div class="db-card">
-        <div class="db-section-title">Recent Lap Times <span style="font-size:.8125rem;color:var(--text-muted);font-weight:400;">Slot Car Circuit</span></div>
-        <div class="lap-bar"><div class="lap-label">Sep 27</div><div class="lap-track"><div class="lap-fill" style="width:75%;"></div></div><div class="lap-val">10.142s</div></div>
-        <div class="lap-bar"><div class="lap-label">Sep 24</div><div class="lap-track"><div class="lap-fill" style="width:85%;"></div></div><div class="lap-val">9.980s</div></div>
-        <div class="lap-bar"><div class="lap-label">Sep 20</div><div class="lap-track"><div class="lap-fill" style="width:90%;"></div></div><div class="lap-val">9.872s <span style="color:var(--primary);font-size:.7rem;">PB</span></div></div>
-        <div class="lap-bar"><div class="lap-label">Sep 15</div><div class="lap-track"><div class="lap-fill" style="width:70%;"></div></div><div class="lap-val">10.389s</div></div>
-        <div class="lap-bar"><div class="lap-label">Sep 10</div><div class="lap-track"><div class="lap-fill" style="width:60%;"></div></div><div class="lap-val">10.621s</div></div>
-        <p style="font-size:.8125rem;color:var(--success);margin-top:1.25rem;"><i class="fas fa-arrow-trend-down"></i> You've improved 0.749s in 3 weeks. Keep it up!</p>
-      </div>
-
-      <!-- Payments -->
-      <div class="db-card">
-        <div class="db-section-title">Payment History <a href="#" class="btn btn-ghost btn-sm">View All</a></div>
-        <div class="payment-row">
-          <div><div class="payment-desc">Slot Car Circuit — 60 min</div><div class="payment-date">Sep 27, 2026</div></div>
-          <div class="payment-amount">-$25</div>
-        </div>
-        <div class="payment-row">
-          <div><div class="payment-desc">Friday Night Race — Entry</div><div class="payment-date">Sep 20, 2026</div></div>
-          <div class="payment-amount">-$25</div>
-        </div>
-        <div class="payment-row">
-          <div><div class="payment-desc">Pro Racer Membership</div><div class="payment-date">Sep 1, 2026</div></div>
-          <div class="payment-amount">-$59</div>
-        </div>
-        <div class="payment-row">
-          <div><div class="payment-desc">RC Touring Car Set — Shop</div><div class="payment-date">Aug 28, 2026</div></div>
-          <div class="payment-amount">-$349</div>
-        </div>
-        <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:.875rem;color:var(--text-muted);">This month total</span>
-          <span style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;color:var(--text-heading);">$458</span>
+        <div style="overflow-x:auto;">
+          <table class="db-table db-table-cards">
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Track & Car</th>
+                <th>Sectors</th>
+                <th>Lap Time</th>
+                <th>Delta</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Date & Time"><div class="td-content"><strong>Sep 27, 2026</strong><span class="td-sub">2:15 PM</span></div></td>
+                <td data-label="Track & Car"><div class="td-content"><strong>Slot Car Circuit (Lane 3)</strong><span class="td-sub">Porsche 911 RSR 1/32</span></div></td>
+                <td data-label="Sectors"><div class="td-content" style="font-size:0.75rem;color:var(--text-muted);"><span>S1: <strong style="color:var(--text-main);">3.120s</strong></span><span>S2: <strong style="color:var(--text-main);">3.580s</strong></span></div></td>
+                <td data-label="Lap Time"><div class="td-content"><strong style="font-size:0.9375rem;color:var(--text-heading);">10.142s</strong></div></td>
+                <td data-label="Delta"><div class="td-content" style="color:var(--text-muted);font-size:0.8125rem;">+0.270s</div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Date & Time"><div class="td-content"><strong>Sep 24, 2026</strong><span class="td-sub">6:40 PM</span></div></td>
+                <td data-label="Track & Car"><div class="td-content"><strong>Slot Car Circuit (Lane 2)</strong><span class="td-sub">Porsche 911 RSR 1/32</span></div></td>
+                <td data-label="Sectors"><div class="td-content" style="font-size:0.75rem;color:var(--text-muted);"><span>S1: <strong style="color:var(--text-main);">3.050s</strong></span><span>S2: <strong style="color:var(--text-main);">3.510s</strong></span></div></td>
+                <td data-label="Lap Time"><div class="td-content"><strong style="font-size:0.9375rem;color:var(--text-heading);">9.980s</strong></div></td>
+                <td data-label="Delta"><div class="td-content" style="color:var(--text-muted);font-size:0.8125rem;">+0.108s</div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr style="background:rgba(0,180,216,0.08);">
+                <td data-label="Date & Time"><div class="td-content"><strong style="color:var(--primary);">Sep 20, 2026</strong><span class="td-sub">7:15 PM</span></div></td>
+                <td data-label="Track & Car"><div class="td-content"><strong>Slot Car Circuit (Lane 4)</strong><span class="td-sub">Porsche 911 RSR 1/32</span></div></td>
+                <td data-label="Sectors"><div class="td-content" style="font-size:0.75rem;color:var(--text-muted);"><span>S1: <strong style="color:var(--primary);">2.910s</strong></span><span>S2: <strong style="color:var(--primary);">3.420s</strong></span></div></td>
+                <td data-label="Lap Time"><div class="td-content"><strong style="color:var(--primary);font-size:0.9375rem;">9.872s</strong></div></td>
+                <td data-label="Delta"><div class="td-content"><span style="color:var(--primary);font-weight:700;font-size:0.8125rem;">PB</span></div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge" style="background:var(--primary);color:#fff;">Track Record</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Date & Time"><div class="td-content"><strong>Sep 15, 2026</strong><span class="td-sub">1:30 PM</span></div></td>
+                <td data-label="Track & Car"><div class="td-content"><strong>RC On-Road Circuit</strong><span class="td-sub">Apex GT-10 Touring Car</span></div></td>
+                <td data-label="Sectors"><div class="td-content" style="font-size:0.75rem;color:var(--text-muted);"><span>S1: <strong style="color:var(--text-main);">4.100s</strong></span><span>S2: <strong style="color:var(--text-main);">4.820s</strong></span></div></td>
+                <td data-label="Lap Time"><div class="td-content"><strong style="font-size:0.9375rem;color:var(--text-heading);">12.389s</strong></div></td>
+                <td data-label="Delta"><div class="td-content" style="color:var(--text-muted);font-size:0.8125rem;">+0.517s</div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Date & Time"><div class="td-content"><strong>Sep 10, 2026</strong><span class="td-sub">5:00 PM</span></div></td>
+                <td data-label="Track & Car"><div class="td-content"><strong>RC Off-Road Arena</strong><span class="td-sub">Apex 1/8 Buggy 4WD</span></div></td>
+                <td data-label="Sectors"><div class="td-content" style="font-size:0.75rem;color:var(--text-muted);"><span>S1: <strong style="color:var(--text-main);">5.210s</strong></span><span>S2: <strong style="color:var(--text-main);">5.910s</strong></span></div></td>
+                <td data-label="Lap Time"><div class="td-content"><strong style="font-size:0.9375rem;color:var(--text-heading);">15.621s</strong></div></td>
+                <td data-label="Delta"><div class="td-content" style="color:var(--text-muted);font-size:0.8125rem;">+1.120s</div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+
+    <!-- TAB 4: LEAGUES & RACES -->
+    <div id="tab-leagues" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">Leagues & Race Series</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Track your active championships, schedule fixtures, and qualifying rounds.</p>
+        </div>
+      </div>
+
+      <!-- Active Championships Grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-bottom:2rem;">
+        <div class="db-card" style="border-left:4px solid var(--primary);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;">
+            <span class="booking-badge badge-upcoming">Season 4 &bull; Active</span>
+            <span style="font-size:.75rem;color:var(--text-muted);">Round 5 of 8</span>
+          </div>
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;color:var(--text-heading);margin-bottom:.25rem;">Slot Car GT Championship</h3>
+          <p style="font-size:.8125rem;color:var(--text-muted);margin-bottom:1rem;">1/32 Scale GT3 Class &bull; Friday Nights at 7:00 PM</p>
+          <div style="display:flex;justify-content:space-between;background:var(--bg-muted);padding:.75rem 1rem;border-radius:8px;margin-bottom:1rem;">
+            <div><span style="font-size:.75rem;color:var(--text-muted);">Your Standing</span><div style="font-weight:700;color:var(--primary);font-size:1.125rem;">#1 (248 Pts)</div></div>
+            <div><span style="font-size:.75rem;color:var(--text-muted);">Next Round</span><div style="font-weight:600;color:var(--text-heading);font-size:.875rem;">Fri, Oct 10</div></div>
+          </div>
+          <button class="btn btn-outline btn-sm btn-full" onclick="alert('Checked in for Round 5! See you on Friday.')">Check In For Round 5</button>
+        </div>
+
+        <div class="db-card" style="border-left:4px solid #f97316;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;">
+            <span class="booking-badge badge-upcoming">Touring Series &bull; Active</span>
+            <span style="font-size:.75rem;color:var(--text-muted);">Round 3 of 6</span>
+          </div>
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;color:var(--text-heading);margin-bottom:.25rem;">1/10 RC Touring Series</h3>
+          <p style="font-size:.8125rem;color:var(--text-muted);margin-bottom:1rem;">On-Road Touring Class &bull; Sundays at 2:00 PM</p>
+          <div style="display:flex;justify-content:space-between;background:var(--bg-muted);padding:.75rem 1rem;border-radius:8px;margin-bottom:1rem;">
+            <div><span style="font-size:.75rem;color:var(--text-muted);">Your Standing</span><div style="font-weight:700;color:#f97316;font-size:1.125rem;">#4 (185 Pts)</div></div>
+            <div><span style="font-size:.75rem;color:var(--text-muted);">Next Round</span><div style="font-weight:600;color:var(--text-heading);font-size:.875rem;">Sun, Oct 12</div></div>
+          </div>
+          <button class="btn btn-outline btn-sm btn-full" onclick="alert('Checked in for Touring Round 3!')">Check In For Round 3</button>
+        </div>
+      </div>
+
+      <!-- Full Standings Table -->
+      <div class="db-card">
+        <div class="db-section-title"><span>Slot Car GT Championship Standings (Top 8)</span></div>
+        <div style="overflow-x:auto;">
+          <table class="db-table db-table-cards">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Driver & Vehicle</th>
+                <th>Races & Podiums</th>
+                <th>Best Lap</th>
+                <th style="text-align:right;">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(0,180,216,0.06);">
+                <td data-label="Rank"><div class="td-content"><span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:#eab308;color:#000;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">1</span></div></td>
+                <td data-label="Driver & Vehicle"><div class="td-content"><strong style="color:var(--primary);">Marcus V. (You)</strong><span class="td-sub">Porsche 911 RSR (Slot.it)</span></div></td>
+                <td data-label="Races & Podiums"><div class="td-content">4 Races &bull; 3 Wins &bull; 4 Podiums</div></td>
+                <td data-label="Best Lap"><div class="td-content"><strong>9.872s</strong></div></td>
+                <td data-label="Points"><div class="td-content" style="text-align:right;font-weight:700;color:var(--primary);font-size:0.9375rem;">248 Pts</div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:#94a3b8;color:#000;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">2</span></div></td>
+                <td data-label="Driver & Vehicle"><div class="td-content"><strong>Priya S.</strong><span class="td-sub">Ferrari 488 GT3 (NSR)</span></div></td>
+                <td data-label="Races & Podiums"><div class="td-content">4 Races &bull; 1 Win &bull; 3 Podiums</div></td>
+                <td data-label="Best Lap"><div class="td-content"><strong>9.945s</strong></div></td>
+                <td data-label="Points"><div class="td-content" style="text-align:right;font-weight:600;">231 Pts</div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:#b45309;color:#fff;font-weight:700;font-size:.75rem;align-items:center;justify-content:center;">3</span></div></td>
+                <td data-label="Driver & Vehicle"><div class="td-content"><strong>Jake R.</strong><span class="td-sub">Aston Martin Vantage</span></div></td>
+                <td data-label="Races & Podiums"><div class="td-content">4 Races &bull; 0 Wins &bull; 2 Podiums</div></td>
+                <td data-label="Best Lap"><div class="td-content"><strong>10.012s</strong></div></td>
+                <td data-label="Points"><div class="td-content" style="text-align:right;font-weight:600;">218 Pts</div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--bg-muted);color:var(--text-muted);font-weight:600;font-size:.75rem;align-items:center;justify-content:center;">4</span></div></td>
+                <td data-label="Driver & Vehicle"><div class="td-content"><strong>Chen L.</strong><span class="td-sub">BMW M8 GTE</span></div></td>
+                <td data-label="Races & Podiums"><div class="td-content">4 Races &bull; 0 Wins &bull; 1 Podium</div></td>
+                <td data-label="Best Lap"><div class="td-content"><strong>10.088s</strong></div></td>
+                <td data-label="Points"><div class="td-content" style="text-align:right;font-weight:600;">204 Pts</div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><span style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--bg-muted);color:var(--text-muted);font-weight:600;font-size:.75rem;align-items:center;justify-content:center;">5</span></div></td>
+                <td data-label="Driver & Vehicle"><div class="td-content"><strong>Sarah K.</strong><span class="td-sub">Corvette C8.R</span></div></td>
+                <td data-label="Races & Podiums"><div class="td-content">4 Races &bull; 0 Wins &bull; 1 Podium</div></td>
+                <td data-label="Best Lap"><div class="td-content"><strong>10.150s</strong></div></td>
+                <td data-label="Points"><div class="td-content" style="text-align:right;font-weight:600;">189 Pts</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: LEADERBOARD -->
+    <div id="tab-leaderboard" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">Global Leaderboard</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Verified lap records across all classes and track configurations.</p>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="tab-filter-btn active" onclick="filterLeaderboard('all', this)">Slot Car GT3</button>
+          <button class="tab-filter-btn" onclick="filterLeaderboard('rc-touring', this)">1/10 Touring</button>
+          <button class="tab-filter-btn" onclick="filterLeaderboard('rc-buggy', this)">1/8 Buggy</button>
+        </div>
+      </div>
+
+      <!-- Podium Cards -->
+      <div class="db-grid-3">
+        <div class="db-card" style="text-align:center;border-top:4px solid #eab308;">
+          <div style="font-size:1.75rem;margin-bottom:.5rem;">🥇</div>
+          <div style="font-size:.75rem;text-transform:uppercase;color:#eab308;font-weight:700;">1st Place (Record)</div>
+          <h4 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--primary);margin:.25rem 0;">Marcus V. (You)</h4>
+          <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--text-heading);">9.872s</div>
+          <span style="font-size:.75rem;color:var(--text-muted);">Slot Car Circuit &bull; Porsche 911</span>
+        </div>
+        <div class="db-card" style="text-align:center;border-top:4px solid #94a3b8;">
+          <div style="font-size:1.75rem;margin-bottom:.5rem;">🥈</div>
+          <div style="font-size:.75rem;text-transform:uppercase;color:#94a3b8;font-weight:700;">2nd Place</div>
+          <h4 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin:.25rem 0;">Priya S.</h4>
+          <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--text-heading);">9.945s</div>
+          <span style="font-size:.75rem;color:var(--text-muted);">Slot Car Circuit &bull; Ferrari 488</span>
+        </div>
+        <div class="db-card" style="text-align:center;border-top:4px solid #b45309;">
+          <div style="font-size:1.75rem;margin-bottom:.5rem;">🥉</div>
+          <div style="font-size:.75rem;text-transform:uppercase;color:#b45309;font-weight:700;">3rd Place</div>
+          <h4 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin:.25rem 0;">Jake R.</h4>
+          <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--text-heading);">10.012s</div>
+          <span style="font-size:.75rem;color:var(--text-muted);">Slot Car Circuit &bull; Aston Martin</span>
+        </div>
+      </div>
+
+      <!-- Leaderboard Table -->
+      <div class="db-card">
+        <div style="overflow-x:auto;">
+          <table class="db-table db-table-cards">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Racer & Chassis Setup</th>
+                <th>Best Lap & Gap</th>
+                <th>Date Logged</th>
+                <th>Verification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(0,180,216,0.08);">
+                <td data-label="Rank"><div class="td-content"><strong style="color:#eab308;font-size:1rem;">#1</strong></div></td>
+                <td data-label="Racer & Chassis"><div class="td-content"><strong style="color:var(--primary);">Marcus V. (You)</strong><span class="td-sub">Porsche 911 RSR &bull; Slot.it Flat-6 20.5k</span></div></td>
+                <td data-label="Best Lap & Gap"><div class="td-content"><strong style="color:var(--primary);font-size:0.9375rem;">9.872s</strong><span class="td-sub">Leader</span></div></td>
+                <td data-label="Date Logged"><div class="td-content">Sep 20, 2026</div></td>
+                <td data-label="Verification"><div class="td-content"><span class="booking-badge" style="background:var(--primary);color:#fff;">Official PB</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><strong style="color:#94a3b8;font-size:1rem;">#2</strong></div></td>
+                <td data-label="Racer & Chassis"><div class="td-content"><strong>Priya S.</strong><span class="td-sub">Ferrari 488 GT3 &bull; NSR King 21k</span></div></td>
+                <td data-label="Best Lap & Gap"><div class="td-content"><strong>9.945s</strong><span class="td-sub">+0.073s</span></div></td>
+                <td data-label="Date Logged"><div class="td-content">Sep 22, 2026</div></td>
+                <td data-label="Verification"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><strong style="color:#b45309;font-size:1rem;">#3</strong></div></td>
+                <td data-label="Racer & Chassis"><div class="td-content"><strong>Jake R.</strong><span class="td-sub">Aston Martin &bull; Slot.it Boxer</span></div></td>
+                <td data-label="Best Lap & Gap"><div class="td-content"><strong>10.012s</strong><span class="td-sub">+0.140s</span></div></td>
+                <td data-label="Date Logged"><div class="td-content">Sep 18, 2026</div></td>
+                <td data-label="Verification"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><strong style="color:var(--text-muted);font-size:1rem;">#4</strong></div></td>
+                <td data-label="Racer & Chassis"><div class="td-content"><strong>Chen L.</strong><span class="td-sub">BMW M8 GTE &bull; Scaleauto SC-0011</span></div></td>
+                <td data-label="Best Lap & Gap"><div class="td-content"><strong>10.088s</strong><span class="td-sub">+0.216s</span></div></td>
+                <td data-label="Date Logged"><div class="td-content">Sep 26, 2026</div></td>
+                <td data-label="Verification"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+              <tr>
+                <td data-label="Rank"><div class="td-content"><strong style="color:var(--text-muted);font-size:1rem;">#5</strong></div></td>
+                <td data-label="Racer & Chassis"><div class="td-content"><strong>Sarah K.</strong><span class="td-sub">Corvette C8.R &bull; Thunderslot 21.5k</span></div></td>
+                <td data-label="Best Lap & Gap"><div class="td-content"><strong>10.150s</strong><span class="td-sub">+0.278s</span></div></td>
+                <td data-label="Date Logged"><div class="td-content">Sep 25, 2026</div></td>
+                <td data-label="Verification"><div class="td-content"><span class="booking-badge badge-completed">Verified</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: MY BOOKINGS -->
+    <div id="tab-bookings" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">My Bookings & Passes</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Manage upcoming track sessions, download QR entry passes, or reschedule.</p>
+        </div>
+        <button onclick="switchTab('book-track')" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Book New Track Time</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <!-- Card 1 -->
+        <div class="db-card db-booking-card">
+          <div class="db-booking-card-icon">
+            <i class="fas fa-route"></i>
+          </div>
+          <div class="db-booking-card-info">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.25rem;flex-wrap:wrap;">
+              <h3 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin:0;">Slot Car Circuit — Lane 3</h3>
+              <span class="booking-badge badge-upcoming">Upcoming</span>
+            </div>
+            <p style="font-size:.8125rem;color:var(--text-muted);margin:0;">
+              <strong>Tomorrow, Oct 5, 2026</strong> &bull; 1:00 PM (60 min) &bull; Ref #APX-9842 &bull; Own Car
+            </p>
+          </div>
+          <div class="db-booking-card-actions">
+            <button class="btn btn-ghost btn-sm" onclick="alert('Digital Entry QR Pass:\nBooking #APX-9842\nLane 3 — Oct 5, 1:00 PM\nShow this code at track gate check-in.')"><i class="fas fa-qrcode"></i> Entry Pass</button>
+            <button class="btn btn-outline btn-sm" onclick="alert('To reschedule, please select a new slot on the Book Track tab.')">Reschedule</button>
+            <button class="btn btn-ghost btn-sm" style="color:#ef4444;" onclick="if(confirm('Cancel this session? You will receive a 100% credit refund.')){this.closest('.db-card').style.display='none';alert('Session cancelled. $25 credit added to your account.');}">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="db-card db-booking-card">
+          <div class="db-booking-card-icon">
+            <i class="fas fa-car-side"></i>
+          </div>
+          <div class="db-booking-card-info">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.25rem;flex-wrap:wrap;">
+              <h3 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin:0;">RC On-Road Circuit</h3>
+              <span class="booking-badge badge-upcoming">Upcoming</span>
+            </div>
+            <p style="font-size:.8125rem;color:var(--text-muted);margin:0;">
+              <strong>Wednesday, Oct 8, 2026</strong> &bull; 7:00 PM (60 min) &bull; Ref #APX-9811 &bull; Rental Car Included
+            </p>
+          </div>
+          <div class="db-booking-card-actions">
+            <button class="btn btn-ghost btn-sm" onclick="alert('Digital Entry QR Pass:\nBooking #APX-9811\nRC On-Road — Oct 8, 7:00 PM')"><i class="fas fa-qrcode"></i> Entry Pass</button>
+            <button class="btn btn-outline btn-sm" onclick="alert('To reschedule, please select a new slot.')">Reschedule</button>
+            <button class="btn btn-ghost btn-sm" style="color:#ef4444;" onclick="if(confirm('Cancel this session?')){this.closest('.db-card').style.display='none';alert('Session cancelled.');}">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="db-card db-booking-card" style="opacity:0.75;">
+          <div class="db-booking-card-icon" style="background:var(--bg-muted);color:var(--text-muted);">
+            <i class="fas fa-route"></i>
+          </div>
+          <div class="db-booking-card-info">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.25rem;flex-wrap:wrap;">
+              <h3 style="font-family:var(--font-heading);font-size:1.125rem;color:var(--text-heading);margin:0;">Slot Car Circuit</h3>
+              <span class="booking-badge badge-completed">Completed</span>
+            </div>
+            <p style="font-size:.8125rem;color:var(--text-muted);margin:0;">
+              Sep 27, 2026 &bull; 2:00 PM (120 min) &bull; Ref #APX-9710 &bull; Telemetry Recorded
+            </p>
+          </div>
+          <div class="db-booking-card-actions">
+            <button class="btn btn-ghost btn-sm" onclick="switchTab('lap-times')"><i class="fas fa-chart-line"></i> View Laps</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 7: PAYMENTS & BILLING -->
+    <div id="tab-payments" class="db-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text-heading);margin-bottom:.25rem;">Payments & Billing</h2>
+          <p style="font-size:.875rem;color:var(--text-muted);">Manage payment methods, account wallet credits, and view invoice history.</p>
+        </div>
+      </div>
+
+      <!-- Payment Summary Cards -->
+      <div class="db-grid-3">
+        <div class="db-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0.75rem;min-height:115px;">
+          <div>
+            <span style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;letter-spacing:.03em;">Current Membership</span>
+            <div style="font-family:var(--font-heading);font-size:1.25rem;color:var(--primary);font-weight:700;margin-top:.375rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Pro Racer Pass</div>
+          </div>
+          <p style="font-size:.8125rem;color:var(--success);margin:0;display:flex;align-items:center;gap:.375rem;white-space:nowrap;"><i class="fas fa-check-circle"></i> Active &bull; Renews Nov 1</p>
+        </div>
+        <div class="db-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0.75rem;min-height:115px;">
+          <div>
+            <span style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;letter-spacing:.03em;">Account Balance</span>
+            <div style="font-family:var(--font-heading);font-size:1.25rem;color:var(--text-heading);font-weight:700;margin-top:.375rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">$120.00 Credits</div>
+          </div>
+          <p style="font-size:.8125rem;color:var(--text-muted);margin:0;display:flex;align-items:center;gap:.375rem;white-space:nowrap;"><i class="fas fa-wallet" style="color:var(--primary);"></i> Auto-applied at checkout</p>
+        </div>
+        <div class="db-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0.75rem;min-height:115px;">
+          <div>
+            <span style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;letter-spacing:.03em;">Payment Method</span>
+            <div style="display:flex;align-items:center;gap:.5rem;margin-top:.375rem;font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--text-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              <i class="fab fa-cc-visa" style="font-size:1.375rem;color:#3b82f6;flex-shrink:0;"></i>
+              <span>Visa &bull;&bull;&bull;&bull; 4242</span>
+            </div>
+          </div>
+          <p style="font-size:.8125rem;color:var(--text-muted);margin:0;display:flex;align-items:center;gap:.375rem;white-space:nowrap;"><i class="fas fa-credit-card"></i> Expires 08/29 &bull; Default</p>
+        </div>
+      </div>
+
+      <!-- Invoice History Table -->
+      <div class="db-card">
+        <div class="db-section-title"><span>Billing & Transaction History</span></div>
+        <div style="overflow-x:auto;">
+          <table class="db-table db-table-cards">
+            <thead>
+              <tr>
+                <th>Invoice & Date</th>
+                <th>Description & Method</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th style="text-align:right;">Receipt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Invoice & Date"><div class="td-content"><strong>#INV-2026-089</strong><span class="td-sub">Sep 27, 2026</span></div></td>
+                <td data-label="Description"><div class="td-content"><strong>Slot Car Circuit — 60 Min</strong><span class="td-sub">Visa &bull;&bull;&bull;&bull; 4242</span></div></td>
+                <td data-label="Amount"><div class="td-content"><strong>$25.00</strong></div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Paid</span></div></td>
+                <td data-label="Receipt" style="text-align:right;"><div class="td-content"><button class="btn btn-ghost btn-sm" onclick="alert('Downloading PDF Receipt for #INV-2026-089...')"><i class="fas fa-download"></i> PDF</button></div></td>
+              </tr>
+              <tr>
+                <td data-label="Invoice & Date"><div class="td-content"><strong>#INV-2026-084</strong><span class="td-sub">Sep 20, 2026</span></div></td>
+                <td data-label="Description"><div class="td-content"><strong>Friday Night Race — Entry</strong><span class="td-sub">Visa &bull;&bull;&bull;&bull; 4242</span></div></td>
+                <td data-label="Amount"><div class="td-content"><strong>$25.00</strong></div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Paid</span></div></td>
+                <td data-label="Receipt" style="text-align:right;"><div class="td-content"><button class="btn btn-ghost btn-sm" onclick="alert('Downloading PDF Receipt for #INV-2026-084...')"><i class="fas fa-download"></i> PDF</button></div></td>
+              </tr>
+              <tr>
+                <td data-label="Invoice & Date"><div class="td-content"><strong>#INV-2026-077</strong><span class="td-sub">Sep 1, 2026</span></div></td>
+                <td data-label="Description"><div class="td-content"><strong>Pro Racer Monthly Pass</strong><span class="td-sub">Visa &bull;&bull;&bull;&bull; 4242</span></div></td>
+                <td data-label="Amount"><div class="td-content"><strong>$59.00</strong></div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Paid</span></div></td>
+                <td data-label="Receipt" style="text-align:right;"><div class="td-content"><button class="btn btn-ghost btn-sm" onclick="alert('Downloading PDF Receipt for #INV-2026-077...')"><i class="fas fa-download"></i> PDF</button></div></td>
+              </tr>
+              <tr>
+                <td data-label="Invoice & Date"><div class="td-content"><strong>#INV-2026-062</strong><span class="td-sub">Aug 28, 2026</span></div></td>
+                <td data-label="Description"><div class="td-content"><strong>Pro Shop: RC Touring Kit</strong><span class="td-sub">Visa &bull;&bull;&bull;&bull; 4242</span></div></td>
+                <td data-label="Amount"><div class="td-content"><strong>$349.00</strong></div></td>
+                <td data-label="Status"><div class="td-content"><span class="booking-badge badge-completed">Paid</span></div></td>
+                <td data-label="Receipt" style="text-align:right;"><div class="td-content"><button class="btn btn-ghost btn-sm" onclick="alert('Downloading PDF Receipt for #INV-2026-062...')"><i class="fas fa-download"></i> PDF</button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
+
+<!-- Logout Confirmation Modal -->
+<div class="logout-modal-backdrop" id="logoutModal" onclick="if(event.target===this)closeLogoutModal()">
+  <div class="logout-modal-card">
+    <div style="width:54px;height:54px;border-radius:50%;background:rgba(239,68,68,0.12);color:#ef4444;display:flex;align-items:center;justify-content:center;font-size:1.375rem;margin:0 auto 1.25rem;border:1px solid rgba(239,68,68,0.25);">
+      <i class="fas fa-right-from-bracket"></i>
+    </div>
+    <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--text-heading);margin-bottom:0.5rem;">Confirm Logout</h3>
+    <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.5;margin-bottom:1.75rem;">Are you sure you want to log out of your racer dashboard?</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+      <button type="button" class="btn btn-ghost" onclick="closeLogoutModal()" style="border-radius:8px;font-weight:600;padding:0.75rem 1rem;font-size:0.875rem;cursor:pointer;">
+        Cancel
+      </button>
+      <button type="button" class="btn" onclick="window.location.href='login.html'" style="background:#ef4444;color:#fff;border:1px solid #dc2626;border-radius:8px;font-weight:600;padding:0.75rem 1rem;font-size:0.875rem;cursor:pointer;transition:all 150ms;">
+        Yes, Log Out
+      </button>
+    </div>
+  </div>
+</div>
 
 <script src="components.js"></script>
 <script>
@@ -335,20 +1112,191 @@ function toggleTheme() {
 function toggleSidebar() {
     const sidebar = document.getElementById('db-sidebar');
     const icon = document.getElementById('toggle-icon');
+    const overlay = document.getElementById('sidebarOverlay');
     const isOpen = sidebar.classList.toggle('open');
-    icon.className = isOpen ? 'fas fa-xmark' : 'fas fa-bars';
+    if (icon) {
+        icon.className = isOpen ? 'fas fa-xmark' : 'fas fa-bars';
+    }
+    if (overlay) {
+        overlay.classList.toggle('active', isOpen);
+    }
 }
 
-function setActive(el) {
-    document.querySelectorAll('.db-nav-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-    if (window.innerWidth < 768) toggleSidebar();
+function switchTab(tabId, navEl) {
+    // Hide all tab contents
+    document.querySelectorAll('.db-tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    // Show target tab
+    const target = document.getElementById('tab-' + tabId);
+    if (target) {
+        target.classList.add('active');
+    }
+
+    // Update sidebar navigation
+    document.querySelectorAll('.db-nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-tab') === tabId) {
+            item.classList.add('active');
+        }
+    });
+
+    // Update topbar title
+    const titles = {
+        'dashboard': 'Racer Dashboard',
+        'book-track': 'Book Track Time',
+        'lap-times': 'Lap Times & Telemetry',
+        'leagues': 'Leagues & Races',
+        'leaderboard': 'Global Leaderboard',
+        'bookings': 'My Bookings',
+        'payments': 'Payments & Billing'
+    };
+    const titleEl = document.getElementById('db-topbar-title');
+    if (titleEl && titles[tabId]) {
+        titleEl.textContent = titles[tabId];
+    }
+
+    // Update URL hash
+    try {
+        history.replaceState(null, null, '#' + tabId);
+    } catch(e) {}
+
+    // Animate lap bars
+    if (tabId === 'dashboard' || tabId === 'lap-times') {
+        setTimeout(() => {
+            document.querySelectorAll('.lap-fill').forEach(el => {
+                const w = el.style.width;
+                el.style.width = '0%';
+                setTimeout(() => { el.style.width = w; }, 100);
+            });
+        }, 150);
+    }
+
+    if (window.innerWidth < 768) {
+        const sidebar = document.getElementById('db-sidebar');
+        if (sidebar && sidebar.classList.contains('open')) toggleSidebar();
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// In-Dashboard Booking Logic
+let bookingState = {
+    track: 'Slot Car Circuit',
+    basePrice: 25,
+    date: 'Tomorrow (Oct 5)',
+    time: '1:00 PM',
+    duration: 60,
+    rentalPrice: 0,
+    rentalText: 'Bring Own Car'
+};
+
+function selectTrack(trackName, price, el) {
+    document.querySelectorAll('.track-pick-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingState.track = trackName;
+    bookingState.basePrice = price;
+    updateBookingSummary();
+}
+
+function selectDate(dateText, el) {
+    el.closest('div').querySelectorAll('.slot-pill').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingState.date = dateText;
+    updateBookingSummary();
+}
+
+function selectTime(timeText, el) {
+    el.closest('div').querySelectorAll('.slot-pill').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingState.time = timeText;
+    updateBookingSummary();
+}
+
+function selectDuration(mins, el) {
+    el.closest('div').querySelectorAll('.slot-pill').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingState.duration = mins;
+    updateBookingSummary();
+}
+
+function selectRental(price, label, el) {
+    el.closest('div').querySelectorAll('.slot-pill').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingState.rentalPrice = price;
+    bookingState.rentalText = label;
+    updateBookingSummary();
+}
+
+function updateBookingSummary() {
+    const trackEl = document.getElementById('summary-track');
+    const dateEl = document.getElementById('summary-date');
+    const timeEl = document.getElementById('summary-time');
+    const durEl = document.getElementById('summary-dur');
+    const rentalEl = document.getElementById('summary-rental');
+    const totalEl = document.getElementById('summary-total');
+
+    if (trackEl) trackEl.textContent = bookingState.track;
+    if (dateEl) dateEl.textContent = bookingState.date;
+    if (timeEl) timeEl.textContent = bookingState.time;
+    if (durEl) durEl.textContent = bookingState.duration + ' Minutes';
+    if (rentalEl) rentalEl.textContent = bookingState.rentalText;
+
+    const hours = bookingState.duration / 60;
+    const total = (bookingState.basePrice * hours) + bookingState.rentalPrice;
+    if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+}
+
+function confirmTrackBooking() {
+    alert('Booking Confirmed!\n\nTrack: ' + bookingState.track + '\nDate: ' + bookingState.date + '\nTime: ' + bookingState.time + '\n\nAccess pass has been created in your My Bookings section.');
+    switchTab('bookings');
+}
+
+function filterLapTimes(type, el) {
+    el.closest('div').querySelectorAll('.tab-filter-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function filterLeaderboard(cat, el) {
+    el.closest('div').querySelectorAll('.tab-filter-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function openLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLogoutModal();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.theme-icon').forEach(el => {
         el.className = document.documentElement.classList.contains('dark') ? 'fas fa-sun theme-icon' : 'fas fa-moon theme-icon';
     });
+    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+    document.querySelectorAll('.dir-label').forEach(el => {
+        el.textContent = isRTL ? 'RTL' : 'LTR';
+    });
+
+    // Hash router
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('tab-' + hash)) {
+        switchTab(hash);
+    }
+
     // Animate lap bars
     setTimeout(() => {
         document.querySelectorAll('.lap-fill').forEach(el => {
