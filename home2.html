@@ -420,13 +420,74 @@ html.dark .hero2-dot.active {
 .tab-panel { display:none; } .tab-panel.active { display:block; }
 .tab-btn { padding:.625rem 1.5rem; border-radius:var(--radius-full); background:var(--bg-muted); border:1.5px solid var(--border); font-size:.875rem; font-weight:600; color:var(--text-body); cursor:pointer; transition:all 150ms; }
 .tab-btn.active { background:var(--primary); border-color:var(--primary); color:#fff; }
-.experience-card { position:relative; border-radius:var(--radius-xl); overflow:hidden; aspect-ratio:3/4; }
-.experience-card img { width:100%; height:100%; object-fit:cover; transition:transform 400ms; }
-.experience-card:hover img { transform:scale(1.04); }
-.experience-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,15,26,.95) 0%,rgba(8,15,26,.1) 60%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:2rem; }
-.experience-overlay-tag { display:inline-flex; background:var(--primary); color:#fff; padding:.25rem .75rem; border-radius:var(--radius-sm); font-size:.6875rem; font-weight:700; text-transform:uppercase; margin-bottom:.75rem; align-self:flex-start; }
-.experience-overlay-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.5rem; }
-.experience-overlay-desc { font-size:.875rem; color:rgba(255,255,255,.65); line-height:1.6; }
+.experience-card { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border); 
+    border-radius: var(--radius-xl); 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; 
+    transition: all 250ms ease; 
+    box-shadow: var(--shadow-sm);
+}
+.experience-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: var(--shadow-lg); 
+    border-color: var(--primary);
+}
+.experience-card-img { 
+    height: 270px; 
+    width: 100%; 
+    overflow: hidden; 
+    position: relative; 
+}
+.experience-card-img img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 400ms ease; 
+}
+.experience-card:hover .experience-card-img img { 
+    transform: scale(1.05); 
+}
+.experience-card-body { 
+    padding: 1.5rem; 
+    display: flex; 
+    flex-direction: column; 
+    flex: 1; 
+    gap: 0.625rem; 
+}
+.experience-card-tag { 
+    display: inline-flex; 
+    background: var(--primary-light); 
+    color: var(--primary); 
+    padding: 0.25rem 0.625rem; 
+    border-radius: var(--radius-full); 
+    font-size: 0.6875rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.06em; 
+    align-self: flex-start; 
+}
+html.dark .experience-card-tag {
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--primary);
+}
+.experience-card-title { 
+    font-family: var(--font-heading); 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+    color: var(--text-heading); 
+    margin: 0; 
+}
+.experience-card-desc { 
+    font-size: 0.9rem; 
+    color: var(--text-muted); 
+    line-height: 1.6; 
+    font-weight: 400; 
+    margin: 0; 
+}
 .membership-card { 
     background: var(--bg-card); 
     border: 1.5px solid var(--border); 
@@ -496,6 +557,9 @@ html.dark .hero2-dot.active {
     gap: .875rem; 
     margin-bottom: 2rem; 
     justify-content: flex-start; 
+    width: fit-content;
+    margin-inline: auto;
+    max-width: 100%;
 }
 .membership-card .pricing-feature { 
     height: 28px; 
@@ -528,7 +592,31 @@ html.dark .hero2-dot.active {
 }
 
 @media(max-width:1024px) {
-    .hero2-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero2-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; 
+        text-align: center; 
+    }
+    .hero2-content { 
+        align-items: center; 
+        text-align: center; 
+        margin-inline: auto; 
+        max-width: 680px; 
+    }
+    .hero2-label { 
+        align-self: center; 
+    }
+    .hero2-desc { 
+        margin-inline: auto; 
+        text-align: center; 
+    }
+    .hero2-actions { 
+        justify-content: center; 
+    }
+    .hero2-gallery { 
+        max-width: 680px; 
+        margin-inline: auto; 
+    }
     .hero2-gallery-top .hero2-gallery-item { height: 170px; }
     .hero2-gallery-bottom .hero2-gallery-item { height: 210px; }
     .hero2-slider-arrow { display: none; }
@@ -536,7 +624,7 @@ html.dark .hero2-dot.active {
 @media(max-width:575px) {
     .hero2-gallery-top .hero2-gallery-item { height: 130px; }
     .hero2-gallery-bottom .hero2-gallery-item { height: 170px; }
-    .hero2-actions { flex-direction: column; }
+    .hero2-actions { flex-direction: column; width: 100%; }
     .hero2-actions .btn { width: 100%; justify-content: center; }
     .hero2-controls { gap: 0.75rem; }
     .hero2-dot { width: 24px; }
@@ -713,29 +801,35 @@ html.dark .hero2-dot.active {
       <h2 class="section-title">Choose Your Racing Adventure</h2>
       <p class="section-sub">From casual open sessions to nail-biting championship finals — we have something for every racer.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;" class="animate-on-scroll">
+    <div class="grid-3 animate-on-scroll">
       <div class="experience-card">
-        <img src="assets/exp_slot_circuit.jpg" alt="Slot Car Racing">
-        <div class="experience-overlay">
-          <span class="experience-overlay-tag">Slot Cars</span>
-          <h3 class="experience-overlay-title">Slot Car Circuit</h3>
-          <p class="experience-overlay-desc">Classic 6-lane slot racing with 1:32 and 1:24 scale cars. Beginners to pro.</p>
+        <div class="experience-card-img">
+          <img src="assets/exp_slot_circuit.jpg" alt="Slot Car Racing" loading="lazy">
+        </div>
+        <div class="experience-card-body">
+          <span class="experience-card-tag">Slot Cars</span>
+          <h3 class="experience-card-title">Slot Car Circuit</h3>
+          <p class="experience-card-desc">Classic 6-lane slot racing with 1:32 and 1:24 scale cars. Beginners to pro.</p>
         </div>
       </div>
       <div class="experience-card">
-        <img src="assets/exp_rc_touring.jpg" alt="RC On-Road Racing">
-        <div class="experience-overlay">
-          <span class="experience-overlay-tag">RC On-Road</span>
-          <h3 class="experience-overlay-title">Touring Car Circuit</h3>
-          <p class="experience-overlay-desc">High-speed RC touring cars on our smooth 1:10 scale on-road track.</p>
+        <div class="experience-card-img">
+          <img src="assets/exp_rc_touring.jpg" alt="RC On-Road Racing" loading="lazy">
+        </div>
+        <div class="experience-card-body">
+          <span class="experience-card-tag">RC On-Road</span>
+          <h3 class="experience-card-title">Touring Car Circuit</h3>
+          <p class="experience-card-desc">High-speed RC touring cars on our smooth 1:10 scale on-road track.</p>
         </div>
       </div>
       <div class="experience-card">
-        <img src="assets/exp_rc_offroad.jpg" alt="RC Off-Road">
-        <div class="experience-overlay">
-          <span class="experience-overlay-tag">RC Off-Road</span>
-          <h3 class="experience-overlay-title">Buggy & Truggy Off-Road</h3>
-          <p class="experience-overlay-desc">Jumps, bumps and dirt — our off-road arena is built for maximum chaos.</p>
+        <div class="experience-card-img">
+          <img src="assets/exp_rc_offroad.jpg" alt="RC Off-Road" loading="lazy">
+        </div>
+        <div class="experience-card-body">
+          <span class="experience-card-tag">RC Off-Road</span>
+          <h3 class="experience-card-title">Buggy Off-Road</h3>
+          <p class="experience-card-desc">Jumps, bumps and dirt — our off-road arena is built for chaos.</p>
         </div>
       </div>
     </div>

@@ -26,8 +26,17 @@
 .summary-row:last-child { border-bottom:none; font-weight:600; font-size:1.0625rem; }
 .summary-label { color:var(--text-muted); font-weight:400; }
 .summary-val { font-weight:600; color:var(--text-heading); }
-@media(max-width:768px) { .session-type-grid { grid-template-columns:repeat(2,1fr); } .time-slots { grid-template-columns:repeat(3,1fr); } }
-@media(max-width:480px) { .session-type-grid { grid-template-columns:1fr 1fr; } .time-slots { grid-template-columns:repeat(2,1fr); } .booking-form-card { padding:1.5rem; } }
+@media(max-width:768px) { 
+  .session-type-grid { grid-template-columns:repeat(3,1fr); gap:.75rem; } 
+  .session-type-btn { padding:1rem .5rem; }
+  .time-slots { grid-template-columns:repeat(3,1fr); } 
+}
+@media(max-width:540px) { 
+  .session-type-grid { grid-template-columns:1fr 1fr; gap:.75rem; } 
+  .session-type-btn:nth-child(3) { grid-column: 1 / -1; }
+  .time-slots { grid-template-columns:repeat(2,1fr); } 
+  .booking-form-card { padding:1.5rem; } 
+}
 
 /* White Calendar Icon and White Text for Date Picker */
 input[type="date"] {
@@ -95,7 +104,7 @@ html:not(.dark) input[type="date"]::-webkit-calendar-picker-indicator {
           <div class="session-type-grid" id="session-types">
             <div class="session-type-btn active" onclick="selectSession(this)">
               <i class="fas fa-route"></i>
-              <span>Slot Car Circuit</span>
+              <span>Slot Car</span>
               <small>6 lanes</small>
             </div>
             <div class="session-type-btn" onclick="selectSession(this)">
@@ -247,7 +256,7 @@ html:not(.dark) input[type="date"]::-webkit-calendar-picker-indicator {
           Take over the track! Host your next birthday party, corporate team building tournament, or private league night at Apex Raceway. Dedicated race marshals, live leaderboard MC, trophies, and VIP lounge catering packages included.
         </p>
         <div class="cta-split-perks">
-          <div class="cta-split-perk"><i class="fas fa-check-circle"></i><span>Up to 24 Simultaneous Racers</span></div>
+          <div class="cta-split-perk"><i class="fas fa-check-circle"></i><span>Up to 24 Racers</span></div>
           <div class="cta-split-perk"><i class="fas fa-check-circle"></i><span>Custom Winner Trophies</span></div>
           <div class="cta-split-perk"><i class="fas fa-check-circle"></i><span>Dedicated Race Marshals</span></div>
           <div class="cta-split-perk"><i class="fas fa-check-circle"></i><span>VIP Lounge & Catering</span></div>

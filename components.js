@@ -271,7 +271,6 @@ function injectFooter() {
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                     <a href="#">Track Rules</a>
-                    <a href="#">Cookies</a>
                 </div>
             </div>
         </div>

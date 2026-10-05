@@ -120,6 +120,12 @@
 .race-timeline { 
   position: relative; 
   padding-left: 2rem; 
+  max-width: 480px;
+  margin-inline: auto;
+}
+.booking-form-card {
+  max-width: 480px;
+  margin-inline: auto;
 }
 .race-timeline::before { 
   content: ''; 
@@ -163,8 +169,17 @@
   color: var(--text-muted); 
 }
 @media(max-width:768px) { 
+  .league-card-stats { grid-template-columns: repeat(3, 1fr); } 
+  .league-stat { padding: 1rem .5rem; }
+  .race-timeline { max-width: 440px; margin: 0 auto; }
+  .booking-form-card { max-width: 440px; margin: 0 auto; }
+}
+@media(max-width:480px) { 
   .league-card-stats { grid-template-columns: 1fr 1fr; } 
   .league-stat:nth-child(2) { border-right: none; } 
+  .league-stat:nth-child(3) { grid-column: 1 / -1; border-top: 1px solid var(--border); border-right: none; } 
+  .race-timeline { max-width: 100%; padding-left: 1.75rem; }
+  .booking-form-card { max-width: 100%; }
 }
 </style>
 </head>
@@ -222,7 +237,7 @@
         </div>
         <div class="league-card-header">
           <h3 class="league-name">RC Touring Car League</h3>
-          <p class="league-desc">High-speed 1:10 electric touring cars on our on-road circuit. Expert-level competition with full transponder timing.</p>
+          <p class="league-desc">High-speed 1:10 electric touring cars on our on-road circuit. Expert-level competition with timing.</p>
         </div>
         <div class="league-card-stats">
           <div class="league-stat"><div class="league-stat-num">18</div><div class="league-stat-label">Racers</div></div>
@@ -243,7 +258,7 @@
         </div>
         <div class="league-card-header">
           <h3 class="league-name">Junior Academy League</h3>
-          <p class="league-desc">Structured competition for under-16 racers. Learn the ropes, earn points, and develop championship skills.</p>
+          <p class="league-desc">Structured competition for under-16 racers. Learn the ropes, earn points, and develop skills.</p>
         </div>
         <div class="league-card-stats">
           <div class="league-stat"><div class="league-stat-num">16</div><div class="league-stat-label">Racers</div></div>
@@ -277,40 +292,110 @@
           </div>
           <a href="dashboard.html" class="btn btn-outline btn-sm"><i class="fas fa-chart-bar"></i> Full Dashboard</a>
         </div>
-        <table class="leaderboard-table">
-          <thead><tr><th>Rank</th><th>Racer</th><th>Class</th><th>Best Lap</th><th>Wins</th><th>Points</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><span class="rank-badge rank-1">1</span></td>
-              <td><strong style="color:var(--text-heading);">Marcus V.</strong></td>
-              <td><span class="tag tag-primary">Expert</span></td>
-              <td style="color:var(--primary);font-weight:600;">9.872s</td>
-              <td style="font-weight:600;">4</td>
-              <td><strong>248</strong></td>
-            </tr>
-            <tr>
-              <td><span class="rank-badge rank-2">2</span></td>
-              <td><strong style="color:var(--text-heading);">Priya S.</strong></td>
-              <td><span class="tag tag-primary">Expert</span></td>
-              <td style="font-weight:500;">10.105s</td>
-              <td style="font-weight:600;">3</td>
-              <td><strong>231</strong></td>
-            </tr>
-            <tr>
-              <td><span class="rank-badge rank-3">3</span></td>
-              <td><strong style="color:var(--text-heading);">Jake R.</strong></td>
-              <td><span class="tag tag-primary">Expert</span></td>
-              <td style="font-weight:500;">10.234s</td>
-              <td style="font-weight:600;">2</td>
-              <td><strong>218</strong></td>
-            </tr>
-            <tr><td>4</td><td>Chen L.</td><td><span class="tag tag-warning">Amateur</span></td><td>10.391s</td><td>1</td><td>204</td></tr>
-            <tr><td>5</td><td>Sarah K.</td><td><span class="tag tag-warning">Amateur</span></td><td>10.512s</td><td>1</td><td>189</td></tr>
-            <tr><td>6</td><td>Tom B.</td><td><span class="tag tag-primary">Expert</span></td><td>10.634s</td><td>0</td><td>175</td></tr>
-            <tr><td>7</td><td>Amy N.</td><td><span class="tag tag-warning">Amateur</span></td><td>10.789s</td><td>0</td><td>162</td></tr>
-            <tr><td>8</td><td>Leo M.</td><td><span class="tag tag-warning">Amateur</span></td><td>11.023s</td><td>0</td><td>148</td></tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Racer</th>
+                <th class="col-hide-mobile">Class</th>
+                <th>Best Lap</th>
+                <th class="col-hide-mobile">Wins</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank-badge rank-1">1</span></td>
+                <td>
+                  <strong style="color:var(--text-heading);display:block;">Marcus V.</strong>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--primary);font-weight:600;">Expert</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-primary">Expert</span></td>
+                <td style="color:var(--primary);font-weight:600;">9.872s</td>
+                <td class="col-hide-mobile" style="font-weight:600;">4</td>
+                <td><strong>248</strong></td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-2">2</span></td>
+                <td>
+                  <strong style="color:var(--text-heading);display:block;">Priya S.</strong>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--primary);font-weight:600;">Expert</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-primary">Expert</span></td>
+                <td style="font-weight:500;">10.105s</td>
+                <td class="col-hide-mobile" style="font-weight:600;">3</td>
+                <td><strong>231</strong></td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-3">3</span></td>
+                <td>
+                  <strong style="color:var(--text-heading);display:block;">Jake R.</strong>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--primary);font-weight:600;">Expert</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-primary">Expert</span></td>
+                <td style="font-weight:500;">10.234s</td>
+                <td class="col-hide-mobile" style="font-weight:600;">2</td>
+                <td><strong>218</strong></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>
+                  <span style="font-weight:600;display:block;">Chen L.</span>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--warning);font-weight:600;">Amateur</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-warning">Amateur</span></td>
+                <td>10.391s</td>
+                <td class="col-hide-mobile">1</td>
+                <td>204</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>
+                  <span style="font-weight:600;display:block;">Sarah K.</span>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--warning);font-weight:600;">Amateur</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-warning">Amateur</span></td>
+                <td>10.512s</td>
+                <td class="col-hide-mobile">1</td>
+                <td>189</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>
+                  <span style="font-weight:600;display:block;">Tom B.</span>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--primary);font-weight:600;">Expert</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-primary">Expert</span></td>
+                <td>10.634s</td>
+                <td class="col-hide-mobile">0</td>
+                <td>175</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>
+                  <span style="font-weight:600;display:block;">Amy N.</span>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--warning);font-weight:600;">Amateur</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-warning">Amateur</span></td>
+                <td>10.789s</td>
+                <td class="col-hide-mobile">0</td>
+                <td>162</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>
+                  <span style="font-weight:600;display:block;">Leo M.</span>
+                  <span class="mobile-class-tag" style="display:none;font-size:0.6875rem;color:var(--warning);font-weight:600;">Amateur</span>
+                </td>
+                <td class="col-hide-mobile"><span class="tag tag-warning">Amateur</span></td>
+                <td>11.023s</td>
+                <td class="col-hide-mobile">0</td>
+                <td>148</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -405,7 +490,6 @@
       <div class="cta-league-perks">
         <div class="cta-league-perk"><i class="fas fa-id-card"></i> Free Racer ID & Profile</div>
         <div class="cta-league-perk"><i class="fas fa-medal"></i> Season Points & Trophies</div>
-        <div class="cta-league-perk"><i class="fas fa-stopwatch"></i> Live Telemetry & Timing</div>
       </div>
       <div class="btn-actions">
         <a href="signup.html" class="btn-white btn"><i class="fas fa-user-plus"></i> Create Account</a>
