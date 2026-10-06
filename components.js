@@ -279,7 +279,7 @@ function injectFooter() {
 
 /* Scroll to Top */
 function injectScrollToTop() {
-    if (document.body.classList.contains('auth-page') || document.body.classList.contains('fullscreen-page')) return;
+    if (document.body.classList.contains('auth-page') || document.body.classList.contains('fullscreen-page') || document.body.classList.contains('dashboard-page') || window.location.pathname.includes('dashboard')) return;
     if (document.getElementById('scroll-to-top')) return;
     const btn = document.createElement('button');
     btn.id = 'scroll-to-top';

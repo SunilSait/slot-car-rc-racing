@@ -285,9 +285,10 @@ html.dark .db-welcome { background:linear-gradient(135deg,#0d1a2e 0%,#1a3a5c 50%
 .form-group-label { font-size: .8125rem; font-weight: 600; color: var(--text-heading); margin-bottom: .5rem; display: block; }
 .db-input { width: 100%; padding: .6875rem .875rem; background: var(--bg-muted); border: 1px solid var(--border); border-radius: 8px; color: var(--text-heading); font-size: .875rem; outline: none; transition: border-color 150ms; }
 .db-input:focus { border-color: var(--primary); }
+#scroll-to-top, .scroll-to-top-btn { display: none !important; }
 </style>
 </head>
-<body>
+<body class="dashboard-page">
 
 <!-- Sidebar Overlay (Mobile) -->
 <div class="db-sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -1122,6 +1123,17 @@ function toggleSidebar() {
     }
 }
 
+function closeSidebar() {
+    const sidebar = document.getElementById('db-sidebar');
+    const icon = document.getElementById('toggle-icon');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        if (icon) icon.className = 'fas fa-bars';
+        if (overlay) overlay.classList.remove('active');
+    }
+}
+
 function switchTab(tabId, navEl) {
     // Hide all tab contents
     document.querySelectorAll('.db-tab-content').forEach(tab => {
@@ -1172,10 +1184,8 @@ function switchTab(tabId, navEl) {
         }, 150);
     }
 
-    if (window.innerWidth < 768) {
-        const sidebar = document.getElementById('db-sidebar');
-        if (sidebar && sidebar.classList.contains('open')) toggleSidebar();
-    }
+    // Close mobile/responsive sidebar when tab option is selected
+    closeSidebar();
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1263,6 +1273,7 @@ function filterLeaderboard(cat, el) {
 }
 
 function openLogoutModal() {
+    closeSidebar();
     const modal = document.getElementById('logoutModal');
     if (modal) {
         modal.classList.add('open');
