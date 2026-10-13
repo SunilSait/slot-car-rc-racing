@@ -429,12 +429,18 @@
   align-items: center;
   gap: 0.75rem;
   z-index: 9999;
-  transform: translateY(120%);
-  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(1.5rem) scale(0.95);
+  transition: opacity 250ms ease, transform 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms;
 }
 
 .shop-toast.show {
-  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .shop-toast-icon {

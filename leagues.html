@@ -29,6 +29,14 @@
   overflow: hidden; 
   background: var(--bg-surface); 
 }
+.league-card-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 15, 26, 0.45) 0%, rgba(8, 15, 26, 0) 45%);
+  pointer-events: none;
+  z-index: 1;
+}
 .league-card-img-wrap img { 
   width: 100%; 
   height: 100%; 
@@ -45,9 +53,41 @@
   left: 1rem; 
   z-index: 2; 
   margin-bottom: 0; 
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); 
-  backdrop-filter: blur(6px); 
-  -webkit-backdrop-filter: blur(6px); 
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(10, 20, 32, 0.92);
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5); 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.league-card-img-wrap .league-badge.tag-warning {
+  background: rgba(13, 27, 42, 0.92);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 12px rgba(245, 158, 11, 0.25);
+}
+.league-card-img-wrap .league-badge.tag-success {
+  background: rgba(13, 27, 42, 0.92);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.6);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 12px rgba(34, 197, 94, 0.25);
+}
+.league-card-img-wrap .league-badge.tag-primary {
+  background: rgba(13, 27, 42, 0.92);
+  color: #38bdf8;
+  border: 1px solid rgba(0, 180, 216, 0.6);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 12px rgba(0, 180, 216, 0.25);
+}
+.league-card-img-wrap .league-badge i {
+  font-size: 0.6875rem;
 }
 .league-card-header { 
   padding: 1.5rem 1.75rem; 
@@ -60,10 +100,10 @@
   gap: .375rem; 
   padding: .3rem .8rem; 
   border-radius: var(--radius-full); 
-  font-size: .6875rem; 
+  font-size: .75rem; 
   font-weight: 700; 
   text-transform: uppercase; 
-  letter-spacing: .04em; 
+  letter-spacing: .05em; 
 }
 .league-name { 
   font-family: var(--font-heading); 
@@ -212,7 +252,7 @@
       <div class="league-card">
         <div class="league-card-img-wrap">
           <img src="assets/leagues/league_slot_championship.jpg" alt="Slot Car Championship" loading="lazy">
-          <span class="league-badge tag-success"><i class="fas fa-circle" style="font-size:.5rem;"></i> Active</span>
+          <span class="league-badge tag-success"><i class="fas fa-circle"></i> Active</span>
         </div>
         <div class="league-card-header">
           <h3 class="league-name">Slot Car Championship</h3>
@@ -233,7 +273,7 @@
       <div class="league-card" style="border-color:var(--primary);">
         <div class="league-card-img-wrap">
           <img src="assets/leagues/league_rc_touring.jpg" alt="RC Touring Car League" loading="lazy">
-          <span class="league-badge tag-primary"><i class="fas fa-fire" style="font-size:.6rem;"></i> Featured</span>
+          <span class="league-badge tag-primary"><i class="fas fa-fire"></i> Featured</span>
         </div>
         <div class="league-card-header">
           <h3 class="league-name">RC Touring Car League</h3>
@@ -254,7 +294,7 @@
       <div class="league-card">
         <div class="league-card-img-wrap">
           <img src="assets/leagues/league_junior_academy.jpg" alt="Junior Academy League" loading="lazy">
-          <span class="league-badge tag-warning"><i class="fas fa-seedling" style="font-size:.6rem;"></i> Beginner</span>
+          <span class="league-badge tag-warning"><i class="fas fa-seedling"></i> Beginner</span>
         </div>
         <div class="league-card-header">
           <h3 class="league-name">Junior Academy League</h3>
