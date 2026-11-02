@@ -55,10 +55,11 @@ function injectNav() {
     const links = [
         { href: 'index.html',       label: 'Home' },
         { href: 'home2.html',       label: 'Home 2' },
-        { href: 'book-track.html',  label: 'Book Track' },
+        { href: 'about.html',       label: 'About Us' },
         { href: 'leagues.html',     label: 'Leagues & Races' },
         { href: 'pro-shop.html',    label: 'Pro Shop' },
         { href: 'contact.html',     label: 'Contact' },
+        { href: 'dashboard.html',   label: 'Dashboard' },
     ];
 
     const isDark = document.documentElement.classList.contains('dark');
@@ -103,7 +104,7 @@ function injectNav() {
                 </button>
                 <!-- CTAs -->
                 <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
-                <a href="dashboard.html" class="btn btn-primary btn-sm">Dashboard</a>
+                <a href="book-track.html" class="btn btn-primary btn-sm">Plan Your Visit</a>
                 <!-- Mobile Hamburger -->
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)" aria-label="Open menu" aria-expanded="false">
                     <span class="mobile-menu-icon"><i class="fas fa-bars"></i></span>
@@ -118,7 +119,7 @@ function injectNav() {
         <div class="mobile-menu" id="mobile-menu">
             ${mobileLinksHTML}
             <div class="mob-actions">
-                <a href="dashboard.html" class="btn btn-primary w-full"><i class="fas fa-gauge"></i> Dashboard</a>
+                <a href="book-track.html" class="btn btn-primary w-full"><i class="fas fa-calendar-check"></i> Plan Your Visit</a>
                 <a href="login.html" class="btn btn-outline w-full"><i class="fas fa-right-to-bracket"></i> Sign In</a>
             </div>
             <div class="mob-toggles">
@@ -230,7 +231,8 @@ function injectFooter() {
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="home2.html">Home 2 — Premium</a></li>
-                        <li><a href="book-track.html">Book Track Time</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="book-track.html">Plan Your Visit</a></li>
                         <li><a href="leagues.html">Leagues & Races</a></li>
                         <li><a href="pro-shop.html">Pro Shop</a></li>
                         <li><a href="contact.html">Contact Us</a></li>

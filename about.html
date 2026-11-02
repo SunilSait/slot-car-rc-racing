@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Apex Raceway — The premier indoor slot car and RC racing facility. Discover our story, world-class track facilities, racing activities, safety guidelines, and championship events.">
+<title>About Us | Apex Raceway — Slot Car & RC Racing Track</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ─── ABOUT PAGE SPECIALIZED STYLES ─── */
+.story-milestones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.story-milestone-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+}
+.story-milestone-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.milestone-year {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.milestone-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 0.35rem;
+}
+.milestone-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Experience Cards */
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.exp-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
+.exp-card-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+.exp-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 500ms ease;
+}
+.exp-card:hover .exp-card-img-wrap img {
+  transform: scale(1.06);
+}
+.exp-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Facilities Cards */
+.facility-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.facility-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.facility-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: all 250ms ease;
+}
+.facility-card:hover .facility-icon {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Safety Guidelines */
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+.safety-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+}
+.safety-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.safety-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 180, 216, 0.12);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+.safety-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 0.5rem;
+}
+.safety-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Events Showcase */
+.event-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
+.event-card-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.event-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+.event-card:hover .event-card-img-wrap img {
+  transform: scale(1.06);
+}
+.event-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(13, 27, 42, 0.9);
+  backdrop-filter: blur(8px);
+  color: var(--primary);
+  border: 1px solid rgba(0, 180, 216, 0.4);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.event-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Why Choose Us Cards */
+.why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem;
+  transition: all 250ms ease;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.why-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.why-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+  transition: all 250ms ease;
+}
+.why-card:hover .why-icon {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .story-milestones { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .safety-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 576px) {
+  .story-milestones { grid-template-columns: 1fr; }
+  .safety-card { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+<div id="main-nav"></div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════ -->
+<section class="page-hero">
+  <img src="assets/about/banner_about.jpg" alt="Apex Raceway Motorsport Venue" class="page-hero-img">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content animate-on-scroll">
+      <div class="section-badge" style="display:inline-flex;margin-bottom:1rem;background:rgba(0,180,216,.2);color:var(--primary);border-color:rgba(0,180,216,.35);"><i class="fas fa-flag-checkered"></i> Apex Raceway Heritage</div>
+      <h1 class="page-hero-title">Pioneering Miniature Motorsport</h1>
+      <p class="page-hero-sub">Driven by speed, precision engineering, and an inclusive scale racing community since 2018.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════ -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="grid-4">
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-num" data-count="12" data-suffix="+">12+</div>
+        <div class="stat-label">Track Configurations</div>
+      </div>
+      <div class="stat-item animate-on-scroll delay-1">
+        <div class="stat-num" data-count="850" data-suffix="+">850+</div>
+        <div class="stat-label">Active Club Racers</div>
+      </div>
+      <div class="stat-item animate-on-scroll delay-2">
+        <div class="stat-num" data-count="48" data-suffix="+">48+</div>
+        <div class="stat-label">Annual Race Events</div>
+      </div>
+      <div class="stat-item animate-on-scroll delay-3">
+        <div class="stat-num" data-count="100" data-suffix="%">100%</div>
+        <div class="stat-label">Safety Compliance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     1. OUR STORY
+═══════════════════════════════════════════ -->
+<section class="section" id="story" style="background:var(--bg-base);">
+  <div class="container">
+    <div class="split-section">
+      <div class="animate-on-scroll">
+        <div class="section-badge"><i class="fas fa-book-open"></i> Our Story</div>
+        <h2 class="section-title">Built by Enthusiasts,<br><span class="text-primary">Engineered for Champions</span></h2>
+        <p style="font-size:1.02rem;color:var(--text-body);line-height:1.8;margin-bottom:1.25rem;">
+          Apex Raceway began with a singular obsession: to build a commercial-grade racing complex that honors the golden heritage of analog slot cars while pioneering the cutting edge of modern brushless RC competition.
+        </p>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:1.75rem;">
+          What started in 2018 as a weekend gathering of scale motorsport mechanics has blossomed into the region’s premier indoor raceway. Our facility features custom CAD-routed wooden speedways, precision CRC FastTrack carpet circuits, infrared transponder timing down to 0.001 seconds, and a thriving community of over 850 active racers.
+        </p>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.875rem;"><i class="fas fa-check"></i></div>
+            <span style="font-weight:600;font-size:0.9375rem;color:var(--text-heading);">Pro-Spec Facilities</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.875rem;"><i class="fas fa-check"></i></div>
+            <span style="font-weight:600;font-size:0.9375rem;color:var(--text-heading);">All Ages Welcome</span>
+          </div>
+         
+        </div>
+      </div>
+      <div class="split-img animate-on-scroll delay-1">
+        <img src="assets/about/about_story.jpg" alt="Apex Raceway Track Arena Story" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+
+    <!-- Milestones Timeline Grid -->
+    <div class="story-milestones animate-on-scroll">
+      <div class="story-milestone-card">
+        <div class="milestone-year">2018</div>
+        <div class="milestone-title">Facility Founded</div>
+        <div class="milestone-desc">Inaugurated our first 4-lane custom routed wooden slot car circuit with magnetic braids.</div>
+      </div>
+      <div class="story-milestone-card">
+        <div class="milestone-year">2020</div>
+        <div class="milestone-title">RC Carpet Expansion</div>
+        <div class="milestone-desc">Expanded to add our 2,400 sq.ft indoor CRC FastTrack ozite carpet arena for 1:10 touring.</div>
+      </div>
+      <div class="story-milestone-card">
+        <div class="milestone-year">2022</div>
+        <div class="milestone-title">Telemetry & Live Timing</div>
+        <div class="milestone-desc">Integrated optical infrared transponder delivering real-time telemetry and leaderboards.</div>
+      </div>
+      <div class="story-milestone-card">
+        <div class="milestone-year">2024</div>
+        <div class="milestone-title">Junior Academy & Pro Shop</div>
+        <div class="milestone-desc">Launched certified youth racing clinics and opened our factory performance parts Pro Shop.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2. OUR RACING EXPERIENCE
+═══════════════════════════════════════════ -->
+<section class="section" id="experience" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-gauge-high"></i> Pure Adrenaline</div>
+      <h2 class="section-title">The Apex Racing Experience</h2>
+      <p class="section-sub">From the roar of spectators to millisecond finish-line battles, we deliver an immersive, stadium-grade motorsport atmosphere.</p>
+    </div>
+
+    <div class="grid-3 animate-on-scroll">
+      <div class="exp-card">
+        <div class="exp-card-img-wrap">
+          <img src="assets/about/about_arena_atmosphere.jpg" alt="Arena Stadium Race Atmosphere">
+        </div>
+        <div class="exp-card-body">
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Stadium Arena Atmosphere</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;flex:1;">
+            Overhead race director commentary, starting grid light trees, LED perimeter track illumination, and live stadium display scoreboards keep heat electric.
+          </p>
+          <div style="font-size:0.8125rem;color:var(--primary);font-weight:600;"><i class="fas fa-volume-high"></i> Live Race Director Commentary</div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-img-wrap">
+          <img src="assets/about/about_telemetry.jpg" alt="Computerized Lap Telemetry">
+        </div>
+        <div class="exp-card-body">
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Millisecond Telemetry</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;flex:1;">
+            Every rental and member car is fitted with an infrared transponder. Capture sector splits, consistency deltas, top speeds, and personal lap records synced to your profile.
+          </p>
+          <div style="font-size:0.8125rem;color:var(--primary);font-weight:600;"><i class="fas fa-stopwatch"></i> 0.001-Sec Optical Transponders</div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-img-wrap">
+          <img src="assets/about/about_rental_fleet.jpg" alt="Arrive and Drive Fleet">
+        </div>
+        <div class="exp-card-body">
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Arrive & Drive Simplicity</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;flex:1;">
+            No equipment required! Our turn-key rental fleet features championship-spec slot cars and brushless 1:10 buggies tuned for immediate track competitiveness.
+          </p>
+          <div style="font-size:0.8125rem;color:var(--primary);font-weight:600;"><i class="fas fa-car"></i> Ready-to-Race Rental Fleet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     3. SLOT CAR RACING
+═══════════════════════════════════════════ -->
+<section class="section" id="slot-cars" style="background:var(--bg-base);">
+  <div class="container">
+    <div class="split-section">
+      <div class="split-img animate-on-scroll">
+        <img src="assets/about/about_slot_racing.jpg" alt="Slot Car Racing Circuit at Apex Raceway" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="animate-on-scroll delay-1">
+        <div class="section-badge"><i class="fas fa-bolt"></i> Analog & Digital Precision</div>
+        <h2 class="section-title" style="margin-bottom:1.75rem;">Slot Car Racing:<br><span class="text-primary">Mastery of the Slots</span></h2>
+        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;">
+            <div style="display:flex;align-items:center;gap:0.625rem;margin-bottom:0.35rem;">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 8px var(--primary);display:inline-block;"></span>
+              <span style="font-weight:700;color:var(--primary);font-size:1.0625rem;">1:32 Scale GT3</span>
+            </div>
+            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;line-height:1.6;">Precision endurance sports car racing with scale liveries, independent suspension, and high-downforce setups.</p>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;">
+            <div style="display:flex;align-items:center;gap:0.625rem;margin-bottom:0.35rem;">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 8px var(--primary);display:inline-block;"></span>
+              <span style="font-weight:700;color:var(--primary);font-size:1.0625rem;">1:24 Pro Modified</span>
+            </div>
+            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;line-height:1.6;">High-voltage brass & steel chassis reaching blistering scale speeds of over 180 MPH on the main straight.</p>
+          </div>
+        </div>
+        <a href="book-track.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Slot Car Lane</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4. RC RACING ACTIVITIES
+═══════════════════════════════════════════ -->
+<section class="section" id="rc-racing" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-car-side"></i> Scale RC Motorsport</div>
+      <h2 class="section-title">Indoor RC Racing Activities</h2>
+      <p class="section-sub">Experience high-speed 1:10 touring, sideways drift battles, and gravity-defying off-road buggy action.</p>
+    </div>
+
+    <div class="grid-2 animate-on-scroll" style="gap:2.5rem;">
+      <!-- Activity 1 -->
+      <div class="feature-card" style="display:flex;flex-direction:column;padding:0;overflow:hidden;border-radius:var(--radius-xl);">
+        <div style="aspect-ratio:16/9;overflow:hidden;position:relative;">
+          <img src="assets/about/about_rc_touring.jpg" alt="1:10 Electric Touring and Drift Racing" style="width:100%;height:100%;object-fit:cover;">
+          <span style="position:absolute;top:1rem;left:1rem;background:rgba(13,27,42,0.85);backdrop-filter:blur(8px);border:1px solid var(--border);color:var(--primary);padding:0.35rem 0.85rem;border-radius:var(--radius-full);font-size:0.75rem;font-weight:700;text-transform:uppercase;">On-Road & Drift</span>
+        </div>
+        <div style="padding:2rem;flex:1;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--font-heading);font-size:1.375rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">1:10 Carpet Touring & Drift Circuit</h3>
+          <p style="font-size:0.925rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;flex:1;">
+            High-grip CRC FastTrack ozite carpet layout engineered for razor-sharp touring cars and controlled scale counter-steer drifting. Complete with apex rumble strips, technical chicanes, and sweepers.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 1.5rem 0;display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:var(--text-body);">
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Smooth carpet grip with low tire degradation</li>
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Sanctioned 17.5T & 21.5T spec brushless classes</li>
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Dedicated clipping zones for RWD drift competitions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="feature-card" style="display:flex;flex-direction:column;padding:0;overflow:hidden;border-radius:var(--radius-xl);">
+        <div style="aspect-ratio:16/9;overflow:hidden;position:relative;">
+          <img src="assets/about/about_rc_offroad.jpg" alt="Off-Road Buggy & Stadium Truck Racing" style="width:100%;height:100%;object-fit:cover;">
+          <span style="position:absolute;top:1rem;left:1rem;background:rgba(13,27,42,0.85);backdrop-filter:blur(8px);border:1px solid var(--border);color:var(--primary);padding:0.35rem 0.85rem;border-radius:var(--radius-full);font-size:0.75rem;font-weight:700;text-transform:uppercase;">Off-Road Arena</span>
+        </div>
+        <div style="padding:2rem;flex:1;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--font-heading);font-size:1.375rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">RC Off-Road Stadium Dirt & Jumps</h3>
+          <p style="font-size:0.925rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;flex:1;">
+            Indoor packed-clay and astroturf hybrid stadium circuit designed for high-flying 2WD and 4WD buggies. Features tabletop jumps, rhythm sections, washboard whoops, and a 45-degree banked wall-ride.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 1.5rem 0;display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;color:var(--text-body);">
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Massive air tabletop jumps with smooth down-ramps</li>
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Mod & Stock 1:10 buggy brackets</li>
+            <li><i class="fas fa-check text-primary" style="margin-right:0.5rem;"></i> Overhead marshaling stations with instant restart assist</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     5. TRACK FACILITIES & RACING ACADEMY
+═══════════════════════════════════════════ -->
+<section class="section" id="facilities" style="background:var(--bg-base);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-building"></i> World-Class Amenities</div>
+      <h2 class="section-title">Our Track Facilities & Academy</h2>
+      <p class="section-sub">Every square foot of Apex Raceway is built around driver precision, spectator excitement, and professional competition infrastructure.</p>
+    </div>
+
+    <!-- Arena Feature Split (Image 9: Elevated Driver Stand & Arena Circuit) -->
+    <div class="split-section" style="margin-bottom:3.5rem;align-items:center;">
+      <div class="split-img animate-on-scroll" style="border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--border);">
+        <img src="assets/about/about_arena_showcase.jpg" alt="Apex Raceway Elevated Driver Stand and Championship Track Arena" style="width:100%;height:100%;object-fit:cover;min-height:360px;">
+      </div>
+      <div class="animate-on-scroll delay-1">
+        <div class="section-badge" style="background:rgba(0,180,216,0.12);color:var(--primary);margin-bottom:0.75rem;"><i class="fas fa-tower-broadcast"></i> Arena Command Center</div>
+        <h3 style="font-family:var(--font-heading);font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;color:var(--text-heading);margin-bottom:1rem;line-height:1.2;">
+          Elevated Driver Stand & Multi-Tier Arena
+        </h3>
+        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.75;margin-bottom:1.25rem;">
+          Take command of your machine from our custom-built 4-meter raised driver platform. Engineered with anti-glare sightlines across every technical apex, banked sweeper, and pit lane entry for flawless driving control.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.8rem;flex-shrink:0;"><i class="fas fa-check"></i></div>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Unobstructed panoramic view of all 6 slot lanes and RC circuits</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.8rem;flex-shrink:0;"><i class="fas fa-check"></i></div>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Overhead race director audio and electronic light-tree starting sequences</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.8rem;flex-shrink:0;"><i class="fas fa-check"></i></div>
+            <span style="font-size:0.9rem;color:var(--text-muted);">Direct transponder feed to overhead multi-screen timing leaderboards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paddock & Academy Grid (Image 10: Pit Paddock & Image 11: Junior Academy) -->
+    <div class="grid-2 animate-on-scroll" style="gap:2rem;margin-bottom:3rem;">
+      <!-- Facility Card 1: Pit Paddock (Image 10) -->
+      <div class="exp-card">
+        <div class="exp-card-img-wrap">
+          <img src="assets/about/about_pit_paddock.jpg" alt="24-Bay Pro Pit Paddock and Tuning Workbench">
+        </div>
+        <div class="exp-card-body">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.35rem;"><i class="fas fa-wrench"></i> Pro Tech Facility</div>
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">24-Bay Pro Pit Paddock & Tuning Bays</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;flex:1;">
+            Individual driver pit stations outfitted with grounded 110V power outlets, high-CRI LED bench illumination, precision tire truing stations, digital camber gauges, and clean compressed air blowers.
+          </p>
+          <div style="font-size:0.8125rem;color:var(--primary);font-weight:600;"><i class="fas fa-screwdriver-wrench"></i> Full Pit Crew Workstations</div>
+        </div>
+      </div>
+
+      <!-- Facility Card 2: Junior Driver Academy (Image 11) -->
+      <div class="exp-card">
+        <div class="exp-card-img-wrap">
+          <img src="assets/about/about_junior_academy.jpg" alt="Junior Racing Academy and Driver Coaching Clinic">
+        </div>
+        <div class="exp-card-body">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.35rem;"><i class="fas fa-graduation-cap"></i> Driver Development</div>
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Junior Racing Academy & Clinics</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;flex:1;">
+            Nurturing scale motorsport champions through certified youth clinics, controller throttle modulation drills, cornering line analysis, and sportsmanship etiquette taught by regional champions.
+          </p>
+          <div style="font-size:0.8125rem;color:var(--primary);font-weight:600;"><i class="fas fa-award"></i> Certified Coaching for Ages 8–17</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Amenity Cards -->
+    <div class="grid-4 animate-on-scroll">
+      <div class="facility-card">
+        <div class="facility-icon"><i class="fas fa-binoculars"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Elevated Driver Stand</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Raised driver deck offering clear sightlines across all apexes, straightaways, and pit lanes.
+        </p>
+      </div>
+
+      <div class="facility-card">
+        <div class="facility-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">24-Bay Pro Pit Paddock</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Generous racer pit benches equipped with 110V power, tire truing stations, and soldering equipment.
+        </p>
+      </div>
+
+      <div class="facility-card">
+        <div class="facility-icon"><i class="fas fa-store"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Pro Shop & Tuning Bay</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Fully stocked retail center carrying factory chassis kits, LiPos, motors, gears, and tire compounds.
+        </p>
+      </div>
+
+      <div class="facility-card">
+        <div class="facility-icon"><i class="fas fa-couch"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">VIP Lounge & Cafe</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Climate-controlled viewing lounge with panoramic glass windows, live timing screens, and coffee bar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     6. SAFETY GUIDELINES
+═══════════════════════════════════════════ -->
+<section class="section" id="safety" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-shield-halved"></i> Safety & Rules</div>
+      <h2 class="section-title">Safety Guidelines & Track Etiquette</h2>
+      <p class="section-sub">We maintain rigorous standards to guarantee a safe, competitive, and enjoyable environment for all participants.</p>
+    </div>
+
+    <div class="safety-grid animate-on-scroll">
+      <div class="safety-card">
+        <div class="safety-icon-wrap"><i class="fas fa-battery-full"></i></div>
+        <div>
+          <h3 class="safety-title">Battery Safety & Charging Protocols</h3>
+          <p class="safety-desc">
+            All LiPo battery charging must take place inside flame-resistant LiPo charge bags at our designated pit charging stations. Never exceed recommended 1C/2C charging rates. Puffed or damaged packs are strictly prohibited.
+          </p>
+        </div>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-icon-wrap"><i class="fas fa-person-military-pointing"></i></div>
+        <div>
+          <h3 class="safety-title">Track Marshaling & Live Circuit Protocol</h3>
+          <p class="safety-desc">
+            Only designated, certified corner marshals are permitted to step onto the active circuit to right overturned vehicles. Drivers must never enter the track boundaries during live heats. Emergency stop switches are located at every turn.
+          </p>
+        </div>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-icon-wrap"><i class="fas fa-car-on"></i></div>
+        <div>
+          <h3 class="safety-title">Vehicle Technical Inspection (Scrutineering)</h3>
+          <p class="safety-desc">
+            Personal cars must pass a rapid safety tech check before entering competitive heats: ground clearance check (no chassis scratching track surface), secure battery strap, and protected pinion/spur gear covers.
+          </p>
+        </div>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-icon-wrap"><i class="fas fa-handshake-angle"></i></div>
+        <div>
+          <h3 class="safety-title">Sportsmanship & Paddock Conduct</h3>
+          <p class="safety-desc">
+            Apex Raceway is a family-friendly venue. Unsportsmanlike conduct, intentional ramming, or verbal abuse will result in heat disqualification. Controlled slow speed is strictly enforced when entering or leaving pit lanes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     7. EVENTS & COMPETITIONS
+═══════════════════════════════════════════ -->
+<section class="section" id="events" style="background:var(--bg-base);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-trophy"></i> Tournament Calendar</div>
+      <h2 class="section-title">Events & Competitions</h2>
+      <p class="section-sub">From Friday night sanctioned league battles to exclusive corporate venue hire, there's always a reason to race.</p>
+    </div>
+
+    <div class="grid-2 animate-on-scroll" style="gap:2rem;">
+      <!-- Event 1: Friday Night Lights Championship -->
+      <div class="event-card">
+        <div class="event-card-img-wrap">
+          <img src="assets/about/about_friday_championship.jpg" alt="Friday Night Racing League Series">
+          <span class="event-tag"><i class="fas fa-flag-checkered"></i> Weekly Championship</span>
+        </div>
+        <div class="event-card-body">
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Friday Night Lights Cup</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem;flex:1;">
+            Our premier weekly championship race night featuring qualifying heats, junior development clinics, and A-Main championship shootouts for Slot GT and RC 1:10 classes.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem;">
+            <span style="font-size:0.8125rem;color:var(--text-muted);"><i class="fas fa-calendar-alt text-primary"></i> Every Friday, 7 PM</span>
+            <a href="leagues.html" class="btn btn-outline btn-sm">View Schedule</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2: Corporate & VIP Grand Prix -->
+      <div class="event-card">
+        <div class="event-card-img-wrap">
+          <img src="assets/about/about_corporate_vip.jpg" alt="Corporate VIP & Private Group Racing">
+          <span class="event-tag"><i class="fas fa-crown"></i> Private Events</span>
+        </div>
+        <div class="event-card-body">
+          <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-heading);">Corporate & VIP Grand Prix</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem;flex:1;">
+            Private raceway takeover with dedicated race marshals, live leaderboard MC commentary, custom trophies, and VIP catering packages for birthdays and corporate team building.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem;">
+            <span style="font-size:0.8125rem;color:var(--text-muted);"><i class="fas fa-users text-primary"></i> Up to 30 Racers</span>
+            <a href="contact.html" class="btn btn-outline btn-sm">Inquire Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     8. WHY CHOOSE US
+═══════════════════════════════════════════ -->
+<section class="section" id="why-us" style="background:var(--bg-surface);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-award"></i> The Apex Difference</div>
+      <h2 class="section-title">Why Racers Choose Apex Raceway</h2>
+      <p class="section-sub">We combine championship-spec infrastructure, welcoming community values, and seamless digital booking.</p>
+    </div>
+
+    <div class="grid-4 animate-on-scroll">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-microchip"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Precision Timing</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Infrared optical transponders on every car with 0.001-sec resolution, sector splits, and instant online precision leaderboard sync.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-car-side"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Pro Rental Fleet</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Championship-spec slot cars and brushless 1:10 buggies tuned and balanced before every session so newcomers can race.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-users-line"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Vibrant Community</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          Over 850 active racers sharing setup advice, tire strategies, and friendly trackside banter in our pits every day of the week.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-heading);">Transparent Pricing</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.6;margin:0;">
+          No hidden transponder fees or rental surcharges. Simple session pricing with multi-hour passes and flexible membership credits.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════════ -->
+<section class="section" style="background:var(--secondary);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,216,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="max-width:800px;margin-inline:auto;text-align:center;" class="animate-on-scroll">
+      <div class="section-badge" style="display:inline-flex;margin-bottom:1.25rem;background:rgba(0,180,216,.2);color:var(--primary);border-color:rgba(0,180,216,.35);"><i class="fas fa-flag-checkered"></i> Get On Track Today</div>
+      <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:1rem;text-transform:uppercase;">
+        Ready to Experience <span style="color:var(--primary);">Apex Raceway?</span>
+      </h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.75;margin-bottom:2.25rem;">
+        Reserve your lane online in under 60 seconds, explore our custom track layouts, or drop in to tour our pro pits and meet the racing community.
+      </p>
+      <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;">
+        <a href="book-track.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Plan Your Visit</a>
+        <a href="leagues.html" class="btn btn-ghost btn-ghost-light btn-lg"><i class="fas fa-trophy"></i> View Racing Leagues</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="main-footer"></div>
+<script src="components.js"></script>
+</body>
+</html>
+
