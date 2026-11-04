@@ -224,6 +224,24 @@
   display: flex;
   flex-direction: column;
 }
+.event-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+.event-card-footer-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 
 /* Why Choose Us Cards */
 .why-card {
@@ -266,6 +284,16 @@
 @media (max-width: 576px) {
   .story-milestones { grid-template-columns: 1fr; }
   .safety-card { flex-direction: column; gap: 1rem; }
+  .event-card-body { padding: 1.25rem; }
+  .event-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.875rem;
+  }
+  .event-card-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>
 </head>
@@ -701,8 +729,8 @@
           <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem;flex:1;">
             Our premier weekly championship race night featuring qualifying heats, junior development clinics, and A-Main championship shootouts for Slot GT and RC 1:10 classes.
           </p>
-          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem;">
-            <span style="font-size:0.8125rem;color:var(--text-muted);"><i class="fas fa-calendar-alt text-primary"></i> Every Friday, 7 PM</span>
+          <div class="event-card-footer">
+            <span class="event-card-footer-info"><i class="fas fa-calendar-alt text-primary"></i> Every Friday, 7 PM</span>
             <a href="leagues.html" class="btn btn-outline btn-sm">View Schedule</a>
           </div>
         </div>
@@ -719,8 +747,8 @@
           <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem;flex:1;">
             Private raceway takeover with dedicated race marshals, live leaderboard MC commentary, custom trophies, and VIP catering packages for birthdays and corporate team building.
           </p>
-          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem;">
-            <span style="font-size:0.8125rem;color:var(--text-muted);"><i class="fas fa-users text-primary"></i> Up to 30 Racers</span>
+          <div class="event-card-footer">
+            <span class="event-card-footer-info"><i class="fas fa-users text-primary"></i> Up to 30 Racers</span>
             <a href="contact.html" class="btn btn-outline btn-sm">Inquire Now</a>
           </div>
         </div>
